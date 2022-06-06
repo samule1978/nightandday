@@ -52,8 +52,8 @@ export function initSiteConfig() {
 			_observeSiteConfigPanel("layout");
 			_initConfigPanel("style");
 			_observeSiteConfigPanel("style");
-			_initConfigPanel("type");
-			_observeSiteConfigPanel("type");
+			//_initConfigPanel("type");
+			//_observeSiteConfigPanel("type");
 			_initUXOrder();
 
 			_initOptionsScroller("brand", "ctrl");
