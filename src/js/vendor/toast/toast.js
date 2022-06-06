@@ -30,7 +30,7 @@ export default class Toast {
 		this.#toastElem = createElement("div", {
 			classList: "toast",			
 		});
-		//this.#toastElem.classList.add("mdx__style--glass");
+		//this.#toastElem.classList.add("sg78__style--glass");
 		requestAnimationFrame(() => {
 			this.#toastElem.classList.add("show");
 		});

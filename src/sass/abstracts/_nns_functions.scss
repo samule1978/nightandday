@@ -1,4 +1,4 @@
-@use "../_mdx/mdx_variables" as mdx;
+@use "../_sg78/sg78_variables" as sg78;
 @use "../_cfg/cfg_variables" as cfg;
 @use "sass:math";
 
@@ -13,7 +13,7 @@
 }
 
 @function svar($name, $forceError: true) {
-	@if index(mdx.$cssCustomProperties, $name) != null {
+	@if index(sg78.$cssCustomProperties, $name) != null {
 		// Get CSS Custom Property.
 		@return var(#{$name});
 	} @else {
@@ -27,7 +27,7 @@
 	}
 }
 @function isvar($name, $forceError: true) {
-	@if index(mdx.$cssCustomProperties, $name) != null {
+	@if index(sg78.$cssCustomProperties, $name) != null {
 		// Get CSS Custom Property.
 		@return var(#{$name}) !important;
 	} @else {

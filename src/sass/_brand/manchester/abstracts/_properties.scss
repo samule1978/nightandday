@@ -1,0 +1,5 @@
+@use "../../../_cfg/cfg_mixins" as cfg;
+
+[sg78-brand-option="2"] {
+	@include cfg.setCssPropertyConfigOptionDescription("brand", "Manchester");
+}

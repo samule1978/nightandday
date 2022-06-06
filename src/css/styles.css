@@ -1000,7 +1000,7 @@ footer {
 	min-height: 50vh;
 }
 */
-.mdx__style--glass {
+.sg78__style--glass {
   backdrop-filter: blur(7px) saturate(78%);
   -webkit-backdrop-filter: blur(7px) saturate(78%);
   background-color: hsl(0, 0%, 100%, 0.07) !important;
@@ -1023,7 +1023,7 @@ footer {
   }*/
 }
 @media (hover: hover) {
-  .mdx__style--3d {
+  .sg78__style--3d {
     padding-inline: 0.5rem;
     padding-block: 0.5rem;
     transform-style: preserve-3d;
@@ -1031,18 +1031,18 @@ footer {
     z-index: 1;
   }
   @-moz-document url-prefix() {
-    .mdx__style--3d {
+    .sg78__style--3d {
       outline: 1px solid transparent;
     }
   }
-  .mdx__style--3d:hover {
+  .sg78__style--3d:hover {
     z-index: 100;
   }
-  .mdx__style--3d-item {
+  .sg78__style--3d-item {
     display: block ruby;
     transform-style: preserve-3d;
   }
-  .mdx__style--3d-item > *:not(.js-tilt-glare) {
+  .sg78__style--3d-item > *:not(.js-tilt-glare) {
     transform: translateZ(2rem);
     position: absolute;
     top: 0;

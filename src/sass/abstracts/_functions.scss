@@ -1,4 +1,4 @@
-@use "../_mdx/mdx_variables" as mdx;
+@use "../_sg78/sg78_variables" as sg78;
 
 // Remove nth item from a list.
 @function remove-nth($list, $index) {

@@ -1,5 +1,5 @@
 @use "../../../_cfg/cfg_mixins" as cfg;
-@use "../../../_mdx/mdx_mixins" as mdx;
+@use "../../../_sg78/sg78_mixins" as sg78;
 @use "../../../abstracts/nns_functions" as *;
 
 $globalPropsAssets: (
@@ -24,12 +24,12 @@ $globalPropsColors: (
 	core: (
 		colors: (
 			rule: (
-				60: shsl(0, 50%, 100%),
-				30: shsl(0, 0%, 17%),
-				10: shsl(19, 100%, 50%),
+				60: shsl(0, 0%, 96%),
+				30: shsl(0, 0%, 19%),
+				10: shsl(209, 42%, 38%),
 			),
 			brand: (
-				1: shsl(19, 100%, 50%),
+				1: shsl(209, 42%, 38%),
 			),
 			color: (
 				1: var(--core-colors-rule-60),
@@ -62,13 +62,13 @@ $globalPropsVendors: (
 	),
 );
 
-[sg78-brand-option="1"] {
+[sg78-brand-option] {
 	@include cfg.setCssPropertyConfigOptionDescription("brand", "Global");
 
 	&:where(html) {
-		@include mdx.cssPropertiesFromSassMap($globalPropsAssets);
-		@include mdx.cssPropertiesFromSassMap($globalPropsFont);
-		@include mdx.cssPropertiesFromSassMap($globalPropsColors);
-		@include mdx.cssPropertiesFromSassMap($globalPropsVendors);
+		@include sg78.cssPropertiesFromSassMap($globalPropsAssets);
+		@include sg78.cssPropertiesFromSassMap($globalPropsFont);
+		@include sg78.cssPropertiesFromSassMap($globalPropsColors);
+		@include sg78.cssPropertiesFromSassMap($globalPropsVendors);
 	}
 }

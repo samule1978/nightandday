@@ -1,14 +1,14 @@
 /* This is used to build/ouptut CSS properties based on SASS map. */
-[sg78-brand-option="1"] {
+[sg78-brand-option] {
   --_sg78-brand-option-description: Global;
 }
-[sg78-brand-option="1"]:where(html) {
+[sg78-brand-option]:where(html) {
   --core-assets-logo: url(./../assets/img/logo.png);
   --core-font-family-1: Helvetica, sans-serif;
-  --core-colors-rule-60: hsl(0, 50%, 100%);
-  --core-colors-rule-30: hsl(0, 0%, 17%);
-  --core-colors-rule-10: hsl(19, 100%, 50%);
-  --core-colors-brand-1: hsl(19, 100%, 50%);
+  --core-colors-rule-60: hsl(0, 0%, 96%);
+  --core-colors-rule-30: hsl(0, 0%, 19%);
+  --core-colors-rule-10: hsl(209, 42%, 38%);
+  --core-colors-brand-1: hsl(209, 42%, 38%);
   --core-colors-color-1: var(--core-colors-rule-60);
   --core-colors-color-2: var(--core-colors-rule-30);
   --core-colors-color-3: var(--core-colors-rule-10);
@@ -29,8 +29,8 @@
 /* Set Display to Flexbox with browser compatible styles. */
 /* Set Fluid Font Size */
 /* Set hover and focus styles at the same time.*/
-[sg78-brand-option="1"] .cta__anchor a[href],
-[sg78-brand-option="1"] a[href].cta__anchor {
+[sg78-brand-option] .cta__anchor a[href],
+[sg78-brand-option] a[href].cta__anchor {
   --_color-font: var(--core-colors-color-2);
   --_color-underline: var(--core-colors-color-2);
   color: var(--_color-font);
@@ -40,26 +40,34 @@
   background-size: 0% 2px;
   transition: background-size 0.55s cubic-bezier(0.2, 0.75, 0.5, 1), color 0.5s ease;
 }
-[sg78-brand-option="1"] .cta__anchor a[href]:not([disabled]),
-[sg78-brand-option="1"] a[href].cta__anchor:not([disabled]) {
+[sg78-brand-option] .cta__anchor a[href]:not([disabled]),
+[sg78-brand-option] a[href].cta__anchor:not([disabled]) {
   /*&:focus {
   	outline: none;
   }*/
 }
-[sg78-brand-option="1"] .cta__anchor a[href]:not([disabled]):hover, [sg78-brand-option="1"] .cta__anchor a[href]:not([disabled]):focus,
-[sg78-brand-option="1"] a[href].cta__anchor:not([disabled]):hover,
-[sg78-brand-option="1"] a[href].cta__anchor:not([disabled]):focus {
+[sg78-brand-option] .cta__anchor a[href]:not([disabled]):hover, [sg78-brand-option] .cta__anchor a[href]:not([disabled]):focus,
+[sg78-brand-option] a[href].cta__anchor:not([disabled]):hover,
+[sg78-brand-option] a[href].cta__anchor:not([disabled]):focus {
   background-size: 100% 2px;
   opacity: 1;
   cursor: pointer;
 }
-[sg78-brand-option="1"] .cta__anchor--header a[href],
-[sg78-brand-option="1"] a[href].cta__anchor--header {
+[sg78-brand-option] .cta__anchor--header a[href],
+[sg78-brand-option] a[href].cta__anchor--header {
   --_color-font: var(--core-colors-color-2);
   --_color-underline: var(--core-colors-color-3);
 }
-[sg78-brand-option="1"] .cta__anchor--footer a[href],
-[sg78-brand-option="1"] a[href].cta__anchor--footer {
+[sg78-brand-option] .cta__anchor--footer a[href],
+[sg78-brand-option] a[href].cta__anchor--footer {
   --_color-font: var(--core-colors-color-1);
   --_color-underline: var(--core-colors-color-1);
+}
+
+[sg78-brand-option="2"] {
+  --_sg78-brand-option-description: Manchester;
+}
+
+[sg78-brand-option="3"] {
+  --_sg78-brand-option-description: Leeds;
 }

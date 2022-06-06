@@ -1,8 +1,8 @@
 @use "../abstracts/nns_functions" as *;
 @use "../abstracts/functions";
-@use "../_mdx/mdx_mixins" as *;
+@use "../_sg78/sg78_mixins" as *;
 
-.mdx__style {
+.sg78__style {
 	&--glass {
         backdrop-filter: blur(7px) saturate(78%);
         -webkit-backdrop-filter: blur(7px) saturate(78%);

@@ -1,4 +1,4 @@
-@use "../_mdx/mdx_mixins" as mdx;
+@use "../_sg78/sg78_mixins" as sg78;
 
 $opFonts: (
 	// See: https://github.com/argyleink/open-props/blob/main/src/props.fonts.css
@@ -135,7 +135,7 @@ $opZIndex: (
 );
 
 :where(html) {
-	@include mdx.cssPropertiesFromSassMap($opFonts);
-	@include mdx.cssPropertiesFromSassMap($opSizes);
-	@include mdx.cssPropertiesFromSassMap($opZIndex);
+	@include sg78.cssPropertiesFromSassMap($opFonts);
+	@include sg78.cssPropertiesFromSassMap($opSizes);
+	@include sg78.cssPropertiesFromSassMap($opZIndex);
 }

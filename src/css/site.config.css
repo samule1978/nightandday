@@ -40,22 +40,6 @@ section.container[sg78-layout-option="3"] {
 .grid__container--page[sg78-layout-option="4"] {
   --_sg78-layout-option-description: Header (Centered), Main (Full), Footer (Centered);
 }
-.grid__container--search-results[sg78-layout-option] {
-  --_sg78-layout-title: Search Panel + Results;
-  --_sg78-layout-options: 1-4;
-}
-.grid__container--search-results[sg78-layout-option="1"] {
-  --_sg78-layout-option-description: Left Search Panel with Results;
-}
-.grid__container--search-results[sg78-layout-option="2"] {
-  --_sg78-layout-option-description: Top Search Panel with Results;
-}
-.grid__container--search-results[sg78-layout-option="3"] {
-  --_sg78-layout-option-description: Right Search Panel with Results;
-}
-.grid__container--search-results[sg78-layout-option="4"] {
-  --_sg78-layout-option-description: Bottom Search Panel with Results;
-}
 
 .grid__area--footer .section__footer--nav[sg78-layout-option] {
   --_sg78-layout-title: Footer Navigation;
@@ -127,7 +111,7 @@ section.container[sg78-layout-option="3"] {
 siteConfig {
   --_bg-color: hsl(0, 0%, 17%);
   --_fg-color: hsl(0, 0%, 92%);
-  --_color-orange-1: hsl(19, 100%, 50%);
+  --_color-1: hsl(78, 90%, 57%);
   display: block;
   width: 100%;
   margin: 0px;
@@ -148,7 +132,7 @@ siteConfig > *:not(button) {
   padding: 0px 0px;
   color: var(--_fg-color);
   font-family: Helvetica, sans-serif;
-  border-bottom: solid 1px var(--_color-orange-1);
+  border-bottom: solid 1px var(--_color-1);
   background-color: var(--_bg-color);
   opacity: 95%;
 }
@@ -174,7 +158,7 @@ siteConfig > *:not(button) section {
   z-index: var(--op-layer-important);
 }
 siteConfig > *:not(button) section.active > *:not(ol) span:first-child {
-  color: var(--_color-orange-1);
+  color: var(--_color-1);
 }
 siteConfig > *:not(button) section > *:not(ol) {
   --_width: 100%;
@@ -189,7 +173,7 @@ siteConfig > *:not(button) section > *:not(ol):not([disabled]) {
   }*/
 }
 siteConfig > *:not(button) section > *:not(ol):not([disabled]):hover, siteConfig > *:not(button) section > *:not(ol):not([disabled]):focus {
-  color: var(--_color-orange-1);
+  color: var(--_color-1);
   border-bottom: solid var(--_hover-indicator-size) hsla(0deg, 0%, 92%, 0.3);
   cursor: pointer;
 }
@@ -198,7 +182,7 @@ siteConfig > *:not(button) section > *:not(ol) span:first-child {
   display: block;
 }
 siteConfig > *:not(button) section > *:not(ol) span:last-child {
-  color: var(--_color-orange-1);
+  color: var(--_color-1);
   font-size: 0.75em;
   font-style: italic;
   font-weight: 300;
@@ -231,8 +215,8 @@ siteConfig > *:not(button) section ol li {
   font-size: 0.75rem;
 }
 siteConfig > *:not(button) section ol li.active {
-  color: var(--_color-orange-1);
-  border-color: var(--_color-orange-1);
+  color: var(--_color-1);
+  border-color: var(--_color-1);
 }
 siteConfig > *:not(button) section ol li:not([disabled]) {
   /*&:focus {
@@ -241,8 +225,8 @@ siteConfig > *:not(button) section ol li:not([disabled]) {
 }
 siteConfig > *:not(button) section ol li:not([disabled]):hover, siteConfig > *:not(button) section ol li:not([disabled]):focus {
   color: var(--_fg-color-1);
-  background-color: var(--_color-orange-1);
-  border-color: var(--_color-orange-1);
+  background-color: var(--_color-1);
+  border-color: var(--_color-1);
   cursor: pointer;
 }
 @media only screen and (min-width: 600px) {
@@ -279,7 +263,7 @@ siteConfig > button {
   padding: 0;
   border-width: 0;
   border-radius: 100%;
-  background-color: var(--_color-orange-1);
+  background-color: var(--_color-1);
   position: absolute;
   bottom: calc(var(--_button-height) * 0.5 * -1);
   left: 50%;
@@ -316,8 +300,8 @@ toggle {
   position: relative;
   text-transform: uppercase;
   background-color: hsl(0deg, 0%, 0%);
-  color: var(--_color-orange-1);
-  border-bottom: solid 1px var(--_color-orange-1);
+  color: var(--_color-1);
+  border-bottom: solid 1px var(--_color-1);
   opacity: 100%;
 }
 toggle button {
@@ -335,8 +319,8 @@ toggle button {
 }
 toggle button:hover {
   color: hsl(0deg, 0%, 92%);
-  background-color: var(--_color-orange-1);
-  border-color: var(--_color-orange-1);
+  background-color: var(--_color-1);
+  border-color: var(--_color-1);
 }
 
 brandConfig.collapse > *:not(toggle) {

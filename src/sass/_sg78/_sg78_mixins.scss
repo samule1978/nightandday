@@ -1,4 +1,4 @@
-@use "../_mdx/mdx_variables" as mdx;
+@use "../_sg78/sg78_variables" as sg78;
 @use "../abstracts/functions";
 
 /* This is used to build/ouptut CSS properties based on SASS map. */
@@ -18,9 +18,9 @@
 				$cssPropertyValue: $node;
 				#{$cssPropertyName}: #{$cssPropertyValue};
 
-				@if index(mdx.$cssCustomProperties, #{$cssPropertyName}) == null
+				@if index(sg78.$cssCustomProperties, #{$cssPropertyName}) == null
 				{
-					mdx.$cssCustomProperties: append(mdx.$cssCustomProperties, #{$cssPropertyName});
+					sg78.$cssCustomProperties: append(sg78.$cssCustomProperties, #{$cssPropertyName});
 				}
 			}
 
@@ -36,8 +36,8 @@
 
 @mixin svar($name, $value) {
 	@if ($name and $value) {
-		@if index(mdx.$cssCustomProperties, $name) == null {
-			mdx.$cssCustomProperties: append(mdx.$cssCustomProperties, #{$name});
+		@if index(sg78.$cssCustomProperties, $name) == null {
+			sg78.$cssCustomProperties: append(sg78.$cssCustomProperties, #{$name});
 		}
 		#{$name}: #{$value};	
 	}

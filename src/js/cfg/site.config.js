@@ -292,7 +292,7 @@ let _initConfigPanel = (type) => {
 			: getCssPropertyValue(elem, "--_sg78-" + type + "-id");
 		if (!id) {
 			// Dynamically set ID based on Index and Type.
-			id = "mdx" + type + "0" + index;
+			id = "sg78" + type + "0" + index;
 			elem.setAttribute("sg78-" + type + "-id", id);
 		}
 

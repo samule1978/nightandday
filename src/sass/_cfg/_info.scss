@@ -71,37 +71,6 @@ section {
 				);
 			}	
 		}
-
-		&--search-results {
-			&[sg78-layout-option] {
-				@include mixins.setCssPropertyConfigTitle("layout", "Search Panel + Results");
-				@include mixins.setCssPropertyConfigOptions("layout", "1-4");
-			}
-			&[sg78-layout-option="1"] {
-				@include mixins.setCssPropertyConfigOptionDescription(
-					"layout",
-					"Left Search Panel with Results"
-				);
-			}
-			&[sg78-layout-option="2"] {
-				@include mixins.setCssPropertyConfigOptionDescription(
-					"layout",
-					"Top Search Panel with Results"
-				);
-			}
-			&[sg78-layout-option="3"] {
-				@include mixins.setCssPropertyConfigOptionDescription(
-					"layout",
-					"Right Search Panel with Results"
-				);
-			}
-			&[sg78-layout-option="4"] {
-				@include mixins.setCssPropertyConfigOptionDescription(
-					"layout",
-					"Bottom Search Panel with Results"
-				);
-			}
-		}
 	}
 }
 

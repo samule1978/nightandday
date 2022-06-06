@@ -1,5 +1,5 @@
 @use "../abstracts/nns_functions" as *;
-@use "../_mdx/mdx_mixins" as mdx;
+@use "../_sg78/sg78_mixins" as sg78;
 
 $corePropsAssets: (
 	core: (
@@ -289,13 +289,13 @@ $corePropsComponentsSearch: (
 
 [sg78-brand-option] {
 	&:where(html) {
-		@include mdx.cssPropertiesFromSassMap($corePropsAssets);
-		@include mdx.cssPropertiesFromSassMap($corePropsFont);
-		@include mdx.cssPropertiesFromSassMap($corePropsColors);
-		@include mdx.cssPropertiesFromSassMap($corePropsSize);
-		@include mdx.cssPropertiesFromSassMap($corePropsSpacing);
-		@include mdx.cssPropertiesFromSassMap($corePropsVendors);
-		@include mdx.cssPropertiesFromSassMap($corePropsComponentsFeaturedCards);
-		@include mdx.cssPropertiesFromSassMap($corePropsComponentsSearch);
+		@include sg78.cssPropertiesFromSassMap($corePropsAssets);
+		@include sg78.cssPropertiesFromSassMap($corePropsFont);
+		@include sg78.cssPropertiesFromSassMap($corePropsColors);
+		@include sg78.cssPropertiesFromSassMap($corePropsSize);
+		@include sg78.cssPropertiesFromSassMap($corePropsSpacing);
+		@include sg78.cssPropertiesFromSassMap($corePropsVendors);
+		@include sg78.cssPropertiesFromSassMap($corePropsComponentsFeaturedCards);
+		@include sg78.cssPropertiesFromSassMap($corePropsComponentsSearch);
 	}
 }
