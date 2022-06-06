@@ -1,0 +1,263 @@
+@use "./cfg_mixins" as mixins;
+
+[mdx-brand-option="0"],
+[mdx-layout-option="0"],
+[mdx-style-option="0"] {
+	--_mdx-layout-option-description: Disabled;
+	display: none !important;
+}
+
+[mdx-brand-option] {
+	@include mixins.setCssPropertyConfigTitle("brand", "Brand");
+	@include mixins.setCssPropertyConfigOptions("brand", "1-3");
+}
+
+section {
+	&.container {
+		&[mdx-layout-option] {
+			@include mixins.setCssPropertyConfigTitle("layout", "+Container");
+			@include mixins.setCssPropertyConfigOptions("layout", "1-3");
+		}
+		&[mdx-layout-option="1"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Inherited Width"
+			);			
+		}
+		&[mdx-layout-option="2"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Expanded Width"
+			);			
+		}
+		&[mdx-layout-option="3"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Full Screen Width"
+			);			
+		}
+	}
+}
+
+.grid {
+	&__container {
+		&--page {
+			&[mdx-layout-option] {
+				@include mixins.setCssPropertyConfigTitle("layout", "Page");
+				@include mixins.setCssPropertyConfigOptions("layout", "1-4");
+			}
+			&[mdx-layout-option="1"] {
+				@include mixins.setCssPropertyConfigOptionDescription(
+					"layout",
+					"Header (Full), Main (Full), Footer (Full)"
+				);
+			}
+			&[mdx-layout-option="2"] {
+				@include mixins.setCssPropertyConfigOptionDescription(
+					"layout",
+					"Header (Centered), Main (Centered), Footer (Centered)"
+				);
+			}
+			&[mdx-layout-option="3"] {
+				@include mixins.setCssPropertyConfigOptionDescription(
+					"layout",
+					"Header (Full), Main (Centered), Footer (Full)"
+				);
+			}
+			&[mdx-layout-option="4"] {
+				@include mixins.setCssPropertyConfigOptionDescription(
+					"layout",
+					"Header (Centered), Main (Full), Footer (Centered)"
+				);
+			}	
+		}
+
+		&--search-results {
+			&[mdx-layout-option] {
+				@include mixins.setCssPropertyConfigTitle("layout", "Search Panel + Results");
+				@include mixins.setCssPropertyConfigOptions("layout", "1-4");
+			}
+			&[mdx-layout-option="1"] {
+				@include mixins.setCssPropertyConfigOptionDescription(
+					"layout",
+					"Left Search Panel with Results"
+				);
+			}
+			&[mdx-layout-option="2"] {
+				@include mixins.setCssPropertyConfigOptionDescription(
+					"layout",
+					"Top Search Panel with Results"
+				);
+			}
+			&[mdx-layout-option="3"] {
+				@include mixins.setCssPropertyConfigOptionDescription(
+					"layout",
+					"Right Search Panel with Results"
+				);
+			}
+			&[mdx-layout-option="4"] {
+				@include mixins.setCssPropertyConfigOptionDescription(
+					"layout",
+					"Bottom Search Panel with Results"
+				);
+			}
+		}
+	}
+}
+
+.section__component {
+	&--search {
+		&[mdx-layout-option] {
+			@include mixins.setCssPropertyConfigTitle("layout", "Search Panel");
+			@include mixins.setCssPropertyConfigOptions("layout", "1-2");
+		}
+		&[mdx-layout-option="1"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"1 Column"
+			);
+		}
+		&[mdx-layout-option="2"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"2 Column"
+			);
+		}
+
+		&[mdx-type-option] {
+			@include mixins.setCssPropertyConfigTitle("type", "Search Panel");
+			@include mixins.setCssPropertyConfigOptions("type", "1-2");
+		}
+		&[mdx-type-option="1"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"type",
+				"Standard"
+			);
+		}
+		&[mdx-type-option="2"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"type",
+				"Collapsible"
+			);
+		}
+	}
+}
+
+.grid__area--footer {
+	.section__footer--nav {
+		&[mdx-layout-option] {
+			@include mixins.setCssPropertyConfigTitle(
+				"layout",
+				"Footer Navigation"
+			);
+			@include mixins.setCssPropertyConfigOptions("layout", "0-6");
+		}
+		&[mdx-layout-option="1"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Left aligned columns"
+			);
+		}
+		&[mdx-layout-option="2"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Center aligned columns"
+			);
+		}
+		&[mdx-layout-option="3"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Right aligned columns"
+			);
+		}
+		&[mdx-layout-option="4"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Spaced around columns"
+			);
+		}
+		&[mdx-layout-option="5"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Spaced between columns"
+			);
+		}
+		&[mdx-layout-option="6"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Spaced evenly columns"
+			);
+		}
+	}
+
+	.section__legal {
+		&[mdx-layout-option] {
+			@include mixins.setCssPropertyConfigTitle("layout", "Legal");
+			@include mixins.setCssPropertyConfigOptions("layout", "0-4");
+		}
+		&[mdx-layout-option="1"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Copyright to the left, Links to the right"
+			);
+		}
+		&[mdx-layout-option="2"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Links to the left, Copyright to the right"
+			);
+		}
+		&[mdx-layout-option="3"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Copyright to the top, Links to the bottom"
+			);
+		}
+		&[mdx-layout-option="4"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"Links to the top, Copyright to the bottom"
+			);
+		}
+	}
+
+	.section__disclaimer {
+		&[mdx-layout-option] {
+			@include mixins.setCssPropertyConfigTitle("layout", "Disclaimer");
+			@include mixins.setCssPropertyConfigOptions("layout", "0-1");
+		}
+		&[mdx-layout-option="1"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"layout",
+				"List"
+			);
+		}
+	}
+}
+
+.section__component {
+	&--featured-cards {
+		&[mdx-style-option] {
+			@include mixins.setCssPropertyConfigTitle("style", "Featured Cards");
+			@include mixins.setCssPropertyConfigOptions("style", "0-3");
+		}
+		&[mdx-style-option="1"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"style",
+				"Modix"
+			);
+		}
+		&[mdx-style-option="2"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"style",
+				"Audi"
+			);
+		}
+		&[mdx-style-option="3"] {
+			@include mixins.setCssPropertyConfigOptionDescription(
+				"style",
+				"VWPC"
+			);
+		}
+	}
+}

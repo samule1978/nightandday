@@ -1,0 +1,118 @@
+@use "../_mdx/mdx_variables" as mdx;
+@use "../abstracts/functions";
+
+/**************************************************************************
+ * UTILS *
+ ***************************************************************************/
+@mixin bemAnchor($be, $m: "") {
+	@if ($be != "") {
+		$className: #{$be} + "__anchor";
+		@if ($m != "") {
+			$className: $className + "--" + #{$m};
+		}
+		.#{$className} a[href],
+		a[href].#{$className} {
+			@content;
+		}
+	}
+}
+
+/* Set Display to Flexbox with browser compatible styles. */
+@mixin flexbox() {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+@mixin flex($values) {
+	-webkit-box-flex: $values;
+	-moz-box-flex: $values;
+	-webkit-flex: $values;
+	-ms-flex: $values;
+	flex: $values;
+}
+@mixin order($val) {
+	-webkit-box-ordinal-group: $val;
+	-moz-box-ordinal-group: $val;
+	-ms-flex-order: $val;
+	-webkit-order: $val;
+	order: $val;
+}
+
+/* Set Fluid Font Size */
+@mixin fontSizeFluid($rem, $minFontSize, $maxFontSize, $minWidth, $maxWidth) {
+	/* See: https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/ */
+	$minWidth: calc($minWidth / $rem);
+	$maxWidth: calc($maxWidth / $rem);
+	$_slope: calc(($maxFontSize - $minFontSize) / ($maxWidth - $minWidth));
+	$_yAxisIntersection: -($minWidth) * $_slope + $minFontSize;
+
+	font-size: clamp(
+		#{$minFontSize}rem,
+		#{$_yAxisIntersection}rem + #{($_slope * 100)}vw,
+		#{$maxFontSize}rem
+	);
+}
+
+/* Set hover and focus styles at the same time.*/
+@mixin hover($targets...) {
+	&:not([disabled]) {
+		&:hover,
+		&:focus {
+			@content;
+			cursor: pointer;
+		}
+		/*&:focus {
+			outline: none;
+		}*/
+
+		@if (length($targets) > 0) {
+			@each $target in $targets {
+				&.#{$target} {
+					@content;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+}
+
+@mixin autoFlowGrid($type:column, $length, $element: null) {
+	@if $element {
+		@for $i from 1 through $length {
+			#{$element}:nth-child(#{$length}n + #{$i}) {
+				grid-#{$type}: $i;
+			}
+		}
+	} @else {
+		@for $i from 1 through $length {
+			> *:nth-child(#{$length}n + #{$i}) {
+				grid-#{$type}: $i;
+			}
+		}
+	}
+}
+@mixin autoFlowGridBasedOnLayout($type: column, $layoutElement: "", $even: true, $maxLayouts: 6, $length: 10) {
+	$typeOption: cols;
+	@if ($type == row) {
+		$typeOption: rows;
+	}
+
+	@for $idxLayout from 1 to $maxLayouts + 1 {
+		#{$layoutElement}[mdx-layout-option="#{$idxLayout}"] {
+			@for $idx from 1 to $length + 1 {
+				[mdx-layout-option-#{$idxLayout}-#{$typeOption}="#{$idx}"] {
+					display: grid;
+					@if ($even) {
+						grid-template-#{$type}s: repeat($idx, 1fr);
+					} @else {
+						grid-template-#{$type}s: unset;
+					}
+
+					@include autoFlowGrid($type, $idx);
+				}
+			}
+		}
+	}
+}

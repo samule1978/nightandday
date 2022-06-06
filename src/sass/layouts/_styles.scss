@@ -1,0 +1,61 @@
+@use "../abstracts/nns_functions" as *;
+@use "../abstracts/functions";
+@use "../_mdx/mdx_mixins" as *;
+
+.mdx__style {
+	&--glass {
+        backdrop-filter: blur(7px) saturate(78%);
+        -webkit-backdrop-filter: blur(7px) saturate(78%);
+        background-color: shsla(0, 0%, 100%, 0.07) !important;
+        //border-radius: 12px;
+        border: 1px solid shsla(216, 12%, 84%, 0.3);
+
+		/*@supports (background: -moz-element(#background)) {
+			position: relative;
+
+			&::before {
+                content: "";
+				background-attachment: fixed;
+				background-image: -moz-element(#background);				
+				filter: blur(7px) saturate(78%);
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				z-index: -1;
+			}
+		}*/
+	}
+
+	&--3d {
+		@media (hover: hover) {
+			@-moz-document url-prefix() {
+				// When using 3D CSS transform, without this we get jagged edges in Firefox.
+				outline: 1px solid transparent;
+			}
+			padding-inline: 0.5rem;
+			padding-block: 0.5rem;
+
+			transform-style: preserve-3d;
+			transform: perspective(1000px);
+
+			z-index: 1;
+			&:hover {
+				z-index: 100;
+			}
+
+			&-item {
+				display: block ruby;
+				transform-style: preserve-3d;
+
+				> *:not(.js-tilt-glare) {
+					transform: translateZ(2rem);
+					position: absolute;
+					top: 0;
+					left: 0;
+				}
+			}
+		}
+	}
+}

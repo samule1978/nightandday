@@ -1,0 +1,74 @@
+@use "../../../_cfg/cfg_mixins" as cfg;
+@use "../../../_mdx/mdx_mixins" as mdx;
+@use "../../../abstracts/nns_functions" as *;
+
+$modixPropsAssets: (
+	core: (
+		assets: (
+			logo: url(./../assets/modix/img/modix-grey.png),
+		),
+	),
+);
+
+$modixPropsFont: (
+	core: (
+		font: (
+			family: (
+				1: "Helvetica, sans-serif",
+			),
+		),
+	),
+);
+
+$modixPropsColors: (
+	core: (
+		colors: (
+			rule: (
+				60: shsl(0, 50%, 100%),
+				30: shsl(0, 0%, 17%),
+				10: shsl(19, 100%, 50%),
+			),
+			brand: (
+				1: shsl(19, 100%, 50%),
+			),
+			color: (
+				1: var(--core-colors-rule-60),
+				2: var(--core-colors-rule-30),
+				3: var(--core-colors-rule-10),
+			),
+		),
+	),
+);
+
+$modixPropsVendors: (
+	core: (
+		vendors: (
+			toast: (
+				background-image: url("./../assets/modix/img/modix-grey.png"),
+				colors: (
+					bg: var(--core-colors-color-2),
+					fg: var(--core-colors-color-1),
+					progress: var(--core-colors-brand-1),
+					close: var(--core-colors-color-1),
+				),
+				border: (
+					width: 0px,
+					style: none,
+					color: transparent,
+					radius: 0.5em,
+				),
+			),
+		),
+	),
+);
+
+[mdx-brand-option="1"] {
+	@include cfg.setCssPropertyConfigOptionDescription("brand", "Modix");
+
+	&:where(html) {
+		@include mdx.cssPropertiesFromSassMap($modixPropsAssets);
+		@include mdx.cssPropertiesFromSassMap($modixPropsFont);
+		@include mdx.cssPropertiesFromSassMap($modixPropsColors);
+		@include mdx.cssPropertiesFromSassMap($modixPropsVendors);
+	}
+}

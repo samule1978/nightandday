@@ -1,0 +1,301 @@
+@use "../abstracts/nns_functions" as *;
+@use "../_mdx/mdx_mixins" as mdx;
+
+$corePropsAssets: (
+	core: (
+		assets: (
+			logo: url(./../assets/modix/img/modix.png),
+		),
+	),
+);
+
+$corePropsFont: (
+	core: (
+		font: (
+			family: (
+				1: "Helvetica, sans-serif",
+			),
+			html: (
+				family: var(--core-font-family-1),
+				size: 16px,
+			),
+			header: (
+				family: var(--core-font-family-1),
+				size: 1rem,
+			),
+			main: (
+				family: var(--core-font-family-1),
+				size: 1rem,
+			),
+			footer: (
+				family: var(--core-font-family-1),
+				size: 0.75rem,
+			),
+			p: (
+				family: var(--core-font-family-1),
+				size: 1em,
+			),
+			span: (
+				family: var(--core-font-family-1),
+				size: 1em,
+			),
+			h1: (
+				family: var(--core-font-family-1),
+				size: 1.6em,
+			),
+			h2: (
+				family: var(--core-font-family-1),
+				size: 1.5em,
+			),
+			h3: (
+				family: var(--core-font-family-1),
+				size: 1.4em,
+			),
+			h4: (
+				family: var(--core-font-family-1),
+				size: 1.3em,
+			),
+			h5: (
+				family: var(--core-font-family-1),
+				size: 1.2em,
+			),
+			h6: (
+				family: var(--core-font-family-1),
+				size: 1.1em,
+			),
+			a: (
+				family: var(--core-font-family-1),
+				size: 1em,
+			),
+		),
+	),
+);
+
+$corePropsColors: (
+	core: (
+		colors: (
+			rule: (
+				60: shsl(0, 0%, 100%),
+				30: shsl(0, 0%, 17%),
+				10: shsl(19, 100%, 50%),
+			),
+			brand: (
+				1: var(--core-colors-rule-10),
+			),
+			selection: (
+				bg: var(--core-colors-brand-1),
+				fg: var(--core-colors-rule-60),
+			),
+			color: (
+				1: var(--core-colors-rule-60),
+				2: var(--core-colors-rule-30),
+				3: var(--core-colors-rule-10),
+			),
+			html: (
+				layout: (
+					body: (
+						bg: var(--core-colors-color-1),
+						fg: var(--core-colors-color-2),
+					),
+					header: (
+						bg: var(--core-colors-color-3),
+						fg: var(--core-colors-color-2),
+					),
+					main: (
+						bg: var(--core-colors-color-1),
+						fg: var(--core-colors-color-2),
+					),
+					footer: (
+						bg: var(--core-colors-color-2),
+						fg: var(--core-colors-color-1),
+					),
+				),
+			),
+		),
+	),
+);
+
+$corePropsSize: (
+	core: (
+		size: (
+			xxs: var(--op-size-xxs),
+			xs: var(--op-size-xs),
+			sm: var(--op-size-sm),
+			md: var(--op-size-md),
+			lg: var(--op-size-lg),
+			xl: var(--op-size-xl),
+			xxl: var(--op-size-xxl),
+			html: (
+				line-height: 1.5,
+			),
+			header: (
+				max: var(--core-size-lg),
+			),
+			main: (
+				max: var(--core-size-lg),
+			),
+			footer: (
+				max: var(--core-size-lg),
+			),
+		),
+	),
+);
+
+$corePropsSpacing: (
+	core: (
+		spacing: (
+			html: (
+				padding: (
+					block: var(--op-size-2),
+					inline: var(--op-size-3),
+				),
+			),
+			header: (
+				padding: (
+					block: var(--op-size-2),
+					inline: var(--op-size-3),
+				),
+			),
+			main: (
+				padding: (
+					block: var(--op-size-2),
+					inline: var(--op-size-3),
+				),
+			),
+			footer: (
+				padding: (
+					block: var(--op-size-2),
+					inline: var(--op-size-3),
+				),
+			),
+		),
+	),
+);
+
+$corePropsVendors: (
+	core: (
+		vendors: (
+			toast: (
+				background-image: url("./../assets/modix/img/modix.png"),
+				colors: (
+					bg: var(--core-colors-color-1),
+					fg: var(--core-colors-color-2),
+					progress: var(--core-colors-brand-1),
+					close: var(--core-colors-color-2),
+				),
+				padding: 1rem,
+				border: (
+					width: 1px,
+					style: solid,
+					color: var(--core-colors-color-2),
+					radius: 0.5em,
+				),
+				box-shadow:
+					"0 10px 10px hsla(0, 0%, 0%, 0.2), 0px 0px 25px hsla(0, 0%, 0%, 0.2)",
+				progress-thickness: 0.2em,
+			),
+		),
+	),
+);
+
+$corePropsComponentsFeaturedCards: (
+	core: (
+		components: (
+			featured-cards: (
+				gap: 0rem,
+				colors: (
+					bg: transparent,
+					//var(--core-colors-rule-30),
+					fg: var(--core-colors-rule-60),
+				),
+				card: (
+					padding: 1rem,
+					height: togglePxRem(600px),
+					box-shadow:
+						"0 10px 10px hsla(0, 0%, 0%, 0.2), 0px 0px 25px hsla(0, 0%, 0%, 0.2)",
+					colors: (
+						bg: var(--core-colors-rule-30),
+						fg: var(--core-colors-rule-60),
+					),
+					heading: (
+						padding: 0 0 1rem 0,
+						size: 1.5rem,
+						color: var(--core-colors-rule-60),
+					),
+					text: (
+						padding: 0 0 0.5rem 0,
+						size: 1rem,
+						color: var(--core-colors-rule-60),
+					),
+					cta: (
+						padding: 1rem 0,
+						size: 1rem,
+						color: var(--core-colors-rule-60),
+					),
+				),
+			),
+		),
+	),
+);
+
+$corePropsComponentsSearch: (
+	core: (
+		components: (
+			search: (
+				font: (
+					family: (
+						1: "Helvetica, sans-serif",						
+					),
+					size: 1rem,
+					legend: (
+						family: var(--core-components-search-font-family-1),
+						size: 1em,
+						weight: bold,
+						color: var(--core-colors-rule-30),
+					),
+					label: (
+						family: var(--core-components-search-font-family-1),
+						size: 1em,
+						weight: normal,
+						color: var(--core-colors-rule-30),
+					),
+					input: (
+						family: var(--core-components-search-font-family-1),
+						size: 1em,
+						weight: normal,
+						color: var(--core-colors-rule-30),
+					)
+				),
+				padding: (
+					inline: 0.25em,
+					block: 0.25em,
+					form: (
+						inline: 0,
+						block: 0,
+					),
+					legend: (
+						inline: 0.25em,
+						block: 0.25em,
+					),
+					label: (
+						inline: 0,
+						block: 0,
+					),
+				),
+			),
+		),
+	),
+);
+
+[mdx-brand-option] {
+	&:where(html) {
+		@include mdx.cssPropertiesFromSassMap($corePropsAssets);
+		@include mdx.cssPropertiesFromSassMap($corePropsFont);
+		@include mdx.cssPropertiesFromSassMap($corePropsColors);
+		@include mdx.cssPropertiesFromSassMap($corePropsSize);
+		@include mdx.cssPropertiesFromSassMap($corePropsSpacing);
+		@include mdx.cssPropertiesFromSassMap($corePropsVendors);
+		@include mdx.cssPropertiesFromSassMap($corePropsComponentsFeaturedCards);
+		@include mdx.cssPropertiesFromSassMap($corePropsComponentsSearch);
+	}
+}

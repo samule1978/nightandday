@@ -1,0 +1,273 @@
+@use "../abstracts/nns_functions" as *;
+@use "../abstracts/functions";
+@use "../abstracts/mixins";
+@use "../_cfg/cfg_variables";
+
+.section__component {
+	&--featured-cards {
+		background-color: svar(--core-components-featured-cards-colors-bg);
+		color: svar(--core-components-featured-cards-colors-fg);
+		display: grid;
+		grid-auto-flow: column;
+		gap: svar(--core-components-featured-cards-gap);		
+
+		@include mixins.autoFlowGrid(column, 1, ".component--featured-card");
+
+        $breakpoints: functions.str-split(cfg_variables.$cfg-components-featured-cards-breakpoints, ",");
+        @each $breakpoint in $breakpoints {
+            $min-width: nth(functions.str-split($breakpoint, ':'), 1);
+            $cols: functions.to-number(nth(functions.str-split($breakpoint, ':'), 2));
+
+            @media only screen and (min-width: $min-width) {
+				@include mixins.autoFlowGrid(column, $cols, ".component--featured-card");
+            }                
+        }
+        /* 
+		@media only screen and (min-width: 500px) {
+			@include _requiredCardColumns(2);
+		}
+		@media only screen and (min-width: 800px) {
+			@include _requiredCardColumns(3);
+		}
+		@media only screen and (min-width: 1024px) {
+			@include _requiredCardColumns(4);
+		}
+        */
+
+		.component--featured-card {
+			background-color: svar(
+				--core-components-featured-cards-card-colors-bg
+			);
+			color: svar(--core-components-featured-cards-card-colors-fg);
+			padding: svar(--core-components-featured-cards-card-padding);
+			height: svar(--core-components-featured-cards-card-height);
+			transform-style: preserve-3d;
+			position: relative;
+
+			&-image {
+				width: 100%;
+				height: 50%;
+				position: relative;
+				margin-block: 0
+					svar(--core-components-featured-cards-card-padding);
+
+				img {
+					object-fit: cover;
+					object-position: center;
+					width: 100%;
+					height: 100%;
+				}
+			}
+
+			&-text {
+				color: svar(--core-components-featured-cards-card-text-color);
+				font-size: svar(
+					--core-components-featured-cards-card-text-size
+				);
+				padding: svar(
+					--core-components-featured-cards-card-text-padding
+				);
+				position: relative;
+				h2 {
+					color: svar(
+						--core-components-featured-cards-card-heading-color
+					);
+					font-size: svar(
+						--core-components-featured-cards-card-heading-size
+					);
+					padding: svar(
+						--core-components-featured-cards-card-heading-padding
+					);
+					margin: 0;
+				}
+			}
+
+			&-cta {
+				color: svar(--core-components-featured-cards-card-cta-color);
+				padding: svar(
+					--core-components-featured-cards-card-cta-padding
+				);
+				position: relative;
+				a[href].cta__anchor {
+					--_color-font: var(
+						--core-components-featured-cards-card-cta-color
+					);
+					--_color-underline: var(
+						--core-components-featured-cards-card-cta-color
+					);
+
+					color: svar(
+						--core-components-featured-cards-card-cta-color
+					);
+				}
+			}
+
+			&.tilting {
+				@media (hover: hover) {
+					@-moz-document url-prefix() {
+						// When using 3D CSS transform, without this we get jagged edges in Firefox.
+						outline: 1px solid transparent;
+					}
+
+					@include mixins.hover {
+						z-index: svar(--op-layer-important);
+
+						.component--featured-card {
+							&-image {
+								@-moz-document url-prefix() {
+									// When using 3D CSS transform, without this we get jagged edges in Firefox.
+									outline: 1px solid transparent;
+								}
+
+								transform: translateZ(3rem);
+							}
+							&-text {
+								transform: translateZ(2.5rem);
+							}
+							&-cta {
+								transform: translateZ(2rem);
+							}
+						}
+					}
+
+					box-shadow: svar(
+						--core-components-featured-cards-card-box-shadow
+					);
+				}
+			}
+		}
+
+		&[mdx-style-option="1"] {
+			.component--featured-card {
+				display: grid;
+				place-content: center;
+
+				&-image {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					opacity: 0.8;
+					transition: all 0.45s cubic-bezier(0.25, 1, 0.2, 1);
+				}
+
+				&.tilting {
+					@media (hover: hover) {
+						@include mixins.hover {
+							.component--featured-card {
+								&-image {
+									transform: translateZ(0);
+								}
+							}
+						}
+					}
+				}
+
+				@media (hover: hover) {
+					&-image {
+						opacity: 0.2;
+					}
+					@include mixins.hover {
+						.component--featured-card {
+							&-image {
+								opacity: 0.6;
+							}
+						}
+					}
+				}
+
+				@media only screen and (max-width: 800px) {
+					padding-inline: min(3rem, 20%);
+				}
+			}
+		}
+
+		&[mdx-style-option="2"] {
+			.component--featured-card {
+				background-color: svar(
+					--core-components-featured-cards-card-colors-fg
+				);
+				color: svar(--core-components-featured-cards-card-colors-bg);
+				height: auto;				
+
+				&-image {
+					height: togglePxRem(200px);
+				}
+				&-text {
+					color: svar(
+						--core-components-featured-cards-card-colors-bg
+					);
+					h2 {
+						color: svar(
+							--core-components-featured-cards-card-colors-bg
+						);
+					}
+				}
+				&-cta {
+					a[href].cta__anchor {
+						--_color-font: var(
+							--core-components-featured-cards-colors-bg
+						);
+						--_color-underline: var(
+							--core-components-featured-cards-card-colors-bg
+						);
+
+						color: svar(
+							--core-components-featured-cards-card-colors-bg
+						);
+					}
+				}
+			}
+		}
+
+        &[mdx-style-option="3"] {
+			.component--featured-card {
+				background-color: svar(
+					--core-components-featured-cards-card-colors-fg
+				);
+				color: svar(--core-components-featured-cards-card-colors-bg);
+				height: auto;				
+
+				&-image {
+                    width: 100%;
+					height: auto;
+                    overflow: hidden;
+
+                    img {
+                        transition: transform 2.2s cubic-bezier(0.14, 1.12, 0.67, 0.99) 0s;
+
+                        @include mixins.hover {
+                            transform: scale(1.03);
+                        }
+                    }
+				}
+				&-text {
+					color: svar(
+						--core-components-featured-cards-card-colors-bg
+					);
+					h2 {
+						color: svar(
+							--core-components-featured-cards-card-colors-bg
+						);
+                        padding: 0;
+					}
+				}
+				&-cta {
+					a[href].cta__anchor {
+						--_color-font: var(
+							--core-components-featured-cards-colors-bg
+						);
+						--_color-underline: var(
+							--core-components-featured-cards-card-colors-bg
+						);
+
+						color: svar(
+							--core-components-featured-cards-card-colors-bg
+						);
+					}
+				}
+			}
+		}
+	}
+}

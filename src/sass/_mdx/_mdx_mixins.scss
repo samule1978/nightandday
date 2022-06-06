@@ -1,0 +1,44 @@
+@use "../_mdx/mdx_variables" as mdx;
+@use "../abstracts/functions";
+
+/* This is used to build/ouptut CSS properties based on SASS map. */
+@mixin cssPropertiesFromSassMap($map, $names: ()) {
+	@if (type-of($map) == map) {
+		@each $key in map-keys($map) {
+			$names: append($names, $key);
+			$node: map-get($map, $key);
+
+			@if (type-of($node) == map) {
+				@include cssPropertiesFromSassMap($node, $names);
+			} @else {
+				$cssPropertyName: "-";
+				@each $name in $names {
+					$cssPropertyName: $cssPropertyName + "-" + $name;
+				}
+				$cssPropertyValue: $node;
+				#{$cssPropertyName}: #{$cssPropertyValue};
+
+				@if index(mdx.$cssCustomProperties, #{$cssPropertyName}) == null
+				{
+					mdx.$cssCustomProperties: append(mdx.$cssCustomProperties, #{$cssPropertyName});
+				}
+			}
+
+			@if (length($names) > 0) {
+				$names: functions.remove-nth($names, length($names));
+			}
+		}
+		@if (length($names) > 0) {
+			$names: functions.remove-nth($names, length($names));
+		}
+	}
+}
+
+@mixin svar($name, $value) {
+	@if ($name and $value) {
+		@if index(mdx.$cssCustomProperties, $name) == null {
+			mdx.$cssCustomProperties: append(mdx.$cssCustomProperties, #{$name});
+		}
+		#{$name}: #{$value};	
+	}
+}

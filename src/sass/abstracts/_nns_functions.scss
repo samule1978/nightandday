@@ -1,0 +1,122 @@
+@use "../_mdx/mdx_variables" as mdx;
+@use "../_cfg/cfg_variables" as cfg;
+@use "sass:math";
+
+@function parseInt($n) {
+	@return math.div($n, ($n * 0 + 1));
+}
+
+@function basePx() {
+	$base: 16px;
+
+	@return $base;
+}
+
+@function svar($name, $forceError: true) {
+	@if index(mdx.$cssCustomProperties, $name) != null {
+		// Get CSS Custom Property.
+		@return var(#{$name});
+	} @else {
+		$msg: "The CSS Custom Property '#{$name}' does not exist in the compiled SASS List representsion of available CSS Custom Properties (defined within '$cssCustomProperties').  Please use regular 'var(#{$name})' function instead of 'svar(#{$name})' - if the CSS Property required is valid and not represented in the SASS List.";
+		@if $forceError {
+			@error $msg;
+		} @else {
+			@warn $msg;
+			@return var(#{$name});
+		}
+	}
+}
+@function isvar($name, $forceError: true) {
+	@if index(mdx.$cssCustomProperties, $name) != null {
+		// Get CSS Custom Property.
+		@return var(#{$name}) !important;
+	} @else {
+		$msg: "The CSS Custom Property '#{$name}' does not exist in the compiled SASS List representsion of available CSS Custom Properties (defined within '$cssCustomProperties').  Please use regular 'var(#{$name})' function instead of 'svar(#{$name})' - if the CSS Property required is valid and not represented in the SASS List.";
+		@if $forceError {
+			@error $msg;
+		} @else {
+			@warn $msg;
+			@return var(#{$name}) !important;
+		}
+	}
+}
+
+@function togglePxRem($value, $forceError: true) {
+	@if math.unit($value) == "px" {
+		@return rem($value, $forceError);
+	}
+	@else if math.unit($value) == "rem" {
+		@return px($value, $forceError);
+	} @else {
+		$msg: "$value: #{quote($value)} is not in px or rem units `toggleUnit`.";
+		@if $msg != "" {
+			@if $forceError {
+				@error $msg;
+			} @else {
+				@warn $msg;
+			}
+		}
+	}
+}
+
+@function rem($px, $forceError: true) {
+	$msg: "";
+	@if type-of($px) != number {
+		$msg: "$px: #{$px} is not a number for `rem`.";
+	}
+	@if math.unit($px) != "px" or math.is-unitless($px) {
+		$msg: "$px: #{$px} is not in px units for `rem`.";
+	}
+	@if $msg != "" {
+		@if $forceError {
+			@error $msg;
+		} @else {
+			@warn $msg;
+		}
+	}
+
+	@return math.div(parseInt($px), parseInt(basePx())) * 1rem;
+}
+@function px($rem, $forceError: true) {
+	$msg: "";
+	@if type-of($rem) != number {
+		$msg: "$rem: #{$rem} is not a number for `px`.";
+	}
+	@if math.unit($rem) != "rem" or math.is-unitless($rem) {
+		$msg: "$rem: #{$rem} is not in rem units for `px`.";
+	}
+	@if $msg != "" {
+		@if $forceError {
+			@error $msg;
+		} @else {
+			@warn $msg;
+		}
+	}
+
+	@return calc(parseInt($rem) * basePx());
+}
+
+@function shsl($h, $s, $l) {
+	/* SASS convets HSL to HEX so we need to ensure we set HSL values as string data - to preserve it as HSLA. */
+	@return unquote("hsl(#{$h}, #{$s}, #{$l})");
+}
+@function shsla($h, $s, $l, $a) {
+	/* SASS convets HSLA to HEX so we need to ensure we set HSLA values as string data - to preserve it as HSLA. */
+	@return unquote("hsl(#{$h}, #{$s}, #{$l}, #{$a})");
+}
+
+/// Map Get Deep
+/// @author Samule Ghurry
+/// @access public
+/// @param {Map} $map - Map
+/// @param {Arglist} $keys - Key chain
+/// @return {*} - Desired value
+@function map-get-deep($map, $keys...) {
+    @each $key in $keys {
+		@if map-has-key($map, $key) == false {
+			@error "$key '#{$key}' does not exist within map provided.";
+		} 
+        $map: map-get($map, $key);
+    }
+    @return $map;
+}

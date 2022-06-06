@@ -1,0 +1,141 @@
+@use "../_mdx/mdx_mixins" as mdx;
+
+$opFonts: (
+	// See: https://github.com/argyleink/open-props/blob/main/src/props.fonts.css
+	op:
+		(
+			font: (
+				sans:
+					"system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif",
+				serif: "ui-serif,serif",
+				mono:
+					"Dank Mono,Operator Mono,Inconsolata,Fira Mono,ui-monospace,SF Mono,Monaco,Droid Sans Mono,Source Code Pro,monospace",
+
+				weight: (
+					1: 100,
+					2: 200,
+					3: 300,
+					4: 400,
+					5: 500,
+					6: 600,
+					7: 700,
+					8: 800,
+					9: 900,
+				),
+				lineheight: (
+					"00": 0.95,
+					0: 1.1,
+					1: 1.25,
+					2: 1.375,
+					3: 1.5,
+					4: 1.75,
+					5: 2,
+				),
+				letterspacing: (
+					0: -0.05em,
+					1: 0.025em,
+					2: 0.05em,
+					3: 0.075em,
+					4: 0.15em,
+					5: 0.5em,
+					6: 0.75em,
+					7: 1em,
+				),
+				size: (
+					"00": 0.5rem,
+					0: 0.75rem,
+					1: 1rem,
+					2: 1.1rem,
+					3: 1.25rem,
+					4: 1.5rem,
+					5: 2rem,
+					6: 2.5rem,
+					7: 3rem,
+					8: 3.5rem,
+					fluid: (
+						"00": clamp(0.5rem, 1vw, 0.75rem),
+						0: clamp(0.75rem, 2vw, 1rem),
+						1: clamp(1rem, 4vw, 1.5rem),
+						2: clamp(1.5rem, 6vw, 2.5rem),
+						3: clamp(2rem, 9vw, 3.5rem),
+					),
+				),
+			),
+		)
+);
+
+$opSizes: (
+	// See: https://github.com/argyleink/open-props/blob/main/src/props.sizes.css
+	op:
+		(
+			size: (
+				"000": -0.5rem,
+				"00": -0.25rem,
+				1: 0.25rem,
+				2: 0.5rem,
+				3: 1rem,
+				4: 1.25rem,
+				5: 1.5rem,
+				6: 1.75rem,
+				7: 2rem,
+				8: 3rem,
+				9: 4rem,
+				10: 5rem,
+				11: 7.5rem,
+				12: 10rem,
+				13: 15rem,
+				14: 20rem,
+				15: 30rem,
+				fluid: (
+					1: clamp(0.5rem, 1vw, 1rem),
+					2: clamp(1rem, 2vw, 1.5rem),
+					3: clamp(1.5rem, 3vw, 2rem),
+					4: clamp(2rem, 4vw, 3rem),
+					5: clamp(4rem, 5vw, 5rem),
+					6: clamp(5rem, 7vw, 7.5rem),
+					7: clamp(7.5rem, 10vw, 10rem),
+					8: clamp(10rem, 20vw, 15rem),
+					9: clamp(15rem, 30vw, 20rem),
+					10: clamp(20rem, 40vw, 30rem),
+				),
+				content: (
+					1: 20ch,
+					2: 45ch,
+					3: 60ch,
+				),
+				header: (
+					1: 20ch,
+					2: 25ch,
+					3: 35ch,
+				),
+				xxs: 240px,
+				xs: 360px,
+				sm: 480px,
+				md: 768px,
+				lg: 1024px,
+				xl: 1440px,
+				xxl: 1920px,
+			),
+		)
+);
+
+$opZIndex: (
+	// See: https://github.com/argyleink/open-props/blob/main/src/props.zindex.css
+	op:
+		(
+			layer: (
+				1: 1,
+				2: 2,
+				3: 3,
+				4: 4,
+				5: 5,
+				important: 2147483647,
+			),
+		)
+);
+
+:where(html) {
+	@include mdx.cssPropertiesFromSassMap($opFonts);
+	@include mdx.cssPropertiesFromSassMap($opSizes);
+	@include mdx.cssPropertiesFromSassMap($opZIndex);
+}

@@ -1,0 +1,216 @@
+@use "../abstracts/nns_functions" as *;
+@use "../_mdx/mdx_mixins" as *;
+
+/**************************************************************************
+Generic Styles
+***************************************************************************/
+::selection {
+	background-color: svar(--core-colors-selection-bg);
+	color: svar(--core-colors-selection-fg);
+}
+::-moz-selection {
+	background-color: svar(--core-colors-selection-bg);
+	color: svar(--core-colors-selection-fg);
+}
+
+// Set Core Properties for Font
+$_fontAreas: html, header, main, footer, p, span, h1, h2, h3, h4, h5, h6, a;
+@each $_fontArea in $_fontAreas {
+	#{$_fontArea} {
+		font-family: svar(--core-font-#{$_fontArea}-family);
+		font-size: svar(--core-font-#{$_fontArea}-size);
+	}
+}
+
+html,
+body {
+	background-color: svar(--core-colors-html-layout-body-bg);
+	color: svar(--core-colors-html-layout-body-fg);
+	scroll-behavior: smooth;
+}
+
+p {
+	margin-block: 0px svar(--op-size-3);
+	line-height: svar(--core-size-html-line-height);
+}
+p:last-child {
+	margin: 0;
+}
+
+a[href] {
+	text-decoration: none;
+}
+
+.bg-img {
+	&--center {
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+}
+.img {
+	&--center {
+		object-fit: cover;
+		object-position: center;
+	}
+}
+
+@-moz-document url-prefix() {
+	.fix__ff--3d {
+		// When using 3D CSS transform, without this we get jagged edges in Firefox.
+		outline: 1px solid transparent;
+	}
+}
+
+/**************************************************************************
+Layout Styles
+***************************************************************************/
+@for $idx from 1 to 50 {
+	.order--#{$idx} {		
+		order: $idx;
+	}
+}
+
+@for $idx from 1 to 10 {
+	.grid__cols--#{$idx} {
+		display: grid;
+		grid-template-columns: repeat(#{$idx}, 1fr);
+	}
+}
+@for $idx from 1 to 10 {
+	.grid__rows--#{$idx} {
+		display: grid;
+		grid-template-rows: repeat(#{$idx}, 1fr);
+	}
+}
+
+section {
+	&.container {
+		&[mdx-layout-option="2"] {
+			padding-block: 0;
+			padding-inline: calc(var(--core-spacing-html-padding-inline) * -1);
+		}
+
+		&[mdx-layout-option="3"] {
+			--core-size-main-max: 100vw;
+			padding-block: 0;
+			padding-inline: 0;
+		}
+	}
+}
+
+.grid {
+	&__container {
+		&--page {
+			display: grid;
+			grid-template-areas:
+				"header"
+				"main"
+				"footer";
+			gap: 0px;
+
+			.grid__area {
+				justify-self: center;
+				width: 100%;
+
+				& > * {
+					padding-block: svar(--core-spacing-html-padding-block);
+					padding-inline: svar(--core-spacing-html-padding-inline);
+				}
+				&--header {
+					grid-area: header;
+
+					background: svar(--core-colors-html-layout-header-bg);
+					color: svar(--core-colors-html-layout-header-fg);
+				}
+				&--main {
+					grid-area: main;
+
+					background: svar(--core-colors-html-layout-main-bg);
+					color: svar(--core-colors-html-layout-main-fg);
+				}
+				&--footer {
+					grid-area: footer;
+
+					background: svar(--core-colors-html-layout-footer-bg);
+					color: svar(--core-colors-html-layout-footer-fg);
+				}
+
+				.container {
+					margin-inline: auto;
+				}
+			}
+
+			&[mdx-layout-option="2"] {
+				.grid__area {
+					&--header > .container {
+						max-width: svar(--core-size-header-max);
+					}
+					&--main > .container {
+						max-width: svar(--core-size-main-max);
+					}
+					&--footer > .container {
+						max-width: svar(--core-size-footer-max);
+					}
+				}
+			}
+			&[mdx-layout-option="3"] {
+				.grid__area {
+					&--main > .container {
+						max-width: svar(--core-size-main-max);
+					}
+				}
+			}
+			&[mdx-layout-option="4"] {
+				.grid__area {
+					&--header > .container {
+						max-width: svar(--core-size-header-max);
+					}
+					&--footer > .container {
+						max-width: svar(--core-size-footer-max);
+					}
+				}
+			}
+		}
+	}
+}
+
+/**************************************************************************
+List Styles
+***************************************************************************/
+.counter {
+	&__collection {
+		@include svar(--_spacing, 2rem);
+
+		counter-reset: counter-collection;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		> * {
+			margin-left: svar(--_spacing);
+			position: relative;
+		}
+
+		> *::before {
+			counter-increment: counter-collection;
+			content: counter(counter-collection);
+			left: calc(-1 * (svar(--_spacing) / 2));
+			position: absolute;
+		}
+	}
+}
+
+/**************************************************************************
+DELETE - Temp Styles
+***************************************************************************/
+header {
+	min-height: 7vh;
+}
+/*main {
+	min-height: 100vh;
+}
+footer {
+	min-height: 50vh;
+}
+*/

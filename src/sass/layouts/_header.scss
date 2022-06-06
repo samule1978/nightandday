@@ -1,0 +1,17 @@
+@use "../abstracts/nns_functions" as *;
+@use "../_mdx/mdx_mixins" as *;
+
+.grid__area--header {    
+	div {
+        --_height: 2rem;
+
+		background-image: svar(--core-assets-logo);
+		background-size: auto 2rem;
+		background-repeat: no-repeat;
+        background-position-x: center;
+
+		width: auto;
+		height: var(--_height);
+        margin-block: calc(var(--_height) * 2) calc(var(--_height) * 2);
+	}
+}

@@ -1,0 +1,10 @@
+/*
+This file is used to contain all base forwards.
+
+Files inside this folder can contain global styles used in the project.
+*/
+
+//Base files
+/* Only use one reset from a vendor. */
+@forward "resets/reset_cssremedy_remedy";
+@forward "typography";
