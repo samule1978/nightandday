@@ -285,12 +285,6 @@ category: legacy browsers
   padding: 0;
 }
 
-/*
-This file is used to contain all base forwards.
-
-Files inside this folder can contain global styles used in the project.
-*/
-/* Only use one reset from a vendor. */
 /**************************************************************************
  * UTILS *
  ***************************************************************************/
@@ -508,11 +502,6 @@ Files inside this folder can contain global styles used in the project.
   --core-components-search-padding-label-block: 0;
 }
 
-/*
-This file is used to contain all abstract forwards.
-
-Files inside this folder can contain abstract settings, helpers or functions. They have no direct output.
-*/
 /**************************************************************************
 Generic Styles
 ***************************************************************************/
@@ -1211,11 +1200,6 @@ footer {
   margin: 0;
 }
 
-/*
-This file is used to contain all layout forwards.
-
-Files inside this folder can contain specific element styles and layout. 
-*/
 .section__component--featured-cards {
   background-color: var(--core-components-featured-cards-colors-bg);
   color: var(--core-components-featured-cards-colors-fg);
@@ -1447,11 +1431,6 @@ Files inside this folder can contain specific element styles and layout.
   color: var(--core-components-featured-cards-card-colors-bg);
 }
 
-/*
-This file is used to contain all component forwards.
-
-Files inside this folder should contain all styles relating to a reusable component.
-*/
 .toast {
   box-sizing: border-box;
   padding: var(--core-vendors-toast-padding);
@@ -1553,11 +1532,3 @@ Files inside this folder should contain all styles relating to a reusable compon
   height: 1rem;
   padding-block-end: 2rem;
 }
-
-/*
-This file is used to contain all vendor forwards.
-*/
-/**************************************************************************
-  DO NOT AMEND OR DELETE THIS FILE.
-  IF CHANGES ARE REQUIRED CONSULT: Samule Ghurry (samule.ghurry@coxautoinc.com)
-***************************************************************************/
