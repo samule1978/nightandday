@@ -25,7 +25,7 @@ sleep(3000).then(function () {
 
 if (!isTouchEnabled()) {
 	if (is(VanillaTilt)) {
-		VanillaTilt.init(qsa(".component--featured-card[mdx-fx-3d]"), {
+		VanillaTilt.init(qsa(".component--featured-card[sg78-fx-3d]"), {
 		//VanillaTilt.init(qsa(".component--featured-card"), {
 			scale: 1.07,
 			perspective: 2000,
@@ -34,7 +34,7 @@ if (!isTouchEnabled()) {
 	}
 }
 
-qsa("[mdx-ux-toastie]")[0].addEventListener("click", (e) => {
+qsa("[sg78-ux-toastie]")[0].addEventListener("click", (e) => {
 	e.preventDefault();
 
 	if (e.target.textContent) {

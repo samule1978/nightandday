@@ -100,9 +100,9 @@
 	}
 
 	@for $idxLayout from 1 to $maxLayouts + 1 {
-		#{$layoutElement}[mdx-layout-option="#{$idxLayout}"] {
+		#{$layoutElement}[sg78-layout-option="#{$idxLayout}"] {
 			@for $idx from 1 to $length + 1 {
-				[mdx-layout-option-#{$idxLayout}-#{$typeOption}="#{$idx}"] {
+				[sg78-layout-option-#{$idxLayout}-#{$typeOption}="#{$idx}"] {
 					display: grid;
 					@if ($even) {
 						grid-template-#{$type}s: repeat($idx, 1fr);

@@ -40,9 +40,9 @@ let _getSetting = (setting) => {
 };
 export function initSiteConfig() {
 	document.addEventListener("DOMContentLoaded", function () {
-		const brandOption = _getSetting("mdx-brand-option");
+		const brandOption = _getSetting("sg78-brand-option");
 
-		const siteConfigurable = _getSetting("mdx-site-configurable");
+		const siteConfigurable = _getSetting("sg78-site-configurable");
 		if (siteConfigurable) {
 			addCss("https://fonts.googleapis.com/icon?family=Material+Icons");
 			_initSiteConfigPanel();
@@ -52,8 +52,8 @@ export function initSiteConfig() {
 			_observeSiteConfigPanel("layout");
 			_initConfigPanel("style");
 			_observeSiteConfigPanel("style");
-			//_initConfigPanel("type");
-			//_observeSiteConfigPanel("type");
+			_initConfigPanel("type");
+			_observeSiteConfigPanel("type");
 			_initUXOrder();
 
 			_initOptionsScroller("brand", "ctrl");
@@ -91,7 +91,7 @@ function _detectMouseWheelDirection(e) {
 	return direction;
 }
 let _initOptionsScroller = (type, fnKey) => {
-	qsa(`[mdx-${type}-id]`).forEach((elem) => {
+	qsa(`[sg78-${type}-id]`).forEach((elem) => {
 		elem.addEventListener("wheel", (e) => {
 			if (
 				(fnKey == "ctrl" && e.ctrlKey) ||
@@ -101,22 +101,15 @@ let _initOptionsScroller = (type, fnKey) => {
 				e.stopPropagation();
 				e.preventDefault();
 
-				const optionSelected = is(elem.attributes[`mdx-${type}-option`])
-					? elem.attributes[`mdx-${type}-option`].value
-					: getCssPropertyValue(elem, "--_mdx-" + type + "-option");
+				const optionSelected = is(elem.attributes[`sg78-${type}-option`])
+					? elem.attributes[`sg78-${type}-option`].value
+					: getCssPropertyValue(elem, "--_sg78-" + type + "-option");
 
 				if (is(optionSelected)) {
-					let id = is(elem.attributes[`mdx-${type}-id`])
-						? elem.attributes[`mdx-${type}-id`].value
-						: getCssPropertyValue(elem, "--_mdx-" + type + "-id");
-					let options = is(
-						elem.attributes["mdx-" + type + "-options"]
-					)
-						? elem.attributes["mdx-" + type + "-options"].value
-						: getCssPropertyValue(
-								elem,
-								"--_mdx-" + type + "-options"
-						  );
+					let id = is(elem.attributes[`sg78-${type}-id`])
+						? elem.attributes[`sg78-${type}-id`].value
+						: getCssPropertyValue(elem, "--_sg78-" + type + "-id");
+					let options = is(elem.attributes["sg78-" + type + "-options"]) ? elem.attributes["sg78-" + type + "-options"].value : getCssPropertyValue(elem, "--_sg78-" + type + "-options");
 					if (options.includes("|")) {
 						options = options.split("|");
 					} else if (
@@ -153,7 +146,7 @@ let _initOptionsScroller = (type, fnKey) => {
 							`siteconfig li[${type}-id='${id}'][${type}-option='${reqOption}']`
 						);
 
-						elem.setAttribute(`mdx-${type}-option`, reqOption);
+						elem.setAttribute(`sg78-${type}-option`, reqOption);
 						reqPanelOption.click();
 					}
 				}
@@ -163,7 +156,7 @@ let _initOptionsScroller = (type, fnKey) => {
 };
 
 let _initUXOrder = () => {
-	qsa("[mdx-ux-order]").forEach((parent) => {
+	qsa("[sg78-ux-order]").forEach((parent) => {
 		Array.from(parent.children).forEach((child, index) => {
 			child.classList.add("draggable");
 			child.setAttribute("draggable", "true");
@@ -259,11 +252,12 @@ let _initSiteConfigPanel = () => {
 };
 
 let _initConfigPanel = (type) => {
-	if (is(qsa("[mdx-" + type + "-option]"))) {
-		if (!elemsByTag(type + "Config")[0]) {
-			elemsByTag("siteConfig")[0].append(createElement(type + "Config"));
-		}
+	if (!is(qsa("[sg78-" + type + "-option]"))) return;
+
+	if (!elemsByTag(type + "Config")[0]) {
+		elemsByTag("siteConfig")[0].append(createElement(type + "Config"));
 	}
+	
 	const configContainer = elemsByTag(type + "Config")[0];
 
 	// Add toggle button to each section to allow for collapsing.
@@ -291,35 +285,28 @@ let _initConfigPanel = (type) => {
 		_adjustSiteConfigPanelPosition();
 	});
 
-	qsa("[mdx-" + type + "-option]").forEach((elem, index) => {
+	qsa("[sg78-" + type + "-option]").forEach((elem, index) => {
 		// Identify and store all data either from html attributes or CSS properties.
-		let id = is(elem.attributes[`mdx-${type}-id`])
-			? elem.attributes[`mdx-${type}-id`].value
-			: getCssPropertyValue(elem, "--_mdx-" + type + "-id");
+		let id = is(elem.attributes[`sg78-${type}-id`])
+			? elem.attributes[`sg78-${type}-id`].value
+			: getCssPropertyValue(elem, "--_sg78-" + type + "-id");
 		if (!id) {
 			// Dynamically set ID based on Index and Type.
 			id = "mdx" + type + "0" + index;
-			elem.setAttribute("mdx-" + type + "-id", id);
+			elem.setAttribute("sg78-" + type + "-id", id);
 		}
 
-		//const title = typeof elem.attributes[`mdx-${type}-title`] !== "undefined" ? elem.attributes[`mdx-${type}-title`].value : getCssPropertyValue(elem, "--_mdx-" + type + "-title");
-		const title = is(elem.attributes[`mdx-${type}-title`])
-			? elem.attributes[`mdx-${type}-title`].value
-			: getCssPropertyValue(elem, "--_mdx-" + type + "-title");
-		const optionSelected = is(elem.attributes[`mdx-${type}-option`])
-			? elem.attributes[`mdx-${type}-option`].value
-			: getCssPropertyValue(elem, "--_mdx-" + type + "-option");
-		let options = is(elem.attributes["mdx-" + type + "-options"])
-			? elem.attributes["mdx-" + type + "-options"].value
-			: getCssPropertyValue(elem, "--_mdx-" + type + "-options");
-		const optionDescription = is(
-			elem.attributes["mdx-" + type + "-option-description"]
-		)
-			? elem.attributes["mdx-" + type + "-option-description"].value
-			: getCssPropertyValue(
-					elem,
-					"--_mdx-" + type + "-option-description"
-			  );
+		//const title = typeof elem.attributes[`sg78-${type}-title`] !== "undefined" ? elem.attributes[`sg78-${type}-title`].value : getCssPropertyValue(elem, "--_sg78-" + type + "-title");
+		const title = is(elem.attributes[`sg78-${type}-title`])
+			? elem.attributes[`sg78-${type}-title`].value
+			: getCssPropertyValue(elem, "--_sg78-" + type + "-title");
+		const optionSelected = is(elem.attributes[`sg78-${type}-option`])
+			? elem.attributes[`sg78-${type}-option`].value
+			: getCssPropertyValue(elem, "--_sg78-" + type + "-option");
+		let options = is(elem.attributes["sg78-" + type + "-options"])
+			? elem.attributes["sg78-" + type + "-options"].value
+			: getCssPropertyValue(elem, "--_sg78-" + type + "-options");
+		const optionDescription = is(elem.attributes["sg78-" + type + "-option-description"]) ? elem.attributes["sg78-" + type + "-option-description"].value : getCssPropertyValue(elem, "--_sg78-" + type + "-option-description");
 
 		// If sufficient data can not be found, return.
 		if (!id || !title || !optionSelected || !options) {
@@ -387,9 +374,9 @@ let _initConfigPanel = (type) => {
 			const targetId =
 				elem.target.parentElement.attributes[type + "-id"].value;
 			const target = qs(
-				"[mdx-" +
+				"[sg78-" +
 					type +
-					"-option][mdx-" +
+					"-option][sg78-" +
 					type +
 					'-id="' +
 					targetId +
@@ -401,9 +388,9 @@ let _initConfigPanel = (type) => {
 			const targetId =
 				elem.target.parentElement.attributes[type + "-id"].value;
 			const target = qs(
-				"[mdx-" +
+				"[sg78-" +
 					type +
-					"-option][mdx-" +
+					"-option][sg78-" +
 					type +
 					'-id="' +
 					targetId +
@@ -415,9 +402,9 @@ let _initConfigPanel = (type) => {
 			const targetId =
 				elem.target.parentElement.attributes[type + "-id"].value;
 			const target = qs(
-				"[mdx-" +
+				"[sg78-" +
 					type +
-					"-option][mdx-" +
+					"-option][sg78-" +
 					type +
 					'-id="' +
 					targetId +
@@ -450,23 +437,23 @@ let _initConfigPanel = (type) => {
 			elem.target.classList.add("active");
 
 			// Identify required element in DOM.
-			let configSection = qs("[mdx-" + type + "-id='" + targetId + "']");
+			let configSection = qs("[sg78-" + type + "-id='" + targetId + "']");
 
 			// If we can't find element, return.
 			if (
-				!is(configSection.attributes[`mdx-${type}-id`]) ||
-				!is(configSection.attributes[`mdx-${type}-option`])
+				!is(configSection.attributes[`sg78-${type}-id`]) ||
+				!is(configSection.attributes[`sg78-${type}-option`])
 			) {
 				return;
 			}
 
 			// Update element to use required option.
-			configSection.setAttribute(`mdx-${type}-option`, targetOption);
+			configSection.setAttribute(`sg78-${type}-option`, targetOption);
 
 			// Update element desciprion in config panel label.
 			const targetOptionDescription = getCssPropertyValue(
 				configSection,
-				"--_mdx-" + type + "-option-description"
+				"--_sg78-" + type + "-option-description"
 			);
 			if (targetOptionDescription !== "") {
 				let cfgDescriptionElem = elem.target
@@ -479,6 +466,8 @@ let _initConfigPanel = (type) => {
 };
 
 let _observeSiteConfigPanel = (type) => {
+	if (!is(qsa("[sg78-" + type + "-option]"))) return;
+
 	if ("IntersectionObserver" in window) {
 		// Store Options for Observer.
 		const observerOptions = {
@@ -491,15 +480,7 @@ let _observeSiteConfigPanel = (type) => {
 		let configSectionsObserver = new IntersectionObserver(
 			(configSections, configSectionsObserver) => {
 				configSections.forEach((configSection) => {
-					const intersectingId = is(
-						configSection.target.attributes[`mdx-${type}-id`]
-					)
-						? configSection.target.attributes[`mdx-${type}-id`]
-								.value
-						: getCssPropertyValue(
-								configSection.target,
-								"--_mdx-" + type + "-id"
-						  );
+					const intersectingId = is(configSection.target.attributes[`sg78-${type}-id`]) ? configSection.target.attributes[`sg78-${type}-id`].value : getCssPropertyValue(configSection.target, "--_sg78-" + type + "-id");
 
 					if (intersectingId == "") {
 						return;
@@ -540,7 +521,7 @@ let _observeSiteConfigPanel = (type) => {
 
 		// Observe relevant config sections in HTML.
 		document
-			.querySelectorAll("[mdx-" + type + "-option]")
+			.querySelectorAll("[sg78-" + type + "-option]")
 			.forEach((configSection) => {
 				configSectionsObserver.observe(configSection);
 			});

@@ -86,12 +86,12 @@ Layout Styles
 
 section {
 	&.container {
-		&[mdx-layout-option="2"] {
+		&[sg78-layout-option="2"] {
 			padding-block: 0;
 			padding-inline: calc(var(--core-spacing-html-padding-inline) * -1);
 		}
 
-		&[mdx-layout-option="3"] {
+		&[sg78-layout-option="3"] {
 			--core-size-main-max: 100vw;
 			padding-block: 0;
 			padding-inline: 0;
@@ -141,7 +141,7 @@ section {
 				}
 			}
 
-			&[mdx-layout-option="2"] {
+			&[sg78-layout-option="2"] {
 				.grid__area {
 					&--header > .container {
 						max-width: svar(--core-size-header-max);
@@ -154,14 +154,14 @@ section {
 					}
 				}
 			}
-			&[mdx-layout-option="3"] {
+			&[sg78-layout-option="3"] {
 				.grid__area {
 					&--main > .container {
 						max-width: svar(--core-size-main-max);
 					}
 				}
 			}
-			&[mdx-layout-option="4"] {
+			&[sg78-layout-option="4"] {
 				.grid__area {
 					&--header > .container {
 						max-width: svar(--core-size-header-max);

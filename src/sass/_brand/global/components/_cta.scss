@@ -1,6 +1,6 @@
 @use "../../../abstracts/mixins";
 
-[mdx-brand-option="1"] {
+[sg78-brand-option="1"] {
 	@include mixins.bemAnchor("cta") {
 		--_color-font: var(--core-colors-color-2);
 		--_color-underline: var(--core-colors-color-2);

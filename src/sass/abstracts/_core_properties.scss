@@ -4,7 +4,7 @@
 $corePropsAssets: (
 	core: (
 		assets: (
-			logo: url(./../assets/modix/img/modix.png),
+			logo: url(./../assets/img/logo.png),
 		),
 	),
 );
@@ -176,7 +176,7 @@ $corePropsVendors: (
 	core: (
 		vendors: (
 			toast: (
-				background-image: url("./../assets/modix/img/modix.png"),
+				background-image: url("./../assets/img/logo.png"),
 				colors: (
 					bg: var(--core-colors-color-1),
 					fg: var(--core-colors-color-2),
@@ -287,7 +287,7 @@ $corePropsComponentsSearch: (
 	),
 );
 
-[mdx-brand-option] {
+[sg78-brand-option] {
 	&:where(html) {
 		@include mdx.cssPropertiesFromSassMap($corePropsAssets);
 		@include mdx.cssPropertiesFromSassMap($corePropsFont);

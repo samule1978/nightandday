@@ -137,7 +137,7 @@
 			}
 		}
 
-		&[mdx-style-option="1"] {
+		&[sg78-style-option="1"] {
 			.component--featured-card {
 				display: grid;
 				place-content: center;
@@ -183,7 +183,7 @@
 			}
 		}
 
-		&[mdx-style-option="2"] {
+		&[sg78-style-option="2"] {
 			.component--featured-card {
 				background-color: svar(
 					--core-components-featured-cards-card-colors-fg
@@ -221,7 +221,7 @@
 			}
 		}
 
-        &[mdx-style-option="3"] {
+        &[sg78-style-option="3"] {
 			.component--featured-card {
 				background-color: svar(
 					--core-components-featured-cards-card-colors-fg

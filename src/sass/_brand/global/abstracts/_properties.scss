@@ -2,15 +2,15 @@
 @use "../../../_mdx/mdx_mixins" as mdx;
 @use "../../../abstracts/nns_functions" as *;
 
-$modixPropsAssets: (
+$globalPropsAssets: (
 	core: (
 		assets: (
-			logo: url(./../assets/modix/img/modix-grey.png),
+			logo: url(./../assets/img/logo.png),
 		),
 	),
 );
 
-$modixPropsFont: (
+$globalPropsFont: (
 	core: (
 		font: (
 			family: (
@@ -20,7 +20,7 @@ $modixPropsFont: (
 	),
 );
 
-$modixPropsColors: (
+$globalPropsColors: (
 	core: (
 		colors: (
 			rule: (
@@ -40,11 +40,11 @@ $modixPropsColors: (
 	),
 );
 
-$modixPropsVendors: (
+$globalPropsVendors: (
 	core: (
 		vendors: (
 			toast: (
-				background-image: url("./../assets/modix/img/modix-grey.png"),
+				background-image: url("./../assets/img/logo.png"),
 				colors: (
 					bg: var(--core-colors-color-2),
 					fg: var(--core-colors-color-1),
@@ -62,13 +62,13 @@ $modixPropsVendors: (
 	),
 );
 
-[mdx-brand-option="1"] {
-	@include cfg.setCssPropertyConfigOptionDescription("brand", "Modix");
+[sg78-brand-option="1"] {
+	@include cfg.setCssPropertyConfigOptionDescription("brand", "Global");
 
 	&:where(html) {
-		@include mdx.cssPropertiesFromSassMap($modixPropsAssets);
-		@include mdx.cssPropertiesFromSassMap($modixPropsFont);
-		@include mdx.cssPropertiesFromSassMap($modixPropsColors);
-		@include mdx.cssPropertiesFromSassMap($modixPropsVendors);
+		@include mdx.cssPropertiesFromSassMap($globalPropsAssets);
+		@include mdx.cssPropertiesFromSassMap($globalPropsFont);
+		@include mdx.cssPropertiesFromSassMap($globalPropsColors);
+		@include mdx.cssPropertiesFromSassMap($globalPropsVendors);
 	}
 }

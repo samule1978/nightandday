@@ -2,26 +2,26 @@
 
 @mixin setCssPropertyConfigId($type, $text) {
 	@if cfg.$cfg-site-configurable == "true" {
-		--_mdx-#{$type}-id: #{$text};
+		--_sg78-#{$type}-id: #{$text};
 	}
 }
 @mixin setCssPropertyConfigTitle($type, $text) {
 	@if cfg.$cfg-site-configurable == "true" {
-		--_mdx-#{$type}-title: #{$text};
+		--_sg78-#{$type}-title: #{$text};
 	}
 }
 @mixin setCssPropertyConfigOptionSelected($type, $text) {
 	@if cfg.$cfg-site-configurable == "true" {
-		--_mdx-#{$type}-option: #{$text};
+		--_sg78-#{$type}-option: #{$text};
 	}
 }
 @mixin setCssPropertyConfigOptions($type, $text) {
 	@if cfg.$cfg-site-configurable == "true" {
-		--_mdx-#{$type}-options: #{$text};
+		--_sg78-#{$type}-options: #{$text};
 	}
 }
 @mixin setCssPropertyConfigOptionDescription($type, $text) {
 	@if cfg.$cfg-site-configurable == "true" {
-		--_mdx-#{$type}-option-description: #{$text};
+		--_sg78-#{$type}-option-description: #{$text};
 	}
 }
