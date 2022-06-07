@@ -101,7 +101,9 @@ let _initOptionsScroller = (type, fnKey) => {
 				e.stopPropagation();
 				e.preventDefault();
 
-				const optionSelected = is(elem.attributes[`sg78-${type}-option`])
+				const optionSelected = is(
+					elem.attributes[`sg78-${type}-option`]
+				)
 					? elem.attributes[`sg78-${type}-option`].value
 					: getCssPropertyValue(elem, "--_sg78-" + type + "-option");
 
@@ -109,7 +111,14 @@ let _initOptionsScroller = (type, fnKey) => {
 					let id = is(elem.attributes[`sg78-${type}-id`])
 						? elem.attributes[`sg78-${type}-id`].value
 						: getCssPropertyValue(elem, "--_sg78-" + type + "-id");
-					let options = is(elem.attributes["sg78-" + type + "-options"]) ? elem.attributes["sg78-" + type + "-options"].value : getCssPropertyValue(elem, "--_sg78-" + type + "-options");
+					let options = is(
+						elem.attributes["sg78-" + type + "-options"]
+					)
+						? elem.attributes["sg78-" + type + "-options"].value
+						: getCssPropertyValue(
+								elem,
+								"--_sg78-" + type + "-options"
+						  );
 					if (options.includes("|")) {
 						options = options.split("|");
 					} else if (
@@ -232,7 +241,7 @@ let _initSiteConfigPanel = () => {
 
 	const siteConfigButton = createElement("button", {
 		classList: "material-icons",
-		innerHTML: "settings",
+		text: "settings",
 	});
 
 	siteConfigButton.addEventListener("click", (elem) => {
@@ -240,12 +249,12 @@ let _initSiteConfigPanel = () => {
 			siteConfigContainer.classList.remove("siteconfig-panel__open");
 			siteConfigContainer.classList.add("siteconfig-panel__closed");
 			_adjustSiteConfigPanelPosition(true);
-			elem.target.innerHTML = "settings";
+			elem.target.innerText = "settings";
 		} else {
 			siteConfigContainer.classList.add("siteconfig-panel__open");
 			siteConfigContainer.classList.remove("siteconfig-panel__closed");
 			_adjustSiteConfigPanelPosition();
-			elem.target.innerHTML = "visibility_off";
+			elem.target.innerText = "visibility_off";
 		}
 	});
 	siteConfigContainer.append(siteConfigButton);
@@ -257,7 +266,7 @@ let _initConfigPanel = (type) => {
 	if (!elemsByTag(type + "Config")[0]) {
 		elemsByTag("siteConfig")[0].append(createElement(type + "Config"));
 	}
-	
+
 	const configContainer = elemsByTag(type + "Config")[0];
 
 	// Add toggle button to each section to allow for collapsing.
@@ -306,7 +315,14 @@ let _initConfigPanel = (type) => {
 		let options = is(elem.attributes["sg78-" + type + "-options"])
 			? elem.attributes["sg78-" + type + "-options"].value
 			: getCssPropertyValue(elem, "--_sg78-" + type + "-options");
-		const optionDescription = is(elem.attributes["sg78-" + type + "-option-description"]) ? elem.attributes["sg78-" + type + "-option-description"].value : getCssPropertyValue(elem, "--_sg78-" + type + "-option-description");
+		const optionDescription = is(
+			elem.attributes["sg78-" + type + "-option-description"]
+		)
+			? elem.attributes["sg78-" + type + "-option-description"].value
+			: getCssPropertyValue(
+					elem,
+					"--_sg78-" + type + "-option-description"
+			  );
 
 		// If sufficient data can not be found, return.
 		if (!id || !title || !optionSelected || !options) {
@@ -321,13 +337,13 @@ let _initConfigPanel = (type) => {
 		entry.setAttribute(type + "-id", id);
 
 		let spanTitle = createElement("span", {
-			innerHTML: title ? title : id,
+			text: title ? title : id,
 		});
 		entry.append(spanTitle);
 		if (optionDescription) {
 			let spanDescription = createElement("span", {
 				classList: type + "__description",
-				innerHTML: optionDescription,
+				text: optionDescription,
 			});
 			entry.append(spanDescription);
 		}
@@ -355,7 +371,7 @@ let _initConfigPanel = (type) => {
 			if (availableOption == optionSelected) {
 				li.classList.add("active");
 			}
-			li.innerHTML = availableOption;
+			li.innerText = availableOption;
 			ol.append(li);
 		});
 
@@ -459,7 +475,7 @@ let _initConfigPanel = (type) => {
 				let cfgDescriptionElem = elem.target
 					.closest("section")
 					.querySelector("." + type + "__description");
-				cfgDescriptionElem.innerHTML = targetOptionDescription;
+				cfgDescriptionElem.innerText = targetOptionDescription;
 			}
 		});
 	});
@@ -480,7 +496,15 @@ let _observeSiteConfigPanel = (type) => {
 		let configSectionsObserver = new IntersectionObserver(
 			(configSections, configSectionsObserver) => {
 				configSections.forEach((configSection) => {
-					const intersectingId = is(configSection.target.attributes[`sg78-${type}-id`]) ? configSection.target.attributes[`sg78-${type}-id`].value : getCssPropertyValue(configSection.target, "--_sg78-" + type + "-id");
+					const intersectingId = is(
+						configSection.target.attributes[`sg78-${type}-id`]
+					)
+						? configSection.target.attributes[`sg78-${type}-id`]
+								.value
+						: getCssPropertyValue(
+								configSection.target,
+								"--_sg78-" + type + "-id"
+						  );
 
 					if (intersectingId == "") {
 						return;
