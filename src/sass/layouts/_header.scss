@@ -1,17 +1,32 @@
 @use "../abstracts/nns_functions" as *;
 @use "../_sg78/sg78_mixins" as *;
 
-.grid__area--header {    
-	div {
-        --_height: 2rem;
+.grid__area--header {
+	position: sticky;
+	top: 0;
+	z-index: calc(svar(--op-layer-important) - 1000);
 
-		background-image: svar(--core-assets-logo);
-		background-size: auto 2rem;
-		background-repeat: no-repeat;
-        background-position-x: center;
+	> .container {
+		position: relative;
+	}
+	
+	.container__logo {
+		.logo {
+			height: 50px;
 
-		width: auto;
-		height: var(--_height);
-        margin-block: calc(var(--_height) * 2) calc(var(--_height) * 2);
+			&__group {
+				
+			}
+			&__n {
+				stroke-width: 0;
+				stroke: black;
+				fill: black;
+			}
+			&__d {
+				stroke-width: 0;
+				stroke: white;
+				fill: white;
+			}
+		}
 	}
 }

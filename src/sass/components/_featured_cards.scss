@@ -110,7 +110,7 @@
 					}
 
 					@include mixins.hover {
-						z-index: svar(--op-layer-important);
+						z-index: calc(svar(--op-layer-important) - 100000);
 
 						.component--featured-card {
 							&-image {

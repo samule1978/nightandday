@@ -424,7 +424,7 @@ category: legacy browsers
   --core-colors-color-3: var(--core-colors-rule-10);
   --core-colors-html-layout-body-bg: var(--core-colors-color-1);
   --core-colors-html-layout-body-fg: var(--core-colors-color-2);
-  --core-colors-html-layout-header-bg: var(--core-colors-color-3);
+  --core-colors-html-layout-header-bg: hsl(202, 77%, 19%);
   --core-colors-html-layout-header-fg: var(--core-colors-color-2);
   --core-colors-html-layout-main-bg: var(--core-colors-color-1);
   --core-colors-html-layout-main-fg: var(--core-colors-color-2);
@@ -906,13 +906,12 @@ Layout Styles
 }
 
 section.container[sg78-layout-option="2"] {
-  padding-block: 0;
   padding-inline: calc(var(--core-spacing-html-padding-inline) * -1);
 }
 section.container[sg78-layout-option="3"] {
   --core-size-main-max: 100vw;
-  padding-block: 0;
-  padding-inline: 0;
+  --core-size-header-max: 100vw;
+  --core-size-footer-max: 100vw;
 }
 
 .grid__container--page {
@@ -986,6 +985,22 @@ List Styles
   position: absolute;
 }
 
+.scroll-tracker {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 0.25rem;
+  z-index: var(--op-layer-important);
+  transform-origin: left;
+  background-color: var(--core-colors-html-layout-footer-bg);
+}
+
+.bg-day {
+  background-color: hsl(144deg, 31%, 75%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
 /**************************************************************************
 DELETE - Temp Styles
 ***************************************************************************/
@@ -1050,15 +1065,26 @@ footer {
   }
 }
 
-.grid__area--header div {
-  --_height: 2rem;
-  background-image: var(--core-assets-logo);
-  background-size: auto 2rem;
-  background-repeat: no-repeat;
-  background-position-x: center;
-  width: auto;
-  height: var(--_height);
-  margin-block: calc(var(--_height) * 2) calc(var(--_height) * 2);
+.grid__area--header {
+  position: sticky;
+  top: 0;
+  z-index: calc(var(--op-layer-important) - 1000);
+}
+.grid__area--header > .container {
+  position: relative;
+}
+.grid__area--header .container__logo .logo {
+  height: 50px;
+}
+.grid__area--header .container__logo .logo__n {
+  stroke-width: 0;
+  stroke: black;
+  fill: black;
+}
+.grid__area--header .container__logo .logo__d {
+  stroke-width: 0;
+  stroke: white;
+  fill: white;
 }
 
 .grid__area--footer .section__footer--nav {
@@ -1304,7 +1330,7 @@ footer {
     }*/
   }
   .section__component--featured-cards .component--featured-card.tilting:not([disabled]):hover, .section__component--featured-cards .component--featured-card.tilting:not([disabled]):focus {
-    z-index: var(--op-layer-important);
+    z-index: calc(var(--op-layer-important) - 100000);
     cursor: pointer;
   }
   .section__component--featured-cards .component--featured-card.tilting:not([disabled]):hover .component--featured-card-image, .section__component--featured-cards .component--featured-card.tilting:not([disabled]):focus .component--featured-card-image {

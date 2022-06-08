@@ -87,14 +87,16 @@ Layout Styles
 section {
 	&.container {
 		&[sg78-layout-option="2"] {
-			padding-block: 0;
+			//padding-block: 0;
 			padding-inline: calc(var(--core-spacing-html-padding-inline) * -1);
 		}
 
 		&[sg78-layout-option="3"] {
 			--core-size-main-max: 100vw;
-			padding-block: 0;
-			padding-inline: 0;
+			--core-size-header-max: 100vw;
+			--core-size-footer-max: 100vw;			
+			//padding-block: 0;
+			//padding-inline: 0;
 		}
 	}
 }
@@ -199,6 +201,23 @@ List Styles
 			position: absolute;
 		}
 	}
+}
+
+.scroll-tracker {
+	position: fixed;
+	inset: 0 0 auto;
+	height: 0.25rem;
+	z-index: svar(--op-layer-important);
+	transform-origin: left;
+	//background-color: hsla(78, 90%, 57%, 78%);	
+	background-color: svar(--core-colors-html-layout-footer-bg);
+}
+.bg-day {
+	//background-color: hsl(164, 100%, 93%);
+	background-color: hsl(144, 31%, 75%);	
+	width: 100%;
+	height: 100%;
+	position: absolute;
 }
 
 /**************************************************************************

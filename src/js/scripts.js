@@ -1,6 +1,6 @@
 "use strict";
 
-import { qs, qsa } from "./util/dom.js";
+import { qs, qsa, createElement } from "./util/dom.js";
 import { sleep, isTouchEnabled, is } from "./util/other.js";
 import { initSiteConfig } from "./cfg/site.config.js"; // TODO: ONLY LOAD WHEN IN CONFIG MODE
 import { alertToast, makeToast } from "./vendor/toast/toast.js";
@@ -41,3 +41,42 @@ qsa("[sg78-ux-toastie]")[0].addEventListener("click", (e) => {
 		makeToast(e.target.textContent);
 	}
 });
+
+if (is(qs("[sg78-ux-scroll-tracker]"))) {
+	document.body.prepend(
+		createElement("div", {
+			classList: "scroll-tracker",			
+		})
+	);
+
+	qs(["header"]).prepend(
+		createElement("div", {
+			classList: "bg-day",			
+		})
+	);
+
+
+
+	import('./vendor/scroll-timeline/scroll-timeline.js').then(() => {
+		const bgDay = qs(".bg-day");
+		const scrollTracker = qs(".scroll-tracker");
+		const scrollTrackingTimeline = new ScrollTimeline({
+			source: document.scrollingElement,
+			orientation: "block",
+			scrollOffsets: [CSS.percent(0), CSS.percent(100)],
+		});
+
+		scrollTracker.animate(
+			{ transform: ["scaleX(0)", "scaleX(1)"] },
+			{ timeline: scrollTrackingTimeline }
+		);
+		
+
+		
+
+		bgDay.animate(
+			{ opacity: ["0", "1"] },
+			{ timeline: scrollTrackingTimeline }
+		);
+	});
+}
