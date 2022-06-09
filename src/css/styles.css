@@ -424,7 +424,7 @@ category: legacy browsers
   --core-colors-color-3: var(--core-colors-rule-10);
   --core-colors-html-layout-body-bg: var(--core-colors-color-1);
   --core-colors-html-layout-body-fg: var(--core-colors-color-2);
-  --core-colors-html-layout-header-bg: hsl(202, 77%, 19%);
+  --core-colors-html-layout-header-bg: hsl(214, 61%, 31%);
   --core-colors-html-layout-header-fg: var(--core-colors-color-2);
   --core-colors-html-layout-main-bg: var(--core-colors-color-1);
   --core-colors-html-layout-main-fg: var(--core-colors-color-2);
@@ -985,22 +985,6 @@ List Styles
   position: absolute;
 }
 
-.scroll-tracker {
-  position: fixed;
-  inset: 0 0 auto;
-  height: 0.25rem;
-  z-index: var(--op-layer-important);
-  transform-origin: left;
-  background-color: var(--core-colors-html-layout-footer-bg);
-}
-
-.bg-day {
-  background-color: hsl(144deg, 31%, 75%);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
 /**************************************************************************
 DELETE - Temp Styles
 ***************************************************************************/
@@ -1065,6 +1049,22 @@ footer {
   }
 }
 
+.scroll-tracker {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 0.25rem;
+  z-index: var(--op-layer-important);
+  transform-origin: left;
+  background-color: var(--core-colors-color-2);
+}
+
+.bg-day {
+  background-color: hsl(201deg, 54%, 69%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
 .grid__area--header {
   position: sticky;
   top: 0;
@@ -1078,12 +1078,10 @@ footer {
 }
 .grid__area--header .container__logo .logo__n {
   stroke-width: 0;
-  stroke: black;
-  fill: black;
+  fill: white;
 }
 .grid__area--header .container__logo .logo__d {
   stroke-width: 0;
-  stroke: white;
   fill: white;
 }
 
