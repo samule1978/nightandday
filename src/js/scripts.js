@@ -44,22 +44,32 @@ qsa("[sg78-ux-toastie]")[0].addEventListener("click", (e) => {
 if (is(qs("[sg78-ux-scroll-trigger]"))) {
 	gsap.registerPlugin(ScrollTrigger);
 
-	let progress = createElement("progress");
+	document.body.prepend(createElement("div", {
+		classList: "progress",
+	}));
+
+	gsap.to(".progress", {
+		width: "100%",
+		ease: "none",
+		scrollTrigger: { scrub: 0.3 },
+	});	
+
+	/*const progress = createElement("progress");
 	progress.setAttribute("max", "100");
 	progress.setAttribute("value", "0");
 	document.body.prepend(progress);
+
+	gsap.to("progress", {
+		value: 100,
+		ease: "none",
+		scrollTrigger: { scrub: 0.3 },
+	});*/
 
 	qs(["header"]).prepend(
 		createElement("div", {
 			classList: "bg-day",
 		})
 	);
-
-	gsap.to("progress", {
-		value: 100,
-		ease: "none",
-		scrollTrigger: { scrub: 0.3 },
-	});
 
 	gsap.to(".bg-day", {
 		opacity: 0,
