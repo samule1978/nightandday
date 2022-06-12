@@ -1065,6 +1065,26 @@ footer {
   position: absolute;
 }
 
+progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 0.25rem;
+  border: none;
+  background: transparent;
+  z-index: var(--op-layer-important);
+}
+progress::-webkit-progress-bar {
+  background: transparent;
+}
+progress::-webkit-progress-value, progress::-moz-progress-bar {
+  background: var(--core-colors-color-2);
+  background-attachment: fixed;
+}
+
 .grid__area--header {
   position: sticky;
   top: 0;
@@ -1074,7 +1094,7 @@ footer {
   position: relative;
 }
 .grid__area--header .container__logo .logo {
-  height: 50px;
+  height: 35px;
 }
 .grid__area--header .container__logo .logo__n {
   stroke-width: 0;
