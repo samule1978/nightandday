@@ -154,19 +154,6 @@ section {
 			);
 		}
 	}
-
-	.section__disclaimer {
-		&[sg78-layout-option] {
-			@include mixins.setCssPropertyConfigTitle("layout", "Disclaimer");
-			@include mixins.setCssPropertyConfigOptions("layout", "0-1");
-		}
-		&[sg78-layout-option="1"] {
-			@include mixins.setCssPropertyConfigOptionDescription(
-				"layout",
-				"List"
-			);
-		}
-	}
 }
 
 .section__component {

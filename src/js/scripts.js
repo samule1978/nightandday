@@ -44,15 +44,17 @@ qsa("[sg78-ux-toastie]")[0].addEventListener("click", (e) => {
 if (is(qs("[sg78-ux-scroll-trigger]"))) {
 	gsap.registerPlugin(ScrollTrigger);
 
-	document.body.prepend(createElement("div", {
-		classList: "progress",
-	}));
+	document.body.prepend(
+		createElement("div", {
+			classList: "progress",
+		})
+	);
 
 	gsap.to(".progress", {
 		width: "100%",
 		ease: "none",
 		scrollTrigger: { scrub: 0.3 },
-	});	
+	});
 
 	/*const progress = createElement("progress");
 	progress.setAttribute("max", "100");
@@ -76,4 +78,27 @@ if (is(qs("[sg78-ux-scroll-trigger]"))) {
 		ease: "none",
 		scrollTrigger: { scrub: 0.3 },
 	});
-};
+
+	const tl = gsap.timeline();
+	const panels = gsap.utils.toArray(".container__slide .panel__slide");
+	tl.from(".panel__slide--b", { xPercent: 100 }) //.from(".panel__slide--a", { xPercent: -100 })
+		.from(".panel__slide--c", { xPercent: 100 })
+		.from(".panel__slide--d", { yPercent: 100 })
+		.from(".panel__slide--e", { xPercent: -100 });
+
+	ScrollTrigger.create({
+		animation: tl,
+		trigger: ".container__slide",
+		snap: {
+			snapTo: 1 / (panels.length - 1),
+			//duration: { min: 0.2, max: 1 },			
+			duration: 0.85,
+			delay: 0.1,
+		},
+		start: "top top",
+		end: "+=500%",
+		scrub: true,
+		pin: true,
+		anticipatePin: 1,
+	});
+}

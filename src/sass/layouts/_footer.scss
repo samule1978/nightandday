@@ -155,25 +155,5 @@
 				}
 			}
 		}
-	}
-
-	.section__disclaimer {
-		@include svar(--_spacer, 0.75rem);		
-		padding-block: svar(--op-size-3);
-
-		li:first-child {
-			margin-top: 0;
-		}
-		li {
-			margin-top: svar(--_spacer);
-		}
-
-		p {
-			padding: 0;
-			margin: 0 0 svar(--_spacer) 0;
-		}
-		p:last-child {
-			margin: 0;
-		}
-	}
+	}	
 }

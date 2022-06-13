@@ -79,13 +79,6 @@ section.container[sg78-layout-option="3"] {
 .grid__area--footer .section__legal[sg78-layout-option="4"] {
   --_sg78-layout-option-description: Links to the top, Copyright to the bottom;
 }
-.grid__area--footer .section__disclaimer[sg78-layout-option] {
-  --_sg78-layout-title: Disclaimer;
-  --_sg78-layout-options: 0-1;
-}
-.grid__area--footer .section__disclaimer[sg78-layout-option="1"] {
-  --_sg78-layout-option-description: List;
-}
 
 .section__component--featured-cards[sg78-style-option] {
   --_sg78-style-title: Featured Cards;
