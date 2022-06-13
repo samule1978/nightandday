@@ -44,12 +44,35 @@ qsa("[sg78-ux-toastie]")[0].addEventListener("click", (e) => {
 if (is(qs("[sg78-ux-scroll-trigger]"))) {
 	gsap.registerPlugin(ScrollTrigger);
 
+	const tl = gsap.timeline();
+	const panels = gsap.utils.toArray(".container__slide .panel__slide");
+	tl.from(".panel__slide--b", { xPercent: 100 }) //.from(".panel__slide--a", { xPercent: -100 })
+		.from(".panel__slide--c", { xPercent: 100 })
+		.from(".panel__slide--d", { yPercent: 100 })
+		.from(".panel__slide--e", { xPercent: -100 });
+	ScrollTrigger.create({
+		animation: tl,
+		trigger: ".container__slide",
+		snap: {
+			snapTo: 1 / (panels.length - 1),
+			//duration: { min: 0.2, max: 1 },			
+			//duration: 0.85,
+			duration: 1,
+			delay: 0.1,
+		},
+		start: "top top",
+		end: "+=500%",
+		scrub: true,
+		pin: true,
+		anticipatePin: 1,
+	});
+
+
 	document.body.prepend(
 		createElement("div", {
 			classList: "progress",
 		})
 	);
-
 	gsap.to(".progress", {
 		width: "100%",
 		ease: "none",
@@ -60,7 +83,6 @@ if (is(qs("[sg78-ux-scroll-trigger]"))) {
 	progress.setAttribute("max", "100");
 	progress.setAttribute("value", "0");
 	document.body.prepend(progress);
-
 	gsap.to("progress", {
 		value: 100,
 		ease: "none",
@@ -72,33 +94,9 @@ if (is(qs("[sg78-ux-scroll-trigger]"))) {
 			classList: "bg-day",
 		})
 	);
-
 	gsap.to(".bg-day", {
 		opacity: 0,
 		ease: "none",
 		scrollTrigger: { scrub: 0.3 },
-	});
-
-	const tl = gsap.timeline();
-	const panels = gsap.utils.toArray(".container__slide .panel__slide");
-	tl.from(".panel__slide--b", { xPercent: 100 }) //.from(".panel__slide--a", { xPercent: -100 })
-		.from(".panel__slide--c", { xPercent: 100 })
-		.from(".panel__slide--d", { yPercent: 100 })
-		.from(".panel__slide--e", { xPercent: -100 });
-
-	ScrollTrigger.create({
-		animation: tl,
-		trigger: ".container__slide",
-		snap: {
-			snapTo: 1 / (panels.length - 1),
-			//duration: { min: 0.2, max: 1 },			
-			duration: 0.85,
-			delay: 0.1,
-		},
-		start: "top top",
-		end: "+=500%",
-		scrub: true,
-		pin: true,
-		anticipatePin: 1,
-	});
+	});	
 }
