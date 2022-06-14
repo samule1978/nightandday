@@ -74,7 +74,7 @@ if (is(qs("[sg78-ux-scroll-trigger]"))) {
 			//duration: { min: 0.2, max: 1 },			
 			//duration: 0.85,
 			duration: 1,
-			delay: 1,
+			delay: 0.25,
 		} 
 	}
 	ScrollTrigger.create({
