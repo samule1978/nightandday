@@ -39,6 +39,25 @@ section {
 	}
 }
 
+.container__slide {
+	&[sg78-type-option] {
+		@include mixins.setCssPropertyConfigTitle("type", "Slide Type");
+		@include mixins.setCssPropertyConfigOptions("type", "1-2");
+	}
+	&[sg78-type-option="1"] {
+		@include mixins.setCssPropertyConfigOptionDescription(
+			"type",
+			"Standard"
+		);
+	}
+	&[sg78-type-option="2"] {
+		@include mixins.setCssPropertyConfigOptionDescription(
+			"type",
+			"Snap"
+		);
+	}
+}
+
 .grid {
 	&__container {
 		&--page {

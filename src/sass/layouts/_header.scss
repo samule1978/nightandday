@@ -44,10 +44,6 @@ progress {
 }
 
 .grid__area--header {
-	position: sticky;
-	top: 0;
-	z-index: calc(svar(--op-layer-important) - 1000);
-
 	> .container {
 		position: relative;
 	}

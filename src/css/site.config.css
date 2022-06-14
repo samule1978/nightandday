@@ -24,6 +24,17 @@ section.container[sg78-layout-option="3"] {
   --_sg78-layout-option-description: Full Screen Width;
 }
 
+.container__slide[sg78-type-option] {
+  --_sg78-type-title: Slide Type;
+  --_sg78-type-options: 1-2;
+}
+.container__slide[sg78-type-option="1"] {
+  --_sg78-type-option-description: Standard;
+}
+.container__slide[sg78-type-option="2"] {
+  --_sg78-type-option-description: Snap;
+}
+
 .grid__container--page[sg78-layout-option] {
   --_sg78-layout-title: Page;
   --_sg78-layout-options: 1-4;

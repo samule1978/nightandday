@@ -39,6 +39,27 @@ body {
 	}	
 }
 
+html {
+	--_header-position: relative;
+	--_header-height: auto;
+
+	&[sg78-ux-header-fixed="true"] {
+		--_header-position: fixed;
+		--_header-height: 51px;
+	}	
+}
+
+header {
+	position: var(--_header-position);
+	top: 0;
+	z-index: calc(svar(--op-layer-important) - 1000);
+	height: var(--_header-height);
+
+	+ main {
+		margin-block-start: var(--_header-height);
+	}
+}
+
 p {
 	margin-block: 0px svar(--op-size-3);
 	line-height: svar(--core-size-html-line-height);
@@ -248,6 +269,7 @@ main {
 		position: absolute;
 		width: 100vw;
 		height: 100vh;
+		padding-block-start: var(--_header-height);
 		display: grid;
 		place-content: center;
 		place-items: center;

@@ -50,22 +50,28 @@ if (is(qs("[sg78-ux-scroll-trigger]"))) {
 		.from(".panel__slide--c", { xPercent: 100 })
 		.from(".panel__slide--d", { yPercent: 100 })
 		.from(".panel__slide--e", { xPercent: -100 });
-	ScrollTrigger.create({
-		animation: tl,
-		trigger: ".container__slide",
-		/*snap: {
-			snapTo: 1 / (panels.length - 1),
-			//duration: { min: 0.2, max: 1 },			
-			//duration: 0.85,
-			duration: 1,
-			delay: 0.1,
-		},*/
-		start: "top top",
-		end: "+=500%",
-		scrub: true,
-		pin: true,
-		anticipatePin: 1,
-	});
+
+		let snap = null;
+		if (is(qs(`.container__slide[sg78-type-option="2"]`))) {
+			snap = {
+				snapTo: 1 / (panels.length - 1),
+				//duration: { min: 0.2, max: 1 },			
+				//duration: 0.85,
+				duration: 1,
+				delay: 1,
+			} 
+		}
+
+		ScrollTrigger.create({
+			animation: tl,
+			trigger: ".container__slide",
+			snap: snap,
+			start: "top top",
+			end: "+=500%",
+			scrub: true,
+			pin: true,
+			anticipatePin: 1,
+		});		
 
 
 	document.body.prepend(

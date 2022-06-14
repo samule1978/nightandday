@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" sg78-site-configurable="true" sg78-brand-option="1" sg78-ux-horizontal-scroll="disabled" sg78-ux-scroll-trigger>
+<html lang="en" sg78-site-configurable="true" sg78-brand-option="1" sg78-ux-header-fixed="true" sg78-ux-horizontal-scroll="disabled" sg78-ux-scroll-trigger>
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
@@ -20,6 +20,7 @@
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js" defer></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js" defer></script>
 
 		<script type="text/javascript" src="js/vendor/vanilla-tilt/vanilla-tilt.js" defer></script>
 		<script type="module" src="js/scripts.js" defer></script>
@@ -27,7 +28,7 @@
 
 	<body>
 		<section class="grid__container grid__container--page" sg78-layout-option="2">
-			<header class="grid__area grid__area--header">				
+			<header class="grid__area grid__area--header">
 				<section class="container">
 					<section class="container__logo">
 						<svg class="logo" version="1.1" viewBox="0 0 50 25">
@@ -59,7 +60,7 @@
 						</a>
 					</p>	
 				</section>
-				<section class="container container__slide">
+				<section class="container container__slide" sg78-type-option="2">
 					<div class="panel__slide panel__slide--a"><p>A</p></div>
 					<div class="panel__slide panel__slide--b"><p>B</p></div>
 					<div class="panel__slide panel__slide--c"><p>C</p></div>

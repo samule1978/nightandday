@@ -596,6 +596,25 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  --_header-position: relative;
+  --_header-height: auto;
+}
+html[sg78-ux-header-fixed=true] {
+  --_header-position: fixed;
+  --_header-height: 51px;
+}
+
+header {
+  position: var(--_header-position);
+  top: 0;
+  z-index: calc(var(--op-layer-important) - 1000);
+  height: var(--_header-height);
+}
+header + main {
+  margin-block-start: var(--_header-height);
+}
+
 p {
   margin-block: 0px var(--op-size-3);
   line-height: var(--core-size-html-line-height);
@@ -1028,6 +1047,7 @@ main > .container:nth-child(1) {
   position: absolute;
   width: 100vw;
   height: 100vh;
+  padding-block-start: var(--_header-height);
   display: grid;
   place-content: center;
   place-items: center;
@@ -1137,11 +1157,6 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
   background-color: black;
 }
 
-.grid__area--header {
-  position: sticky;
-  top: 0;
-  z-index: calc(var(--op-layer-important) - 1000);
-}
 .grid__area--header > .container {
   position: relative;
 }
