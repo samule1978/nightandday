@@ -1,6 +1,6 @@
 "use strict";
 
-import { qs, qsa, createElement } from "./util/dom.js";
+import { qs, qsa, createElement, setCssPropertyValue } from "./util/dom.js";
 import { sleep, isTouchEnabled, is } from "./util/other.js";
 import { initSiteConfig } from "./cfg/site.config.js"; // TODO: ONLY LOAD WHEN IN CONFIG MODE
 import { alertToast, makeToast } from "./vendor/toast/toast.js";
@@ -46,32 +46,47 @@ if (is(qs("[sg78-ux-scroll-trigger]"))) {
 
 	const tl = gsap.timeline();
 	const panels = gsap.utils.toArray(".container__slide .panel__slide");
-	tl.from(".panel__slide--b", { xPercent: 100 }) //.from(".panel__slide--a", { xPercent: -100 })
-		.from(".panel__slide--c", { xPercent: 100 })
-		.from(".panel__slide--d", { yPercent: 100 })
-		.from(".panel__slide--e", { xPercent: -100 });
+	panels.forEach((panel, index) => {
+		//setCssPropertyValue(panel, "z-index", panels.length - index);
 
-		let snap = null;
-		if (is(qs(`.container__slide[sg78-type-option="2"]`))) {
-			snap = {
-				snapTo: 1 / (panels.length - 1),
-				//duration: { min: 0.2, max: 1 },			
-				//duration: 0.85,
-				duration: 1,
-				delay: 1,
-			} 
-		}
+		// The first panel needs to be static.
+		if (index === 0) return;
+				
+		const slideDirection = panel.getAttribute(`slide-direction`);
 
-		ScrollTrigger.create({
-			animation: tl,
-			trigger: ".container__slide",
-			snap: snap,
-			start: "top top",
-			end: "+=500%",
-			scrub: true,
-			pin: true,
-			anticipatePin: 1,
-		});		
+		// If a panel has no slide direction then default to slide from the right.
+		if (!slideDirection) {
+			tl.add(gsap.from(panel, { xPercent: 100 }));
+			return;
+		}	
+		
+		// Otherwise slide panel based on required direction.
+		if (slideDirection === "down") tl.add(gsap.from(panel, { yPercent: -100 }));
+		if (slideDirection === "up") tl.add(gsap.from(panel, { yPercent: 100 }));
+		if (slideDirection === "left") tl.add(gsap.from(panel, { xPercent: -100 }));
+		if (slideDirection === "right") tl.add(gsap.from(panel, { xPercent: 100 }));
+	});
+
+	let snap = null;
+	if (is(qs(`.container__slide[sg78-type-option="2"]`))) {
+		snap = {
+			snapTo: 1 / (panels.length - 1),
+			//duration: { min: 0.2, max: 1 },			
+			//duration: 0.85,
+			duration: 1,
+			delay: 1,
+		} 
+	}
+	ScrollTrigger.create({
+		animation: tl,
+		trigger: ".container__slide",
+		snap: snap,
+		start: "top top",
+		end: "+=500%",
+		scrub: true,
+		pin: true,
+		anticipatePin: 1,
+	});
 
 
 	document.body.prepend(

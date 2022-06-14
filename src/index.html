@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" sg78-site-configurable="true" sg78-brand-option="1" sg78-ux-header-fixed="true" sg78-ux-horizontal-scroll="disabled" sg78-ux-scroll-trigger>
+<html lang="en" sg78-site-configurable="true" sg78-brand-option="1" sg78-ux-header-fixed="true" sg78-ux-horizontal-scroll="enabled" sg78-ux-scroll-trigger>
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
@@ -56,18 +56,18 @@
 				<section class="container">
 					<p>
 						<a class="cta__anchor cta__anchor--body" href="/" sg78-ux-toastie>
-							Ver 1.0.0.5: Setup - GSAP - Sliding Content.
+							Ver 1.0.0.7: Setup - GSAP - Sliding Content.
 						</a>
 					</p>	
 				</section>
-				<section class="container container__slide" sg78-type-option="2">
+				<section class="container container__slide" sg78-layout-option="3" sg78-type-option="2">
 					<div class="panel__slide panel__slide--a"><p>A</p></div>
-					<div class="panel__slide panel__slide--b"><p>B</p></div>
-					<div class="panel__slide panel__slide--c"><p>C</p></div>
-					<div class="panel__slide panel__slide--d"><p>D</p></div>
-					<div class="panel__slide panel__slide--e"><p>E</p></div>
+					<div class="panel__slide panel__slide--b" slide-direction="left"><p>B</p></div>
+					<div class="panel__slide panel__slide--c" slide-direction="right"><p>C</p></div>
+					<div class="panel__slide panel__slide--d" slide-direction="up"><p>D</p></div>
+					<div class="panel__slide panel__slide--e" slide-direction="down"><p>E</p></div>
 				</section>
-				<section class="container" sg78-layout-option="2" style="display: none;">
+				<section class="container" sg78-layout-option="2">
 					<section
 						class="section__component section__component--featured-cards"
 						sg78-style-option="1"

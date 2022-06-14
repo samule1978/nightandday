@@ -1035,41 +1035,35 @@ main > .container:nth-child(1) {
 }
 
 .container__slide {
-  padding-inline: 0 !important;
   padding-block: 0 !important;
-  margin-inline: 0 !important;
-  margin-block: 0 !important;
+  padding-inline: 0 !important;
   position: relative;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 .container__slide .panel__slide {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   padding-block-start: var(--_header-height);
   display: grid;
   place-content: center;
   place-items: center;
 }
 .container__slide .panel__slide:nth-child(1) {
-  z-index: 1;
   background-color: red;
 }
 .container__slide .panel__slide:nth-child(2) {
-  z-index: 2;
   background-color: green;
 }
 .container__slide .panel__slide:nth-child(3) {
-  z-index: 3;
   background-color: blue;
 }
 .container__slide .panel__slide:nth-child(4) {
-  z-index: 4;
   background-color: yellow;
 }
 .container__slide .panel__slide:nth-child(5) {
-  z-index: 5;
   background-color: purple;
 }
 
