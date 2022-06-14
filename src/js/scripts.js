@@ -53,13 +53,13 @@ if (is(qs("[sg78-ux-scroll-trigger]"))) {
 	ScrollTrigger.create({
 		animation: tl,
 		trigger: ".container__slide",
-		snap: {
+		/*snap: {
 			snapTo: 1 / (panels.length - 1),
 			//duration: { min: 0.2, max: 1 },			
 			//duration: 0.85,
 			duration: 1,
 			delay: 0.1,
-		},
+		},*/
 		start: "top top",
 		end: "+=500%",
 		scrub: true,
