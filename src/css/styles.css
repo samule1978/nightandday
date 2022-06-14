@@ -587,6 +587,15 @@ body {
   scroll-behavior: smooth;
 }
 
+[sg78-ux-horizontal-scroll=disabled] {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+[sg78-ux-horizontal-scroll=disabled] body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 p {
   margin-block: 0px var(--op-size-3);
   line-height: var(--core-size-html-line-height);
