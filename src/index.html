@@ -18,6 +18,8 @@
 		<link rel="stylesheet" href="css/brands.css" />
 		<link rel="stylesheet" href="css/site.config.css" />
 
+		<script src="https://unpkg.com/rive-js" defer></script>
+
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js" defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js" defer></script>
@@ -29,34 +31,27 @@
 	<body>
 		<section class="grid__container grid__container--page" sg78-layout-option="2">
 			<header class="grid__area grid__area--header">
-				<section class="container">
+				<canvas id="riveHeader" width="1024" height="100" style="margin: 0; padding: 0;"></canvas>
+
+				<!--section class="container">
 					<section class="container__logo">
 						<svg class="logo" version="1.1" viewBox="0 0 50 25">
 							<g class="logo__group">
 								<path class="logo__n" d="m1.3229 12.607v11.206h22.49v-11.206c-4e-6 -15.252-22.49-15.252-22.49 0z" />
 								<path class="logo__d" transform="translate(1.5 0) matrix(.26458 0 0 .26458 1.1826 1.027)" d="m90.531 1.1191v85h42.352c57.647 0 57.647-85 0-85h-42.352zm35 20h15v15h15v15h-15v15h-7-8v-15h-15v-15h15v-15z"/>
-								<!--path class="logo__d" transform="translate(1.5 0)" d="m36.341 1.3229h-11.206v22.49h11.206c15.252 0 15.252-22.49 0-22.49z" /-->
+								<path style="display:none;" class="logo__d" transform="translate(1.5 0)" d="m36.341 1.3229h-11.206v22.49h11.206c15.252 0 15.252-22.49 0-22.49z" />
 							</g>
 						</svg>
-						<!--svg class="logo" version="1.1" viewBox="0 0 46.738 22.926">
-							<g class="logo__group" transform="translate(-1.1826 -1.027)" fill="none">
-								<path class="logo__n" d="m36.341 1.3229h-11.206v22.49h11.206c15.252 0 15.252-22.49 0-22.49z" />
-								<path class="logo__d" d="m1.3229 12.607v11.206h22.49v-11.206c-4e-6 -15.252-22.49-15.252-22.49 0z" />								
-								<path class="logo__e" d="m36.512 18.521h1.8521v-3.9688h3.9688v-3.9688h-3.9688v-3.9687h-3.9688v3.9687h-3.9688v3.9688h3.9688v3.9688h2.1167" />
-							</g>
-						</svg-->
-					</section>
-	
-					<nav>
-						
+					</section>	
+					<nav>						
 					</nav>
-				</section>
+				</section-->
 			</header>
 			<main class="grid__area grid__area--main">
 				<section class="container">
 					<p>
 						<a class="cta__anchor cta__anchor--body" href="/" sg78-ux-toastie>
-							Ver 1.0.0.7: Setup - GSAP - Sliding Content.
+							Ver 1.0.0.8: Rive.
 						</a>
 					</p>	
 				</section>

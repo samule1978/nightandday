@@ -110,14 +110,22 @@ if (is(qs("[sg78-ux-scroll-trigger]"))) {
 		scrollTrigger: { scrub: 0.3 },
 	});*/
 
-	qs(["header"]).prepend(
-		createElement("div", {
-			classList: "bg-day",
-		})
-	);
-	gsap.to(".bg-day", {
-		opacity: 0,
-		ease: "none",
-		scrollTrigger: { scrub: 0.3 },
-	});	
+	if (is(qsa("#riveHeader"))) {
+		new rive.Rive({
+			src: "assets/rive/header.riv",
+			canvas: document.getElementById("riveHeader"),
+			autoplay: true
+		});		
+	} else {
+		qs(["header"]).prepend(
+			createElement("div", {
+				classList: "bg-day",
+			})
+		);
+		gsap.to(".bg-day", {
+			opacity: 0,
+			ease: "none",
+			scrollTrigger: { scrub: 0.3 },
+		});		
+	}
 }
