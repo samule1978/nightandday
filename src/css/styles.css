@@ -1154,9 +1154,6 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
 .grid__area--header > .container {
   position: relative;
 }
-.grid__area--header .container__logo .logo {
-  height: 35px;
-}
 .grid__area--header .container__logo .logo__n {
   stroke-width: 0;
   fill: white;

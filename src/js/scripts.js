@@ -33,6 +33,20 @@ if (!isTouchEnabled()) {
 	}
 }
 
+if (is(qs(".loading"))) {	
+	const perfData = window.performance.timing;
+
+	console.log(perfData.navigationStart);
+	console.log(perfData.loadEventEnd);
+
+	const EstimatedTime = -(perfData.loadEventEnd - perfData.navigationStart);
+	const time = parseInt((EstimatedTime/1000)%60)*100;
+	console.log(time);
+
+	/*const start = 0,
+    end = 100;*/
+}
+
 qsa("[sg78-ux-toastie]")[0].addEventListener("click", (e) => {
 	e.preventDefault();
 
