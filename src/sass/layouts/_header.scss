@@ -49,8 +49,151 @@ progress {
 	}
 
 	.container__logo {
+		cursor: pointer;
+
+		position: relative;
+		width: 10rem;
+		height: 10rem;
+
+		isolation: isolate;
+
+		.container__hamburger {
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+
+			width: 100%;			
+			transform: rotate(-0deg);
+
+			display: grid;
+			place-items: center;
+
+			hamburger {
+				width: 50%;
+				height: auto;
+				
+				position: absolute;				
+				-webkit-transform: rotate(0deg);
+				-moz-transform: rotate(0deg);
+				-o-transform: rotate(0deg);
+				transform: rotate(0deg);
+				-webkit-transition: .5s ease-in-out;
+				-moz-transition: .5s ease-in-out;
+				-o-transition: .5s ease-in-out;
+				transition: .5s ease-in-out;				
+	
+				patty {
+					display: block;
+					position: absolute;
+					height: 14px;
+					width: 100%;
+					background: #9c2b2b;
+					border-radius: 0px;
+					opacity: 1;
+					left: 0;
+					-webkit-transform: rotate(0deg);
+					-moz-transform: rotate(0deg);
+					-o-transform: rotate(0deg);
+					transform: rotate(0deg);
+					-webkit-transition: .25s ease-in-out;
+					-moz-transition: .25s ease-in-out;
+					-o-transition: .25s ease-in-out;
+					transition: .25s ease-in-out;
+					
+					&:nth-child(1) {
+						top: 0px;
+					}
+					&:nth-child(2),
+					&:nth-child(3) {
+						top: 18px;
+					}
+					&:nth-child(4) {
+						top: 36px;
+					}
+				}
+	
+				&:hover {
+					
+				}
+			}
+		}
+
+		&:hover {
+			patty {
+				&:nth-child(1) {
+					top: 18px;
+					width: 0%;
+					left: 50%;
+				}
+				&:nth-child(2) {
+					-webkit-transform: rotate(45deg);
+					-moz-transform: rotate(45deg);
+					-o-transform: rotate(45deg);
+					transform: rotate(45deg);
+				}
+				&:nth-child(3) {
+					-webkit-transform: rotate(-45deg);
+					-moz-transform: rotate(-45deg);
+					-o-transform: rotate(-45deg);
+					transform: rotate(-45deg);
+				}
+				&:nth-child(4) {
+					top: 18px;
+					width: 0%;
+					left: 50%;
+				}
+			}
+		}
+
+
 		.logo {
-			//height: 35px;
+			position: absolute;
+			z-index: 0;
+			inset: 0;
+
+			width: 100%;
+
+			&__outer {
+			}
+			&__inner {				
+			}
+
+			&__cube {
+				&-container {
+					fill: #f2f2f2;
+					stroke: #404040;
+					stroke-width: .26458;
+				}
+				&-panel {
+					&--x {
+						fill: #b2b2b2;
+					}
+					&--n {
+						fill: #808080;
+					}
+					&--d {
+						fill: #ccc;
+					}
+				}
+				&-letter {
+					&--x {
+						opacity: 0.2;
+						fill: #9c2b2b;
+					}
+					&--n {
+						fill: #f2f2f2;
+					}
+					&--d {
+						fill: #fff;
+						//fill-rule: evenodd;
+						//stop-color: #000000;
+					}
+				}
+			}
+		}
+
+		/*.logo {
+			height: 35px;
 
 			&__group {
 			}
@@ -62,6 +205,6 @@ progress {
 				stroke-width: 0;
 				fill: white;
 			}
-		}
+		}*/
 	}
 }
