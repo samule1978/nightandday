@@ -46,9 +46,8 @@ progress {
 .container__logo {
 	cursor: pointer;
 
-	position: relative;
-	width: 4rem;
-	aspect-ratio: 1;
+	position: absolute;//relative;
+	width: 4rem;	
 
 	isolation: isolate;
 
