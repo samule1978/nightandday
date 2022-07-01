@@ -1151,58 +1151,14 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
   background-color: black;
 }
 
-.grid__area--header > .container {
-  position: relative;
-}
-.grid__area--header .container__logo patty:nth-child(1) {
-  grid-area: top;
-}
-.grid__area--header .container__logo patty:nth-child(2), .grid__area--header .container__logo patty:nth-child(3) {
-  grid-area: middle;
-}
-.grid__area--header .container__logo patty:nth-child(4) {
-  grid-area: bottom;
-}
-.grid__area--header .container__logo:hover patty:nth-child(1) {
-  width: 100%;
-  height: 0%;
-  bottom: 0;
-  opacity: 0;
-}
-.grid__area--header .container__logo:hover patty:nth-child(2) {
-  transform: rotate(0deg);
-}
-.grid__area--header .container__logo:hover patty:nth-child(3) {
-  transform: rotate(-90deg);
-}
-.grid__area--header .container__logo:hover patty:nth-child(4) {
-  width: 100%;
-  height: 0%;
-  top: 0;
-  opacity: 0;
-}
-.grid__area--header .container__logo {
+.container__logo {
   cursor: pointer;
   position: relative;
-  width: 15rem;
+  width: 4rem;
   aspect-ratio: 1;
   isolation: isolate;
-  /*.logo {
-  	height: 35px;
-
-  	&__group {
-  	}
-  	&__n {
-  		stroke-width: 0;
-  		fill: white;
-  	}
-  	&__d {
-  		stroke-width: 0;
-  		fill: white;
-  	}
-  }*/
 }
-.grid__area--header .container__logo .container__hamburger {
+.container__logo .container__hamburger {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -1213,7 +1169,7 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
   transform-origin: 144% -14%;
   transform: rotate(-30deg) skew(30deg);
 }
-.grid__area--header .container__logo .container__hamburger hamburger {
+.container__logo .container__hamburger hamburger {
   display: grid;
   grid-template-areas: "top" "middle" "bottom";
   place-items: center;
@@ -1231,48 +1187,107 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
   transition: 0.5s ease-in-out;
   overflow: hidden;
 }
-.grid__area--header .container__logo .container__hamburger hamburger patty {
+.container__logo .container__hamburger hamburger patty {
   position: relative;
   display: inline-block;
-  height: 100%;
-  width: 100%;
   background: #9c2b2b;
   border-radius: 0px;
-  opacity: 1;
-  left: 0;
-  transform: rotate(0deg);
   transition: 0.25s ease-in-out;
 }
-.grid__area--header .container__logo .logo {
+.container__logo .container__hamburger hamburger patty:nth-child(1) {
+  grid-area: top;
+}
+.container__logo .container__hamburger hamburger patty:nth-child(2), .container__logo .container__hamburger hamburger patty:nth-child(3) {
+  grid-area: middle;
+}
+.container__logo .container__hamburger hamburger patty:nth-child(4) {
+  grid-area: bottom;
+}
+.container__logo .logo {
   position: relative;
   z-index: 0;
   inset: 0;
   width: 100%;
 }
-.grid__area--header .container__logo .logo__cube-container {
+.container__logo .logo__cube-container {
   fill: #f2f2f2;
   stroke: #404040;
   stroke-width: 0.26458;
 }
-.grid__area--header .container__logo .logo__cube-panel--x {
+.container__logo .logo__cube-panel--x {
   fill: #b2b2b2;
 }
-.grid__area--header .container__logo .logo__cube-panel--n {
+.container__logo .logo__cube-panel--n {
   fill: #808080;
 }
-.grid__area--header .container__logo .logo__cube-panel--d {
+.container__logo .logo__cube-panel--d {
   fill: #ccc;
 }
-.grid__area--header .container__logo .logo__cube-letter--x {
+.container__logo .logo__cube-letter--x {
   opacity: 0;
   fill: #9c2b2b;
 }
-.grid__area--header .container__logo .logo__cube-letter--n {
+.container__logo .logo__cube-letter--n {
   fill: #f2f2f2;
 }
-.grid__area--header .container__logo .logo__cube-letter--d {
+.container__logo .logo__cube-letter--d {
   fill: #fff;
 }
+
+@media only screen and (max-width: 428px) {
+  .container__logo patty {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  .container__logo:hover patty:nth-child(1) {
+    height: 0%;
+    bottom: 0;
+    opacity: 0;
+  }
+  .container__logo:hover patty:nth-child(2) {
+    transform: rotate(0deg);
+  }
+  .container__logo:hover patty:nth-child(3) {
+    transform: rotate(-90deg);
+  }
+  .container__logo:hover patty:nth-child(4) {
+    height: 0%;
+    top: 0;
+    opacity: 0;
+  }
+}
+@media only screen and (min-width: 429px) {
+  .container__logo patty:nth-child(1) {
+    height: 0%;
+    opacity: 0;
+  }
+  .container__logo patty:nth-child(2) {
+    width: 100%;
+    height: 100%;
+    transform: rotate(0deg);
+  }
+  .container__logo patty:nth-child(3) {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  .container__logo patty:nth-child(4) {
+    height: 0%;
+    opacity: 0;
+  }
+  .container__logo:hover patty {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+.grid__area--header > .container {
+  position: relative;
+}
+
 .grid__area--footer .section__footer--nav {
   display: grid;
   grid-template-columns: 1fr;
