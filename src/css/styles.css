@@ -1154,11 +1154,38 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
 .grid__area--header > .container {
   position: relative;
 }
+.grid__area--header .container__logo patty:nth-child(1) {
+  grid-area: top;
+}
+.grid__area--header .container__logo patty:nth-child(2), .grid__area--header .container__logo patty:nth-child(3) {
+  grid-area: middle;
+}
+.grid__area--header .container__logo patty:nth-child(4) {
+  grid-area: bottom;
+}
+.grid__area--header .container__logo:hover patty:nth-child(1) {
+  width: 100%;
+  height: 0%;
+  bottom: 0;
+  opacity: 0;
+}
+.grid__area--header .container__logo:hover patty:nth-child(2) {
+  transform: rotate(0deg);
+}
+.grid__area--header .container__logo:hover patty:nth-child(3) {
+  transform: rotate(-90deg);
+}
+.grid__area--header .container__logo:hover patty:nth-child(4) {
+  width: 100%;
+  height: 0%;
+  top: 0;
+  opacity: 0;
+}
 .grid__area--header .container__logo {
   cursor: pointer;
   position: relative;
-  width: 10rem;
-  height: 10rem;
+  width: 15rem;
+  aspect-ratio: 1;
   isolation: isolate;
   /*.logo {
   	height: 35px;
@@ -1177,18 +1204,23 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
 }
 .grid__area--header .container__logo .container__hamburger {
   position: absolute;
-  inset: 25px 0 0 28px;
+  inset: 0;
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 34%;
-  height: 0%;
+  width: 42%;
+  height: 32%;
+  transform-origin: 144% -14%;
   transform: rotate(-30deg) skew(30deg);
 }
 .grid__area--header .container__logo .container__hamburger hamburger {
+  display: grid;
+  grid-template-areas: "top" "middle" "bottom";
+  place-items: center;
+  gap: 15%;
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: relative;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -1197,11 +1229,12 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
   -moz-transition: 0.5s ease-in-out;
   -o-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
+  overflow: hidden;
 }
 .grid__area--header .container__logo .container__hamburger hamburger patty {
-  display: block;
-  position: absolute;
-  height: 14px;
+  position: relative;
+  display: inline-block;
+  height: 100%;
   width: 100%;
   background: #9c2b2b;
   border-radius: 0px;
@@ -1210,37 +1243,11 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
   transform: rotate(0deg);
   transition: 0.25s ease-in-out;
 }
-.grid__area--header .container__logo patty:nth-child(1) {
-  top: 0px;
-}
-.grid__area--header .container__logo patty:nth-child(2), .grid__area--header .container__logo patty:nth-child(3) {
-  top: 18px;
-}
-.grid__area--header .container__logo patty:nth-child(4) {
-  top: 36px;
-}
-.grid__area--header .container__logo:hover patty:nth-child(1) {
-  top: 18px;
-  width: 0%;
-  left: 50%;
-}
-.grid__area--header .container__logo:hover patty:nth-child(2) {
-  transform: rotate(0deg);
-}
-.grid__area--header .container__logo:hover patty:nth-child(3) {
-  transform: rotate(-90deg);
-}
-.grid__area--header .container__logo:hover patty:nth-child(4) {
-  top: 18px;
-  width: 0%;
-  left: 50%;
-}
 .grid__area--header .container__logo .logo {
-  position: absolute;
+  position: relative;
   z-index: 0;
   inset: 0;
   width: 100%;
-  height: 100%;
 }
 .grid__area--header .container__logo .logo__cube-container {
   fill: #f2f2f2;
@@ -1266,7 +1273,6 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
 .grid__area--header .container__logo .logo__cube-letter--d {
   fill: #fff;
 }
-
 .grid__area--footer .section__footer--nav {
   display: grid;
   grid-template-columns: 1fr;
