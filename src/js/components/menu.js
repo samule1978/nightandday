@@ -53,7 +53,7 @@ export class Menu {
 		this.tlLeftToRight.pause();
 		this.tlLeftToRight.add(gsap.to(this.menu, { rotation: -20, ease: "back.out", duration: 0.25 }));
 		//this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 20, ease: "back.in", duration: 0.25 }));
-		this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "100%", duration: 1 }));
+		this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.in", left: "90%", duration: 1 }));
         this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "back.in",  duration: 0.25 }));
 
 		this.tlRightToLeft.pause();

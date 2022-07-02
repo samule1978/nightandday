@@ -116,3 +116,101 @@
 		}
 	}
 }
+@mixin logicalSpacing($top, $right, $bottom, $left, $types...) { 
+	@if (length($types) > 0) {
+		@each $type in $types {
+			@if ($type != "margin" and $type != "padding") {
+				@warn "$type: '#{quote($type)}' is not a valid logical spacing attribute.  Should be 'margin' or 'padding'.";
+			} @else {
+				@if ($left) { #{$type}-inline-start: $left; }
+				@if ($right) { #{$type}-inline-end: $right; }
+				@if ($top) { #{$type}-block-start: $top; }
+				@if ($bottom) { #{$type}-block-end: $bottom; }
+			}			
+		}
+	} @else {
+		@if ($left) { margin-inline-start: $left; }
+		@if ($right) { margin-inline-end: $right; }
+		@if ($top) { margin-block-start: $top; }
+		@if ($bottom) { margin-block-end: $bottom; }
+		@if ($left) { padding-inline-start: $left; }
+		@if ($right) { padding-inline-end: $right; }
+		@if ($top) { padding-block-start: $top; }
+		@if ($bottom) { padding-block-end: $bottom; }
+	}
+}
+@mixin borders($style: solid, $width: 1px, $radius: 0, $color: hsl(43, 0, 0), $sides...) { 
+	@if (length($sides) > 0) {
+		@each $side in $sides {
+			@if ($side != "top" and $side != "right" and $side != "bottom" and $side != "left") {
+				@warn "$side: '#{quote($side)}' is not a valid border side.  Should be 'top', 'right', 'bottom' or 'left'.";
+			} @else {
+				border-#{$side}-style: $style;
+				border-#{$side}-width: $width;
+				border-#{$side}-radius: $radius;
+				border-#{$side}-color: $color;
+			}			
+		}		
+	} @else {
+		border-style: $style;
+		border-width: $width;
+		border-radius: $radius;
+		border-color: $color;
+	}
+}
+@mixin border($style: solid, $width: 0, $color: transparent, $sides...) {	
+	@if (length($sides) > 0) {
+		@each $side in $sides {
+			@if ($side != "top" and $side != "right" and $side != "bottom" and $side != "left") {
+				@warn "$side: '#{quote($side)}' is not a valid border side.  Should be 'top', 'right', 'bottom' or 'left'.";
+			} @else {
+				@if ($style == none) {
+					border-#{$side}-style: $style;
+				} @else {
+					border-#{$side}-style: $style;
+					border-#{$side}-width: $width;
+					border-#{$side}-color: $color;	
+				}
+			}			
+		}		
+	} @else {
+		@if ($style == none) {
+			border-style: $style;
+		} @else {
+			border-style: $style;
+			border-width: $width;
+			border-color: $color;	
+		}
+	}
+}
+@mixin border-radius($radiuses...) { 
+	@if (length($radiuses) > 1) {	
+		@if (length($radiuses) > 4) {
+			@warn "$radiuses: '#{quote($radiuses)}' is not a valid list or border radiuses.  Should be a maximum of 4: top-left, top-right, bottom-right and bottom-left.";
+		} @else {	
+			@for $i from 1 through length($radiuses) {
+				$radius: nth($radiuses, $i);
+				@if ($i == 1) { 
+					border-top-left-radius: #{$radius}; 					
+				}
+				@if ($i == 2) { 
+					border-top-right-radius: #{$radius}; 
+				}
+				@if ($i == 3) { 
+					border-bottom-right-radius: #{$radius}; 
+				}
+				@if ($i == 4) { 
+					border-bottom-left-radius: #{$radius}; 
+				}
+			}
+		}
+	} @else {
+		border-radius: $radiuses;
+	}
+}
+@mixin outline($style: solid, $width: 1px, $offset: 0, $color: hsl(43, 0, 0)) { 
+	outline-style: $style;
+	outline-width: $width;
+	outline-offset: $offset;
+	outline-color: $color;
+}

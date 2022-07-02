@@ -62,7 +62,7 @@ qsa("[sg78-ux-toastie]")[0].addEventListener("click", (e) => {
 	}
 });
 
-if (is(qs("[sg78-ux-scroll-trigger]"))) {
+if (is(qs("[sg78-ux-scroll-trigger]"))) {	
 	gsap.registerPlugin(ScrollTrigger);
 
 	const tl = gsap.timeline();
@@ -108,7 +108,6 @@ if (is(qs("[sg78-ux-scroll-trigger]"))) {
 		pin: true,
 		anticipatePin: 1,
 	});
-
 
 	document.body.prepend(
 		createElement("div", {

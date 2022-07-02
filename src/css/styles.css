@@ -376,6 +376,138 @@ category: legacy browsers
   --op-size-lg: 1024px;
   --op-size-xl: 1440px;
   --op-size-xxl: 1920px;
+  --op-color-black-0: shsl(0, 0%, 0%);
+  --op-color-white-0: shsl(0, 0%, 100%);
+  --op-color-grey-0: shsl(210, 17%, 98%);
+  --op-color-grey-1: shsl(210, 17%, 95%);
+  --op-color-grey-2: shsl(210, 16%, 93%);
+  --op-color-grey-3: shsl(210, 14%, 89%);
+  --op-color-grey-4: shsl(210, 14%, 83%);
+  --op-color-grey-5: shsl(210, 11%, 71%);
+  --op-color-grey-6: shsl(210, 7%, 56%);
+  --op-color-grey-7: shsl(210, 9%, 31%);
+  --op-color-grey-8: shsl(210, 10%, 23%);
+  --op-color-grey-9: shsl(210, 11%, 15%);
+  --op-color-red-0: shsl(0, 100%, 98%);
+  --op-color-red-1: shsl(0, 100%, 95%);
+  --op-color-red-2: shsl(0, 100%, 89%);
+  --op-color-red-3: shsl(0, 100%, 83%);
+  --op-color-red-4: shsl(0, 100%, 76%);
+  --op-color-red-5: shsl(0, 100%, 71%);
+  --op-color-red-6: shsl(0, 94%, 65%);
+  --op-color-red-7: shsl(0, 86%, 59%);
+  --op-color-red-8: shsl(0, 74%, 54%);
+  --op-color-red-9: shsl(0, 65%, 48%);
+  --op-color-pink-0: shsl(336, 100%, 97%);
+  --op-color-pink-1: shsl(336, 100%, 94%);
+  --op-color-pink-2: shsl(338, 91%, 87%);
+  --op-color-pink-3: shsl(339, 90%, 81%);
+  --op-color-pink-4: shsl(339, 88%, 74%);
+  --op-color-pink-5: shsl(339, 82%, 67%);
+  --op-color-pink-6: shsl(339, 76%, 59%);
+  --op-color-pink-7: shsl(339, 67%, 52%);
+  --op-color-pink-8: shsl(339, 68%, 45%);
+  --op-color-pink-9: shsl(339, 69%, 38%);
+  --op-color-grape-0: shsl(280, 67%, 96%);
+  --op-color-grape-1: shsl(287, 77%, 92%);
+  --op-color-grape-2: shsl(288, 86%, 86%);
+  --op-color-grape-3: shsl(289, 85%, 78%);
+  --op-color-grape-4: shsl(288, 83%, 71%);
+  --op-color-grape-5: shsl(288, 75%, 64%);
+  --op-color-grape-6: shsl(288, 67%, 58%);
+  --op-color-grape-7: shsl(288, 56%, 52%);
+  --op-color-grape-8: shsl(288, 54%, 46%);
+  --op-color-grape-9: shsl(288, 54%, 40%);
+  --op-color-violet-0: shsl(252, 100%, 97%);
+  --op-color-violet-1: shsl(257, 100%, 93%);
+  --op-color-violet-2: shsl(256, 100%, 87%);
+  --op-color-violet-3: shsl(255, 94%, 79%);
+  --op-color-violet-4: shsl(255, 93%, 72%);
+  --op-color-violet-5: shsl(255, 91%, 67%);
+  --op-color-violet-6: shsl(255, 86%, 63%);
+  --op-color-violet-7: shsl(255, 78%, 60%);
+  --op-color-violet-8: shsl(255, 67%, 55%);
+  --op-color-violet-9: shsl(255, 53%, 50%);
+  --op-color-indiglo-0: shsl(223, 100%, 96%);
+  --op-color-indiglo-1: shsl(225, 100%, 93%);
+  --op-color-indiglo-2: shsl(228, 100%, 86%);
+  --op-color-indiglo-3: shsl(228, 100%, 78%);
+  --op-color-indiglo-4: shsl(228, 96%, 72%);
+  --op-color-indiglo-5: shsl(228, 94%, 67%);
+  --op-color-indiglo-6: shsl(228, 89%, 63%);
+  --op-color-indiglo-7: shsl(228, 81%, 59%);
+  --op-color-indiglo-8: shsl(228, 69%, 55%);
+  --op-color-indiglo-9: shsl(230, 57%, 50%);
+  --op-color-blue-0: shsl(205, 100%, 95%);
+  --op-color-blue-1: shsl(206, 100%, 91%);
+  --op-color-blue-2: shsl(206, 100%, 82%);
+  --op-color-blue-3: shsl(206, 96%, 72%);
+  --op-color-blue-4: shsl(207, 91%, 64%);
+  --op-color-blue-5: shsl(207, 86%, 57%);
+  --op-color-blue-6: shsl(208, 80%, 52%);
+  --op-color-blue-7: shsl(208, 77%, 47%);
+  --op-color-blue-8: shsl(209, 77%, 43%);
+  --op-color-blue-9: shsl(209, 75%, 38%);
+  --op-color-cyan-0: shsl(185, 81%, 94%);
+  --op-color-cyan-1: shsl(185, 84%, 88%);
+  --op-color-cyan-2: shsl(186, 77%, 77%);
+  --op-color-cyan-3: shsl(187, 74%, 65%);
+  --op-color-cyan-4: shsl(187, 69%, 55%);
+  --op-color-cyan-5: shsl(188, 72%, 47%);
+  --op-color-cyan-6: shsl(187, 80%, 42%);
+  --op-color-cyan-7: shsl(188, 83%, 37%);
+  --op-color-cyan-8: shsl(189, 85%, 32%);
+  --op-color-cyan-9: shsl(189, 85%, 28%);
+  --op-color-teal-0: shsl(161, 79%, 95%);
+  --op-color-teal-1: shsl(160, 85%, 87%);
+  --op-color-teal-2: shsl(162, 78%, 77%);
+  --op-color-teal-3: shsl(162, 72%, 65%);
+  --op-color-teal-4: shsl(162, 68%, 54%);
+  --op-color-teal-5: shsl(162, 73%, 46%);
+  --op-color-teal-6: shsl(162, 82%, 40%);
+  --op-color-teal-7: shsl(162, 87%, 35%);
+  --op-color-teal-8: shsl(162, 88%, 30%);
+  --op-color-teal-9: shsl(162, 88%, 26%);
+  --op-color-green-0: shsl(131, 67%, 95%);
+  --op-color-green-1: shsl(128, 76%, 90%);
+  --op-color-green-2: shsl(128, 71%, 82%);
+  --op-color-green-3: shsl(129, 68%, 73%);
+  --op-color-green-4: shsl(130, 61%, 64%);
+  --op-color-green-5: shsl(130, 57%, 56%);
+  --op-color-green-6: shsl(131, 50%, 50%);
+  --op-color-green-7: shsl(131, 53%, 46%);
+  --op-color-green-8: shsl(131, 54%, 40%);
+  --op-color-green-9: shsl(132, 52%, 35%);
+  --op-color-lime-0: shsl(79, 81%, 94%);
+  --op-color-lime-1: shsl(80, 83%, 88%);
+  --op-color-lime-2: shsl(81, 81%, 80%);
+  --op-color-lime-3: shsl(82, 75%, 69%);
+  --op-color-lime-4: shsl(83, 73%, 59%);
+  --op-color-lime-5: shsl(84, 69%, 51%);
+  --op-color-lime-6: shsl(85, 74%, 45%);
+  --op-color-lime-7: shsl(85, 79%, 40%);
+  --op-color-lime-8: shsl(86, 84%, 36%);
+  --op-color-lime-9: shsl(85, 84%, 32%);
+  --op-color-yellow-0: shsl(50, 100%, 93%);
+  --op-color-yellow-1: shsl(49, 100%, 87%);
+  --op-color-yellow-2: shsl(49, 100%, 80%);
+  --op-color-yellow-3: shsl(48, 100%, 70%);
+  --op-color-yellow-4: shsl(47, 100%, 62%);
+  --op-color-yellow-5: shsl(45, 97%, 54%);
+  --op-color-yellow-6: shsl(42, 96%, 50%);
+  --op-color-yellow-7: shsl(39, 100%, 48%);
+  --op-color-yellow-8: shsl(35, 100%, 47%);
+  --op-color-yellow-9: shsl(31, 100%, 45%);
+  --op-color-orange-0: shsl(34, 100%, 95%);
+  --op-color-orange-1: shsl(33, 100%, 90%);
+  --op-color-orange-2: shsl(33, 100%, 83%);
+  --op-color-orange-3: shsl(32, 100%, 74%);
+  --op-color-orange-4: shsl(31, 100%, 65%);
+  --op-color-orange-5: shsl(29, 100%, 58%);
+  --op-color-orange-6: shsl(27, 98%, 54%);
+  --op-color-orange-7: shsl(24, 94%, 50%);
+  --op-color-orange-8: shsl(21, 90%, 48%);
+  --op-color-orange-9: shsl(17, 87%, 45%);
   --op-layer-1: 1;
   --op-layer-2: 2;
   --op-layer-3: 3;
@@ -596,13 +728,17 @@ body {
   overflow-x: hidden;
 }
 
+[sg78-debug-outline=true] * {
+  outline: solid 1px blue;
+}
+
 html {
   --_header-position: relative;
   --_header-height: auto;
 }
 html[sg78-ux-header-fixed=true] {
   --_header-position: fixed;
-  --_header-height: 51px;
+  --_header-height: 50px;
 }
 
 header {
@@ -1038,7 +1174,7 @@ main > .container:nth-child(1) {
   padding-block: 0 !important;
   padding-inline: 0 !important;
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
 }
@@ -1130,7 +1266,7 @@ main > .container:nth-child(1) {
 .bg-day {
   background-color: hsl(201deg, 54%, 69%);
   width: 100%;
-  height: 100%;
+  height: 50px;
   position: absolute;
 }
 
@@ -1153,9 +1289,17 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
 
 .container__logo {
   cursor: pointer;
-  position: absolute;
-  width: 4rem;
+  position: relative;
+  width: 3rem;
   isolation: isolate;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  padding-block-start: 0;
+  padding-block-end: 0;
 }
 .container__logo .container__hamburger {
   position: absolute;
@@ -1233,56 +1377,62 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
   fill: #fff;
 }
 
-@media only screen and (max-width: 428px) {
-  .container__logo patty {
-    width: 100%;
-    height: 100%;
-    opacity: 1;
-    transform: rotate(0deg);
-  }
-  .container__logo:hover patty:nth-child(1) {
-    height: 0%;
-    bottom: 0;
-    opacity: 0;
-  }
-  .container__logo:hover patty:nth-child(2) {
-    transform: rotate(0deg);
-  }
-  .container__logo:hover patty:nth-child(3) {
-    transform: rotate(-90deg);
-  }
-  .container__logo:hover patty:nth-child(4) {
-    height: 0%;
-    top: 0;
-    opacity: 0;
-  }
+/*@media only screen and (max-width: 428px) {
+	.container__logo {
+		patty {
+			width: 100%;
+			height: 100%;
+			opacity: 1;
+			transform: rotate(0deg);
+		}
+
+		&:hover {
+			patty {
+				&:nth-child(1) {							
+					height: 0%;
+					bottom: 0;
+					opacity: 0;
+				}
+				&:nth-child(2) {
+					transform: rotate(0deg);
+				}
+				&:nth-child(3) {
+					transform: rotate(-90deg);
+				}
+				&:nth-child(4) {
+					height: 0%;	
+					top: 0;
+					opacity: 0;
+				}
+			}
+		}
+	}
+}*/
+.container__logo patty:nth-child(1) {
+  height: 0%;
+  opacity: 0;
 }
-@media only screen and (min-width: 429px) {
-  .container__logo patty:nth-child(1) {
-    height: 0%;
-    opacity: 0;
-  }
-  .container__logo patty:nth-child(2) {
-    width: 100%;
-    height: 100%;
-    transform: rotate(0deg);
-  }
-  .container__logo patty:nth-child(3) {
-    width: 100%;
-    height: 100%;
-    transform: rotate(-90deg);
-  }
-  .container__logo patty:nth-child(4) {
-    height: 0%;
-    opacity: 0;
-  }
-  .container__logo:hover patty {
-    width: 100%;
-    height: 100%;
-    opacity: 1;
-    transform: rotate(0deg);
-  }
+.container__logo patty:nth-child(2) {
+  width: 100%;
+  height: 100%;
+  transform: rotate(0deg);
 }
+.container__logo patty:nth-child(3) {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.container__logo patty:nth-child(4) {
+  height: 0%;
+  opacity: 0;
+}
+.container__logo:hover patty {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
 .grid__area--header > .container {
   position: relative;
 }
