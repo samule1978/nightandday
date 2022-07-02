@@ -51,16 +51,16 @@ export class Menu {
 
     createTimeLines() {
 		this.tlLeftToRight.pause();
-		this.tlLeftToRight.add(gsap.to(this.menu, { rotation: -20, ease: "back.out", duration: 0.5 }));
-		this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 20, ease: "back.in", duration: 0.5 }));
-		this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "unset", right: "0%", duration: 2 }));		
-        this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "back.in",  duration: 0.5 }));
+		this.tlLeftToRight.add(gsap.to(this.menu, { rotation: -20, ease: "back.out", duration: 0.25 }));
+		//this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 20, ease: "back.in", duration: 0.25 }));
+		this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "100%", duration: 1 }));
+        this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "back.in",  duration: 0.25 }));
 
 		this.tlRightToLeft.pause();
-		this.tlRightToLeft.add(gsap.to(this.menu, { rotation: 20, ease: "back.out", duration: 0.5 }));
-		this.tlRightToLeft.add(gsap.to(this.menu, { rotation: -20, ease: "back.in", duration: 0.5 }));
-		this.tlRightToLeft.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "0%", right: "unset", duration: 2 }));		
-        this.tlRightToLeft.add(gsap.to(this.menu, { rotation: 0, ease: "back.in",  duration: 0.5 }));
+		this.tlRightToLeft.add(gsap.to(this.menu, { rotation: 20, ease: "back.out", duration: 0.25 }));
+		//this.tlRightToLeft.add(gsap.to(this.menu, { rotation: -20, ease: "back.in", duration: 0.25 }));
+		this.tlRightToLeft.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "0%", duration: 1 }));
+        this.tlRightToLeft.add(gsap.to(this.menu, { rotation: 0, ease: "back.in",  duration: 0.25 }));
 
         //this.tl.add(gsap.to(this.menu, { rotation: 0, ease: "back.in",  duration: 0.5, onComplete: this.updateTimeLineState(this.menu) }));
         //this.tl.add(this.updateTimeLineState(this.menu));
