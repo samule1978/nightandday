@@ -34,26 +34,10 @@ if (!isTouchEnabled()) {
 }
 
 if (is(qs("[sg78-logo-menu]"))) {
-	const logoMenu = qs("[sg78-logo-menu]");	
-
-	const tl = gsap.timeline();
-	tl.pause();
-	tl.add(gsap.to(logoMenu, { rotation: -20, ease: "back.out", duration: 0.5 }));
-	tl.add(gsap.to(logoMenu, { rotation: 20, ease: "back.in", duration: 0.5 }));
-	tl.add(gsap.to(logoMenu, { rotation: 0, ease: "bounce.out" , right: 0, duration: 2 }));		
-	tl.add(gsap.to(logoMenu, { rotation: 0, ease: "back.in",  duration: 0.5 }));	
-
-	
-	if (logoMenu.getAttribute("sg78-logo-menu") == "") {
-		logoMenu.setAttribute("sg78-logo-menu", "left");
-	}	
-	
-	if (logoMenu.getAttribute("sg78-logo-menu") == "left") {
-		tl.play();
-	}
-	if (logoMenu.getAttribute("sg78-logo-menu") == "right") {
-		tl.reverse();		
-	}
+	import("./components/menu.js").then(({ Menu }) => {
+		const _menu = new Menu();
+		_menu.init();
+	});	
 }
 
 if (is(qs(".loading"))) {	
