@@ -168,7 +168,7 @@ export class Menu {
         });
         document.addEventListener('mouseup', (e) => {
             e.preventDefault();
-            
+
             if (this.active) {
                 this.input.x.end = e.pageX;
                 this.input.y.end = e.pageY;
@@ -176,5 +176,11 @@ export class Menu {
                 this.active = false;
             }
         });
+
+        this.menu.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            document.body.classList.toggle('show-menu');
+        });        
     }
 }
