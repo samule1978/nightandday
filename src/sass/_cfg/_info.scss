@@ -12,6 +12,25 @@
 	@include mixins.setCssPropertyConfigOptions("brand", "1-3");
 }
 
+[sg78-logo-menu] {
+	&[sg78-layout-option] {
+		@include mixins.setCssPropertyConfigTitle("layout", "Logo Menu");
+		@include mixins.setCssPropertyConfigOptions("layout", "1-2");
+	}
+	&[sg78-layout-option="1"] {
+		@include mixins.setCssPropertyConfigOptionDescription(
+			"layout",
+			"Fixed"
+		);			
+	}
+	&[sg78-layout-option="2"] {
+		@include mixins.setCssPropertyConfigOptionDescription(
+			"layout",
+			"Absolute"
+		);			
+	}	
+}
+
 section {
 	&.container {
 		&[sg78-layout-option] {

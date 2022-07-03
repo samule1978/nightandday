@@ -1289,8 +1289,7 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
 
 .container__logo {
   cursor: pointer;
-  position: relative;
-  width: 3rem;
+  width: 4rem;
   isolation: isolate;
   margin-inline-start: 0;
   margin-inline-end: 0;
@@ -1300,6 +1299,12 @@ progress[value]::-moz-progress-bar, progress[value]::-webkit-progress-bar, progr
   padding-inline-end: 0;
   padding-block-start: 0;
   padding-block-end: 0;
+}
+.container__logo[sg78-layout-option="1"] {
+  position: fixed;
+}
+.container__logo[sg78-layout-option="2"] {
+  position: absolute;
 }
 .container__logo .container__hamburger {
   position: absolute;

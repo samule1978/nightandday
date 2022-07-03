@@ -46,12 +46,18 @@ progress {
 
 .container__logo {
 	cursor: pointer;
-
-	position: relative;
-	width: 3rem;	
+	
+	width: 4rem;	
 
 	isolation: isolate;
 	@include mixins.logicalSpacing(0, 0, 0, 0);
+
+	&[sg78-layout-option="1"] {
+		position: fixed;
+	}
+	&[sg78-layout-option="2"] {
+		position: absolute;
+	}
 
 	.container__hamburger {
 		position: absolute;			
