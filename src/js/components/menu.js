@@ -17,6 +17,10 @@ export class Menu {
         this.menuTlRightToLeft = gsap.timeline();
         this.menuTlTopToBottom = gsap.timeline();
         this.menuTlBottomToTop = gsap.timeline();
+
+        this.hamburgerMenu = qs("[sg78-hamburger-menu]");
+        this.hamburgerMenuTlShow = gsap.timeline();
+        this.hamburgerMenuTlHide = gsap.timeline();
     }
     
     active = false;
@@ -43,8 +47,18 @@ export class Menu {
 		},
 	};
 
-    moveLogo() {
-        const threshold = this.menu.offsetWidth * 2;
+    showHamburgerMenu(show = false) {
+        if (show) {
+            this.hamburgerMenuTlShow.play();
+            this.hamburgerMenuTlShow.restart();
+        } else {
+            this.hamburgerMenuTlHide.play();
+            this.hamburgerMenuTlHide.restart();
+        }
+    }
+
+    moveLogo(e) {
+        const threshold = this.menu.offsetWidth * 1.5;
         let moveRight, moveUp = false;
         let diffX = 0, diffY = 0;
 
@@ -71,7 +85,7 @@ export class Menu {
                 if (moveRight) {
                     this.moveLogoRight();
                 } else {
-                    this.moveLogoLeft();
+                    this.moveLogoLeft();                
                 }
             }
         } else {
@@ -114,30 +128,39 @@ export class Menu {
             this.menu.setAttribute("sg78-logo-menu-y", "bottom");
         }
     }
-    
-    disableScrolling(){
-        const x = window.scrollX;
-        const y = window.scrollY;
-        window.onscroll = function() {
-            window.scrollTo(x, y);
-        };
+
+    srolling(srolling) {
+        if (srolling) {
+            window.onscroll = function() {};
+        } else {
+            const x = window.scrollX;
+            const y = window.scrollY;
+            window.onscroll = function() {
+                window.scrollTo(x, y);
+            };    
+        }
     }    
-    enableScrolling(){
-        window.onscroll = function() {};
-    }
 
     createTimeLines() {
 		this.menuTlLeftToRight.pause();
-		this.menuTlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "100%", x: `-${this.offset.x.end}}`, duration: 1 }));
+		this.menuTlLeftToRight.add(gsap.to(this.menu, { ease: "bounce.out", left: "100%", x: `-${this.offset.x.end}}`, duration: 1 }));
 
 		this.menuTlRightToLeft.pause();
-		this.menuTlRightToLeft.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1 }));
+		this.menuTlRightToLeft.add(gsap.to(this.menu, { ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1 }));
 
 		this.menuTlTopToBottom.pause();
-		this.menuTlTopToBottom.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", top: "100%", y: `-${this.offset.y.end}}`, duration: 1 }));
+		this.menuTlTopToBottom.add(gsap.to(this.menu, { ease: "bounce.out", top: "100%", y: `-${this.offset.y.end}}`, duration: 1 }));
 
 		this.menuTlBottomToTop.pause();
-		this.menuTlBottomToTop.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", top: "0%", y: `${this.offset.y.start}}`, duration: 1 }));
+		this.menuTlBottomToTop.add(gsap.to(this.menu, { ease: "bounce.out", top: "0%", y: `${this.offset.y.start}}`, duration: 1 }));
+
+
+        this.hamburgerMenuTlShow.pause();
+        this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMenu, { opacity: "1", duration: 1 }));
+
+        this.hamburgerMenuTlHide.pause();
+        this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMenu, { opacity: "0", duration: 1 }));
+
     }
 
     init() {        
@@ -155,54 +178,57 @@ export class Menu {
 
         this.menu.addEventListener('touchstart', (e) => {
             //e.preventDefault();
-
+            this.srolling(false);
             this.active = true;
             this.input.x.start = e.changedTouches[0].screenX;
             this.input.y.start = e.changedTouches[0].screenY;
         });
         this.menu.addEventListener('mousedown', (e) => {
             //e.preventDefault();
-
+            this.srolling(false);
             this.active = true;
             this.input.x.start = e.pageX;
             this.input.y.start = e.pageY;
         });
 
         document.addEventListener('touchend', (e) => {
-            //e.preventDefault();
-
-            if (this.active) {
+            if (this.active) {                
                 this.input.x.end = e.changedTouches[0].screenX;
                 this.input.y.end = e.changedTouches[0].screenY;
-                this.moveLogo();
+                this.moveLogo(e);
                 this.active = false;
+                this.srolling(true);
             }
         });
-        document.addEventListener('mouseup', (e) => {
-            //e.preventDefault();
-
-            if (this.active) {
+        document.addEventListener('mouseup', (e) => {           
+            if (this.active) {                
                 this.input.x.end = e.pageX;
                 this.input.y.end = e.pageY;
-                this.moveLogo();
+                this.moveLogo(e);
                 this.active = false;
+                this.srolling(true);
             }
         });
 
-        this.menu.addEventListener('click', (e) => {            
+        this.menu.addEventListener('click', (e) => {
             //e.preventDefault();
-
             if (document.body.classList.contains('menu--show')) {
+                this.srolling(true);
+                this.showHamburgerMenu(false);
+
                 document.body.classList.remove('menu--show');
                 document.body.classList.add('menu--hide');
+            } else if (document.body.classList.contains('menu--hide')) {
+                this.srolling(false);
+                this.showHamburgerMenu(true);
 
-                this.enableScrolling();
-            } else {
-                document.body.classList.add('menu--show');
                 document.body.classList.remove('menu--hide');
-
-                this.disableScrolling();
+                document.body.classList.add('menu--show');                
             }
-        });        
+        });
+        
+        this.menu.addEventListener('dblclick', (e) => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        });
     }
 }

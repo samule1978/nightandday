@@ -223,36 +223,9 @@
 	}
 //}
 
-@keyframes show-hamburger-menu {
-    0%      { opacity: 0%; }
-    100%    { opacity: 100%; }
-}
-.menu--show {
-    .container__menu {
-        &--outer {
-            opacity: 100%;
-
-            animation-name: show-hamburger-menu;
-            animation-timing-function: ease;
-            animation-duration: 1s;
-        }
-    }
-}
-.menu--hide {
-    .container__menu {
-        &--outer {
-            opacity: 0%;
-
-            animation-name: show-hamburger-menu;
-            animation-timing-function: ease;
-            animation-duration: 1s;            
-            animation-direction: reverse;
-        }
-    }
-}
 .container__menu {
     &--outer {
-        opacity: 0%;
+        opacity: 0;
         background-color: grey;
         width: 100%;
         height: 100%;
