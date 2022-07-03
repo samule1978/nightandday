@@ -228,8 +228,8 @@ export class Menu {
         });
         
         this.menu.addEventListener('dblclick', (e) => {
-            e.preventDefault();
-            
+            //e.preventDefault();
+
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         });
     }
