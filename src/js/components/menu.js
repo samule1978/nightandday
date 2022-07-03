@@ -189,20 +189,19 @@ export class Menu {
             }
         });
 
-        this.menu.addEventListener('click', (e) => {
-            alert("Clicked!");
+        this.menu.addEventListener('click', (e) => {            
             //e.preventDefault();
 
             if (document.body.classList.contains('menu--show')) {
                 document.body.classList.remove('menu--show');
                 document.body.classList.add('menu--hide');
 
-                this.disableScrolling();
+                this.enableScrolling();
             } else {
                 document.body.classList.add('menu--show');
                 document.body.classList.remove('menu--hide');
 
-                this.enableScrolling();
+                this.disableScrolling();
             }
         });        
     }
