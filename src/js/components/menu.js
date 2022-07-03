@@ -43,7 +43,7 @@ export class Menu {
 	};
 
     moveLogo() {
-        const threshold = this.menu.offsetWidth * 3;
+        const threshold = this.menu.offsetWidth * 2;
         let moveRight, moveUp = false;
         let diffX = 0, diffY = 0;
 
@@ -129,13 +129,13 @@ export class Menu {
     }
 
     init() {        
-        this.offset.x.start = `${(this.menu.offsetWidth / 2)}px`;
-        this.offset.x.end = `${(this.menu.offsetWidth / 2) * 3}px`;
+        this.offset.x.start = `${(this.menu.offsetWidth / 3)}px`;
+        this.offset.x.end = `${(this.menu.offsetWidth / 3) * 4}px`;
         this.menu.setAttribute("sg78-logo-menu-x", "left");
         setCssPropertyValue(this.menu, "left", this.offset.x.start);
 
-        this.offset.y.start = `${(this.menu.offsetWidth / 2)}px`;
-        this.offset.y.end = `${(this.menu.offsetWidth / 2) * 3}px`;
+        this.offset.y.start = `${(this.menu.offsetWidth / 3)}px`;
+        this.offset.y.end = `${(this.menu.offsetWidth / 3) * 4}px`;
         this.menu.setAttribute("sg78-logo-menu-y", "top");
         setCssPropertyValue(this.menu, "top", this.offset.y.start);
         

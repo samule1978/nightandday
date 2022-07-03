@@ -1271,7 +1271,7 @@ main > .container:nth-child(1) {
   width: 0%;
   height: 0.25rem;
   transform-origin: left;
-  background-color: var(--core-colors-color-2);
+  background-color: #9c2b2b;
 }
 
 .bg-day {
