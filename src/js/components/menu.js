@@ -43,7 +43,7 @@ export class Menu {
 	};
 
     moveLogo() {
-        const threshold = 50;
+        const threshold = this.menu.offsetWidth * 3;
         let moveRight, moveUp = false;
         let diffX = 0, diffY = 0;
 
