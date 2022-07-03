@@ -199,7 +199,7 @@ export class Menu {
             } else {
                 document.body.classList.add('menu--show');
                 document.body.classList.remove('menu--hide');
-
+                
                 this.enableScrolling();
             }
         });        
