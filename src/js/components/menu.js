@@ -142,8 +142,8 @@ export class Menu {
     }    
 
     createTimeLines() {
-		this.menuTlLeftToRight.pause();
-		this.menuTlLeftToRight.add(gsap.to(this.menu, { ease: "bounce.out", left: "100%", x: `-${this.offset.x.end}}`, duration: 1 }));
+		this.menuTlLeftToRight.pause();        
+		this.menuTlLeftToRight.add(gsap.to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1 }));
 
 		this.menuTlRightToLeft.pause();
 		this.menuTlRightToLeft.add(gsap.to(this.menu, { ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1 }));
@@ -182,6 +182,8 @@ export class Menu {
             this.active = true;
             this.input.x.start = e.changedTouches[0].screenX;
             this.input.y.start = e.changedTouches[0].screenY;
+            
+            gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
         });
         this.menu.addEventListener('mousedown', (e) => {
             //e.preventDefault();
@@ -189,10 +191,14 @@ export class Menu {
             this.active = true;
             this.input.x.start = e.pageX;
             this.input.y.start = e.pageY;
+
+            gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
         });
 
         document.addEventListener('touchend', (e) => {
-            if (this.active) {                
+            if (this.active) {
+                gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
+
                 this.input.x.end = e.changedTouches[0].screenX;
                 this.input.y.end = e.changedTouches[0].screenY;
                 this.moveLogo(e);
@@ -201,7 +207,9 @@ export class Menu {
             }
         });
         document.addEventListener('mouseup', (e) => {           
-            if (this.active) {                
+            if (this.active) {        
+                gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
+
                 this.input.x.end = e.pageX;
                 this.input.y.end = e.pageY;
                 this.moveLogo(e);
