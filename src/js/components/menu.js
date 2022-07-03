@@ -31,17 +31,19 @@ export class Menu {
 
     checkDirection() {
         let direction = "";
-        if (this.input.x.end < this.input.x.start) {
-            direction+= `left-`;
-            this.tlRightToLeft.play();
-            this.tlRightToLeft.restart();
-            this.updateTimeLineState(this.menu);
+        if (this.input.x.end < this.input.x.start) {            
+            if (this.menu.getAttribute("sg78-logo-menu") == "right") {
+                this.tlRightToLeft.play();
+                this.tlRightToLeft.restart();
+                this.updateTimeLineState(this.menu);
+            }
         }
         if (this.input.x.end > this.input.x.start) {
-            direction+= `right-`;
-            this.tlLeftToRight.play();
-            this.tlLeftToRight.restart();
-            this.updateTimeLineState(this.menu);
+            if (this.menu.getAttribute("sg78-logo-menu") == "left") {
+                this.tlLeftToRight.play();
+                this.tlLeftToRight.restart();
+                this.updateTimeLineState(this.menu);
+            }
         }
         
         /*if (this.input.y.end < this.input.y.start) direction+= `down-`;
@@ -51,16 +53,16 @@ export class Menu {
 
     createTimeLines() {
 		this.tlLeftToRight.pause();
-		this.tlLeftToRight.add(gsap.to(this.menu, { rotation: -20, ease: "back.out", duration: 0.25 }));
+		//this.tlLeftToRight.add(gsap.to(this.menu, { rotation: -20, ease: "back.out", duration: 0.25 }));
 		//this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 20, ease: "back.in", duration: 0.25 }));
-		this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.in", left: "90%", duration: 1 }));
-        this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "back.in",  duration: 0.25 }));
+		this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "90%", duration: 1 }));
+        //this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "back.in",  duration: 0.25 }));
 
 		this.tlRightToLeft.pause();
-		this.tlRightToLeft.add(gsap.to(this.menu, { rotation: 20, ease: "back.out", duration: 0.25 }));
+		//this.tlRightToLeft.add(gsap.to(this.menu, { rotation: 20, ease: "back.out", duration: 0.25 }));
 		//this.tlRightToLeft.add(gsap.to(this.menu, { rotation: -20, ease: "back.in", duration: 0.25 }));
 		this.tlRightToLeft.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "0%", duration: 1 }));
-        this.tlRightToLeft.add(gsap.to(this.menu, { rotation: 0, ease: "back.in",  duration: 0.25 }));
+        //this.tlRightToLeft.add(gsap.to(this.menu, { rotation: 0, ease: "back.in",  duration: 0.25 }));
 
         //this.tl.add(gsap.to(this.menu, { rotation: 0, ease: "back.in",  duration: 0.5, onComplete: this.updateTimeLineState(this.menu) }));
         //this.tl.add(this.updateTimeLineState(this.menu));
@@ -74,7 +76,7 @@ export class Menu {
         } else if (this.menu.getAttribute("sg78-logo-menu") == "right") {
             this.menu.setAttribute("sg78-logo-menu", "left");
         }
-        console.log(this.menu.getAttribute("sg78-logo-menu"));
+        //console.log(this.menu.getAttribute("sg78-logo-menu"));
     }
 
     init() {
