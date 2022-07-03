@@ -142,17 +142,23 @@ export class Menu {
         this.createTimeLines();        
 
         this.menu.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+
             this.active = true;
             this.input.x.start = e.changedTouches[0].screenX;
             this.input.y.start = e.changedTouches[0].screenY;
         });
         this.menu.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+
             this.active = true;
             this.input.x.start = e.pageX;
             this.input.y.start = e.pageY;
         });
 
         document.addEventListener('touchend', (e) => {
+            e.preventDefault();
+
             if (this.active) {
                 this.input.x.end = e.changedTouches[0].screenX;
                 this.input.y.end = e.changedTouches[0].screenY;
@@ -161,6 +167,8 @@ export class Menu {
             }
         });
         document.addEventListener('mouseup', (e) => {
+            e.preventDefault();
+            
             if (this.active) {
                 this.input.x.end = e.pageX;
                 this.input.y.end = e.pageY;
