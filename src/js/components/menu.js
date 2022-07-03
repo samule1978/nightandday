@@ -8,6 +8,7 @@ import {
 	getCssPropertyValue,
 	setCssPropertyValue,
 } from "../util/dom.js";
+import { alertToast, makeToast } from "../vendor/toast/toast.js";
 
 export class Menu {
     constructor() {
@@ -189,6 +190,7 @@ export class Menu {
         });
 
         this.menu.addEventListener('click', (e) => {
+            alert("Clicked!");
             //e.preventDefault();
 
             if (document.body.classList.contains('menu--show')) {
