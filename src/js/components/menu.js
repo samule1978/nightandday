@@ -11,11 +11,11 @@ import {
 
 export class Menu {
     constructor() {
-        this.menu = qs("[sg78-logo-menu]");        
-        this.tlLeftToRight = gsap.timeline();
-        this.tlRightToLeft = gsap.timeline();
-        this.tlTopToBottom = gsap.timeline();
-        this.tlBottomToTop = gsap.timeline();
+        this.menu = qs("[sg78-logo-menu]");  
+        this.menuTlLeftToRight = gsap.timeline();
+        this.menuTlRightToLeft = gsap.timeline();
+        this.menuTlTopToBottom = gsap.timeline();
+        this.menuTlBottomToTop = gsap.timeline();
     }
     
     active = false;
@@ -86,46 +86,57 @@ export class Menu {
     }
     moveLogoRight() {
         if (this.menu.getAttribute("sg78-logo-menu-x") == "left") {
-            this.tlLeftToRight.play();
-            this.tlLeftToRight.restart();
+            this.menuTlLeftToRight.play();
+            this.menuTlLeftToRight.restart();
             this.menu.setAttribute("sg78-logo-menu-x", "right");
         }
     }
     moveLogoLeft() {
         if (this.menu.getAttribute("sg78-logo-menu-x") == "right") {
-            this.tlRightToLeft.play();
-            this.tlRightToLeft.restart();
+            this.menuTlRightToLeft.play();
+            this.menuTlRightToLeft.restart();
             this.menu.setAttribute("sg78-logo-menu-x", "left");
         }
     }
 
     moveLogoUp() {
         if (this.menu.getAttribute("sg78-logo-menu-y") == "bottom") {
-            this.tlBottomToTop.play();
-            this.tlBottomToTop.restart();
+            this.menuTlBottomToTop.play();
+            this.menuTlBottomToTop.restart();
             this.menu.setAttribute("sg78-logo-menu-y", "top");
         }
     }
     moveLogoDown() {
         if (this.menu.getAttribute("sg78-logo-menu-y") == "top") {
-            this.tlTopToBottom.play();
-            this.tlTopToBottom.restart();
+            this.menuTlTopToBottom.play();
+            this.menuTlTopToBottom.restart();
             this.menu.setAttribute("sg78-logo-menu-y", "bottom");
         }
-    }          
+    }
+    
+    disableScrolling(){
+        const x = window.scrollX;
+        const y = window.scrollY;
+        window.onscroll = function() {
+            window.scrollTo(x, y);
+        };
+    }    
+    enableScrolling(){
+        window.onscroll = function() {};
+    }
 
     createTimeLines() {
-		this.tlLeftToRight.pause();
-		this.tlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "100%", x: `-${this.offset.x.end}}`, duration: 1 }));
+		this.menuTlLeftToRight.pause();
+		this.menuTlLeftToRight.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "100%", x: `-${this.offset.x.end}}`, duration: 1 }));
 
-		this.tlRightToLeft.pause();
-		this.tlRightToLeft.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1 }));
+		this.menuTlRightToLeft.pause();
+		this.menuTlRightToLeft.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1 }));
 
-		this.tlTopToBottom.pause();
-		this.tlTopToBottom.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", top: "100%", y: `-${this.offset.y.end}}`, duration: 1 }));
+		this.menuTlTopToBottom.pause();
+		this.menuTlTopToBottom.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", top: "100%", y: `-${this.offset.y.end}}`, duration: 1 }));
 
-		this.tlBottomToTop.pause();
-		this.tlBottomToTop.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", top: "0%", y: `${this.offset.y.start}}`, duration: 1 }));
+		this.menuTlBottomToTop.pause();
+		this.menuTlBottomToTop.add(gsap.to(this.menu, { rotation: 0, ease: "bounce.out", top: "0%", y: `${this.offset.y.start}}`, duration: 1 }));
     }
 
     init() {        
@@ -180,7 +191,17 @@ export class Menu {
         this.menu.addEventListener('click', (e) => {
             e.preventDefault();
 
-            document.body.classList.toggle('show-menu');
+            if (document.body.classList.contains('menu--show')) {
+                document.body.classList.remove('menu--show');
+                document.body.classList.add('menu--hide');
+
+                this.disableScrolling();
+            } else {
+                document.body.classList.add('menu--show');
+                document.body.classList.remove('menu--hide');
+
+                this.enableScrolling();
+            }
         });        
     }
 }
