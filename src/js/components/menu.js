@@ -153,14 +153,14 @@ export class Menu {
         this.createTimeLines();        
 
         this.menu.addEventListener('touchstart', (e) => {
-            e.preventDefault();
+            //e.preventDefault();
 
             this.active = true;
             this.input.x.start = e.changedTouches[0].screenX;
             this.input.y.start = e.changedTouches[0].screenY;
         });
         this.menu.addEventListener('mousedown', (e) => {
-            e.preventDefault();
+            //e.preventDefault();
 
             this.active = true;
             this.input.x.start = e.pageX;
@@ -168,7 +168,7 @@ export class Menu {
         });
 
         document.addEventListener('touchend', (e) => {
-            e.preventDefault();
+            //e.preventDefault();
 
             if (this.active) {
                 this.input.x.end = e.changedTouches[0].screenX;
@@ -178,7 +178,7 @@ export class Menu {
             }
         });
         document.addEventListener('mouseup', (e) => {
-            e.preventDefault();
+            //e.preventDefault();
 
             if (this.active) {
                 this.input.x.end = e.pageX;
@@ -189,7 +189,7 @@ export class Menu {
         });
 
         this.menu.addEventListener('click', (e) => {
-            e.preventDefault();
+            //e.preventDefault();
 
             if (document.body.classList.contains('menu--show')) {
                 document.body.classList.remove('menu--show');
@@ -199,7 +199,7 @@ export class Menu {
             } else {
                 document.body.classList.add('menu--show');
                 document.body.classList.remove('menu--hide');
-                
+
                 this.enableScrolling();
             }
         });        
