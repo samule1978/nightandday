@@ -1431,7 +1431,6 @@ main > .container:nth-child(1) {
 
 .container__logo {
   cursor: pointer;
-  touch-action: manipulation;
   width: 4rem;
   isolation: isolate;
   margin-inline-start: 0;

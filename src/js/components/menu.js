@@ -177,7 +177,7 @@ export class Menu {
         this.createTimeLines();        
 
         this.menu.addEventListener('touchstart', (e) => {
-            //e.preventDefault();
+            e.preventDefault();
             this.srolling(false);
             this.active = true;
             this.input.x.start = e.changedTouches[0].screenX;
@@ -199,6 +199,8 @@ export class Menu {
 
         document.addEventListener('touchend', (e) => {
             if (this.active) {
+                e.preventDefault();
+
                 gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
 
                 this.input.x.end = e.changedTouches[0].screenX;
@@ -212,6 +214,8 @@ export class Menu {
         });
         document.addEventListener('mouseup', (e) => {           
             if (this.active) {        
+                e.preventDefault();
+                
                 gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
 
                 this.input.x.end = e.screenX;
