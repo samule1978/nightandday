@@ -190,8 +190,8 @@ export class Menu {
             //e.preventDefault();
             this.srolling(false);
             this.active = true;
-            this.input.x.start = e.pageX;
-            this.input.y.start = e.pageY;
+            this.input.x.start = e.screenX;
+            this.input.y.start = e.screenY;
             console.log(`mousedown: x: ${this.input.x.start}, y: ${this.input.y.start}.`);
 
             gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
@@ -214,8 +214,8 @@ export class Menu {
             if (this.active) {        
                 gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
 
-                this.input.x.end = e.pageX;
-                this.input.y.end = e.pageY;
+                this.input.x.end = e.screenX;
+                this.input.y.end = e.screenY;
                 console.log(`mouseup: x: ${this.input.x.end}, y: ${this.input.y.end}.`);
 
                 this.moveLogo(e);
@@ -241,10 +241,10 @@ export class Menu {
             }
         });
         
-        this.menu.addEventListener('dblclick', (e) => {
+        /*this.menu.addEventListener('dblclick', (e) => {
             //e.preventDefault();
 
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-        });
+        });*/
     }
 }
