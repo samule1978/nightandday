@@ -21,9 +21,19 @@ export class Menu {
         this.hamburgerMenu = qs("[sg78-hamburger-menu]");
         this.hamburgerMenuTlShow = gsap.timeline();
         this.hamburgerMenuTlHide = gsap.timeline();
-    }
-    
-    active = false;
+    };
+
+    scrollingToTop = false;
+
+    direction = {
+        none: null,
+        down: 2,
+        right: 6,
+        up: 8,
+        left: 4,
+    };
+
+    moving = this.direction.none;
 
 	offset = {
 		x: {
@@ -47,66 +57,98 @@ export class Menu {
 		},
 	};
 
-    showHamburgerMenu(show = false) {
-        if (show) {
-            this.hamburgerMenuTlShow.play();
-            this.hamburgerMenuTlShow.restart();
-        } else {
+    showHamburgerMenu() {
+        if (document.body.classList.contains('menu--show')) {
+            this.srolling(true);
+
             this.hamburgerMenuTlHide.play();
             this.hamburgerMenuTlHide.restart();
+
+            document.body.classList.remove('menu--show');
+            document.body.classList.add('menu--hide');
+        } else if (document.body.classList.contains('menu--hide')) {
+            this.srolling(false);
+
+            this.hamburgerMenuTlShow.play();
+            this.hamburgerMenuTlShow.restart();
+
+            document.body.classList.remove('menu--hide');
+            document.body.classList.add('menu--show');                
         }
     }
 
-    moveLogo(e) {
-        const threshold = this.menu.offsetWidth * 1.5;
-        let moveRight, moveUp = false;
-        let diffX = 0, diffY = 0;
+    logoMoving(e) {
+        const threshold = this.menu.offsetWidth * 1.5;        
+        
+        let diffX, diffY = 0;
+        let moveX, moveY = this.direction.none;
+
+        this.moving = this.direction.none;
 
         if (this.input.x.end < this.input.x.start) {
-            moveRight = false;
+            moveX = this.direction.left;
             diffX = this.input.x.start - this.input.x.end;            
         }
         if (this.input.x.end > this.input.x.start) {
-            moveRight = true;
+            moveX = this.direction.right;
             diffX = this.input.x.end - this.input.x.start;
         }
         if (this.input.y.end < this.input.y.start) {
-            moveUp = true;
+            moveY = this.direction.up;
             diffY = this.input.y.start - this.input.y.end;            
         }
         if (this.input.y.end > this.input.y.start) {
-            moveUp = false;
+            moveY = this.direction.down;
             diffY = this.input.y.end - this.input.y.start;            
         }
 
         if (diffX >= diffY) {
             if (diffX > threshold) {
                 // Moving on x axis.
-                if (moveRight) {
-                    this.moveLogoRight();
-                } else {
-                    this.moveLogoLeft();                
-                }
-            }
+                this.moving = moveX;                
+            } 
         } else {
             if (diffY > threshold) {
-                // Moving on y axis.
-                if (moveUp) {
-                    this.moveLogoUp();
-                } else {
-                    this.moveLogoDown();
-                }
+                // Moving on y axis
+                this.moving = moveY;                
             }
         }
+        //console.log(this.moving);
     }
+
+    moveLogo(direction) {
+        if (direction === this.direction.down) {
+            this.srolling(false);
+            this.moveLogoDown();
+            this.moving = this.direction.none;
+            this.srolling(true); 
+        } else if (direction === this.direction.right) {
+            this.srolling(false);
+            this.moveLogoRight();
+            this.moving = this.direction.none;
+            this.srolling(true); 
+        } else if (direction === this.direction.up) {
+            this.srolling(false);
+            this.moveLogoUp();
+            this.moving = this.direction.none;
+            this.srolling(true); 
+        } else if (direction === this.direction.left) {
+            this.srolling(false);
+            this.moveLogoLeft();
+            this.moving = this.direction.none;
+            this.srolling(true); 
+        }
+    }
+
     moveLogoRight() {
+        console.log(`moveLogoRight`);
         if (this.menu.getAttribute("sg78-logo-menu-x") == "left") {
             this.menuTlLeftToRight.play();
             this.menuTlLeftToRight.restart();
             this.menu.setAttribute("sg78-logo-menu-x", "right");
         }
     }
-    moveLogoLeft() {
+    moveLogoLeft() {        
         if (this.menu.getAttribute("sg78-logo-menu-x") == "right") {
             this.menuTlRightToLeft.play();
             this.menuTlRightToLeft.restart();
@@ -114,14 +156,14 @@ export class Menu {
         }
     }
 
-    moveLogoUp() {
+    moveLogoUp() {        
         if (this.menu.getAttribute("sg78-logo-menu-y") == "bottom") {
             this.menuTlBottomToTop.play();
             this.menuTlBottomToTop.restart();
             this.menu.setAttribute("sg78-logo-menu-y", "top");
         }
     }
-    moveLogoDown() {
+    moveLogoDown() {        
         if (this.menu.getAttribute("sg78-logo-menu-y") == "top") {
             this.menuTlTopToBottom.play();
             this.menuTlTopToBottom.restart();
@@ -160,7 +202,6 @@ export class Menu {
 
         this.hamburgerMenuTlHide.pause();
         this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMenu, { opacity: "0", duration: 1 }));
-
     }
 
     init() {        
@@ -174,81 +215,72 @@ export class Menu {
         this.menu.setAttribute("sg78-logo-menu-y", "top");
         setCssPropertyValue(this.menu, "top", this.offset.y.start);
         
-        this.createTimeLines();        
-
+        this.createTimeLines();
+    
         this.menu.addEventListener('touchstart', (e) => {
             e.preventDefault();
-            this.srolling(false);
-            this.active = true;
+
+            if (this.scrollingToTop) return;
+            
             this.input.x.start = e.changedTouches[0].screenX;
-            this.input.y.start = e.changedTouches[0].screenY;
-            console.log(`touchstart: x: ${this.input.x.start}, y: ${this.input.y.start}.`);
+            this.input.y.start = e.changedTouches[0].screenY;            
             
             gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
         });
         this.menu.addEventListener('mousedown', (e) => {
             e.preventDefault();
-            this.srolling(false);
-            this.active = true;
+
+            if (this.scrollingToTop) return;
+            
             this.input.x.start = e.screenX;
             this.input.y.start = e.screenY;
-            console.log(`mousedown: x: ${this.input.x.start}, y: ${this.input.y.start}.`);
 
             gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
         });
 
         document.addEventListener('touchend', (e) => {
-            if (this.active) {
-                e.preventDefault();
+            e.preventDefault();
 
-                gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
+            if (this.scrollingToTop) return;
 
-                this.input.x.end = e.changedTouches[0].screenX;
-                this.input.y.end = e.changedTouches[0].screenY;
-                console.log(`touchend: x: ${this.input.x.end}, y: ${this.input.y.end}.`);
+            gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
 
-                this.moveLogo(e);
-                this.active = false;
-                this.srolling(true);
+            this.input.x.end = e.changedTouches[0].screenX;
+            this.input.y.end = e.changedTouches[0].screenY;                
+
+            this.logoMoving(e);
+            if (this.moving) {
+                this.moveLogo(this.moving);
+            } else {
+                this.showHamburgerMenu();
             }
         });
         document.addEventListener('mouseup', (e) => {           
-            if (this.active) {        
-                e.preventDefault();
-                
-                gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
+            e.preventDefault();
 
-                this.input.x.end = e.screenX;
-                this.input.y.end = e.screenY;
-                console.log(`mouseup: x: ${this.input.x.end}, y: ${this.input.y.end}.`);
+            if (this.scrollingToTop) return;
 
-                this.moveLogo(e);
-                this.active = false;
-                this.srolling(true);
-            }
+            gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
+
+            this.input.x.end = e.screenX;
+            this.input.y.end = e.screenY;
+
+            this.logoMoving(e);
+            if (this.moving) {
+                this.moveLogo(this.moving);
+            } else {
+                this.showHamburgerMenu();
+            }                
         });
 
-        this.menu.addEventListener('click', (e) => {
-            //e.preventDefault();
-            if (document.body.classList.contains('menu--show')) {
-                this.srolling(true);
-                this.showHamburgerMenu(false);
-
-                document.body.classList.remove('menu--show');
-                document.body.classList.add('menu--hide');
-            } else if (document.body.classList.contains('menu--hide')) {
-                this.srolling(false);
-                this.showHamburgerMenu(true);
-
-                document.body.classList.remove('menu--hide');
-                document.body.classList.add('menu--show');                
-            }
-        });
-        
         /*this.menu.addEventListener('dblclick', (e) => {
-            //e.preventDefault();
+            e.preventDefault();
+
+            this.scrollingToTop = true;
 
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
+            this.scrollingToTop = false;
         });*/
     }
 }
