@@ -170,7 +170,7 @@ export class Menu {
         setCssPropertyValue(this.menu, "left", this.offset.x.start);
 
         this.offset.y.start = `${(this.menu.offsetWidth / 3)}px`;
-        this.offset.y.end = `${(this.menu.offsetWidth / 3) * 4}px`;
+        this.offset.y.end = `${(this.menu.offsetWidth / 3) * 5.5}px`;
         this.menu.setAttribute("sg78-logo-menu-y", "top");
         setCssPropertyValue(this.menu, "top", this.offset.y.start);
         
@@ -187,7 +187,7 @@ export class Menu {
             gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
         });
         this.menu.addEventListener('mousedown', (e) => {
-            //e.preventDefault();
+            e.preventDefault();
             this.srolling(false);
             this.active = true;
             this.input.x.start = e.screenX;
