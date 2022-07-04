@@ -182,6 +182,7 @@ export class Menu {
             this.active = true;
             this.input.x.start = e.changedTouches[0].screenX;
             this.input.y.start = e.changedTouches[0].screenY;
+            console.log(`touchstart: x: ${this.input.x.start}, y: ${this.input.y.start}.`);
             
             gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
         });
@@ -191,6 +192,7 @@ export class Menu {
             this.active = true;
             this.input.x.start = e.pageX;
             this.input.y.start = e.pageY;
+            console.log(`mousedown: x: ${this.input.x.start}, y: ${this.input.y.start}.`);
 
             gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
         });
@@ -201,6 +203,8 @@ export class Menu {
 
                 this.input.x.end = e.changedTouches[0].screenX;
                 this.input.y.end = e.changedTouches[0].screenY;
+                console.log(`touchend: x: ${this.input.x.end}, y: ${this.input.y.end}.`);
+
                 this.moveLogo(e);
                 this.active = false;
                 this.srolling(true);
@@ -212,6 +216,8 @@ export class Menu {
 
                 this.input.x.end = e.pageX;
                 this.input.y.end = e.pageY;
+                console.log(`mouseup: x: ${this.input.x.end}, y: ${this.input.y.end}.`);
+
                 this.moveLogo(e);
                 this.active = false;
                 this.srolling(true);
