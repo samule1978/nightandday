@@ -59,7 +59,7 @@
 	cursor: pointer;
     //touch-action: manipulation;
 	
-	width: 4rem;	
+	width: 4rem;
 
 	isolation: isolate;
 	@include mixins.logicalSpacing(0, 0, 0, 0);
@@ -227,14 +227,25 @@
 .container__menu {
     &--outer {
         opacity: 0;
-        background-color: grey;
         width: 100%;
         height: 100%;
         position: fixed;
+
+        &-bg {
+            background-image: url(https://source.unsplash.com/1024x768/?dentist);
+            //background-color: grey;
+            width: 100%;
+            height: 100%;
+            -webkit-clip-path: url(#cube);
+            clip-path: url(#cube);
+
+            .logo__cube {
+                width: 4rem;
+            }
+        }
     }
 
     &--inner {
-
     }
 }
 

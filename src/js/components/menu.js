@@ -120,28 +120,19 @@ export class Menu {
         if (direction === this.direction.down) {
             this.srolling(false);
             this.moveLogoDown();
-            this.moving = this.direction.none;
-            this.srolling(true); 
         } else if (direction === this.direction.right) {
             this.srolling(false);
             this.moveLogoRight();
-            this.moving = this.direction.none;
-            this.srolling(true); 
         } else if (direction === this.direction.up) {
             this.srolling(false);
             this.moveLogoUp();
-            this.moving = this.direction.none;
-            this.srolling(true); 
         } else if (direction === this.direction.left) {
             this.srolling(false);
             this.moveLogoLeft();
-            this.moving = this.direction.none;
-            this.srolling(true); 
         }
     }
 
-    moveLogoRight() {
-        console.log(`moveLogoRight`);
+    moveLogoRight() {        
         if (this.menu.getAttribute("sg78-logo-menu-x") == "left") {
             this.menuTlLeftToRight.play();
             this.menuTlLeftToRight.restart();
@@ -185,23 +176,39 @@ export class Menu {
 
     createTimeLines() {
 		this.menuTlLeftToRight.pause();        
-		this.menuTlLeftToRight.add(gsap.to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1 }));
+		this.menuTlLeftToRight.add(gsap.to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1, onComplete: () => {
+            this.moving = this.direction.none;
+            this.srolling(true); 
+        }}));
 
 		this.menuTlRightToLeft.pause();
-		this.menuTlRightToLeft.add(gsap.to(this.menu, { ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1 }));
+		this.menuTlRightToLeft.add(gsap.to(this.menu, { ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1, onComplete: () => {
+            this.moving = this.direction.none;
+            this.srolling(true); 
+        }}));
 
 		this.menuTlTopToBottom.pause();
-		this.menuTlTopToBottom.add(gsap.to(this.menu, { ease: "bounce.out", top: "100%", y: `-${this.offset.y.end}}`, duration: 1 }));
+		this.menuTlTopToBottom.add(gsap.to(this.menu, { ease: "bounce.out", top: "100%", y: `-${this.offset.y.end}}`, duration: 1, onComplete: () => {
+            this.moving = this.direction.none;
+            this.srolling(true); 
+        }}));
 
 		this.menuTlBottomToTop.pause();
-		this.menuTlBottomToTop.add(gsap.to(this.menu, { ease: "bounce.out", top: "0%", y: `${this.offset.y.start}}`, duration: 1 }));
+		this.menuTlBottomToTop.add(gsap.to(this.menu, { ease: "bounce.out", top: "0%", y: `${this.offset.y.start}}`, duration: 1, onComplete: () => {
+            this.moving = this.direction.none;
+            this.srolling(true); 
+        }}));
 
 
         this.hamburgerMenuTlShow.pause();
-        this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMenu, { opacity: "1", duration: 1 }));
+        this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMenu, { opacity: "1", duration: 1, onComplete: () => {
+            // Do nothing.
+        }}));
 
         this.hamburgerMenuTlHide.pause();
-        this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMenu, { opacity: "0", duration: 1 }));
+        this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMenu, { opacity: "0", duration: 1, onComplete: () => {
+            // Do nothing.
+        }}));
     }
 
     init() {        
@@ -216,9 +223,35 @@ export class Menu {
         setCssPropertyValue(this.menu, "top", this.offset.y.start);
         
         this.createTimeLines();
-    
+
+        this.menu.addEventListener('dragstart', (e) => {
+            if (this.scrollingToTop) return;
+            
+            this.input.x.start = e.screenX;
+            this.input.y.start = e.screenY;         
+            
+            gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
+        });
+        this.menu.addEventListener('dragend', (e) => {
+            if (this.scrollingToTop) return;
+
+            gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
+
+            this.input.x.end = e.screenX;
+            this.input.y.end = e.screenY;
+
+            this.logoMoving(e);
+            if (this.moving !== this.direction.none) {
+                this.moveLogo(this.moving);
+            } else {
+                //this.showHamburgerMenu();
+            }  
+        });
+
+
         this.menu.addEventListener('touchstart', (e) => {
             e.preventDefault();
+            e.stopPropagation();
 
             if (this.scrollingToTop) return;
             
@@ -227,8 +260,39 @@ export class Menu {
             
             gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
         });
+        document.addEventListener('touchend', (e) => {
+            if (this.scrollingToTop) return;
+
+            gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
+
+            this.input.x.end = e.changedTouches[0].screenX;
+            this.input.y.end = e.changedTouches[0].screenY;                
+
+            this.logoMoving(e);
+            if (this.moving !== this.direction.none) {
+                this.moveLogo(this.moving);                
+            } else {
+                this.showHamburgerMenu();
+            }
+        });
+
+        this.menu.addEventListener('mouseup', (e) => {
+            if (this.scrollingToTop) return;
+
+            console.log(this.moving);
+            if (this.moving === this.direction.none) {
+                this.showHamburgerMenu();
+            }
+        });
+        /*this.menu.addEventListener('mouseup', (e) => {
+            if (this.scrollingToTop) return;
+
+            if (this.moving === this.direction.none) this.showHamburgerMenu();
+        });*/
+        /*
         this.menu.addEventListener('mousedown', (e) => {
-            e.preventDefault();
+            //e.preventDefault();
+            //e.stopPropagation();
 
             if (this.scrollingToTop) return;
             
@@ -239,7 +303,8 @@ export class Menu {
         });
 
         document.addEventListener('touchend', (e) => {
-            e.preventDefault();
+            //e.preventDefault();
+            //e.stopPropagation();
 
             if (this.scrollingToTop) return;
 
@@ -249,14 +314,15 @@ export class Menu {
             this.input.y.end = e.changedTouches[0].screenY;                
 
             this.logoMoving(e);
-            if (this.moving) {
-                this.moveLogo(this.moving);
+            if (this.moving) {                
+                this.moveLogo(this.moving);                
             } else {
-                this.showHamburgerMenu();
+                //this.showHamburgerMenu();
             }
         });
         document.addEventListener('mouseup', (e) => {           
-            e.preventDefault();
+            //e.preventDefault();
+            //e.stopPropagation();
 
             if (this.scrollingToTop) return;
 
@@ -266,12 +332,24 @@ export class Menu {
             this.input.y.end = e.screenY;
 
             this.logoMoving(e);
-            if (this.moving) {
+            if (this.moving) {                
                 this.moveLogo(this.moving);
             } else {
-                this.showHamburgerMenu();
+                //this.showHamburgerMenu();
             }                
         });
+
+        this.menu.addEventListener('touchend', (e) => {
+            if (this.scrollingToTop) return;
+
+            if (this.moving === this.direction.none) this.showHamburgerMenu();
+        });
+        this.menu.addEventListener('mouseup', (e) => {
+            if (this.scrollingToTop) return;
+
+            if (this.moving === this.direction.none) this.showHamburgerMenu();
+        });
+        */
 
         /*this.menu.addEventListener('dblclick', (e) => {
             e.preventDefault();
