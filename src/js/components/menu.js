@@ -249,6 +249,8 @@ export class Menu {
             if (this.moving !== this.direction.none) {
                 this.moveLogo(this.moving);
             } else {
+                e.stopPropagation();
+                
                 this.showHamburgerMenu();
             }
             
