@@ -220,13 +220,6 @@ export class Menu {
         }}));
     }
 
-    resetXY() {
-        this.input.x.start = 0;
-        this.input.y.start = 0;
-        this.input.x.end = 0;
-        this.input.y.end = 0;
-    }
-
     inputAction(e, type, x, y) {
         if (type === "down") {
             this.input.down = true;
@@ -284,8 +277,8 @@ export class Menu {
             this.inputAction(e, "up", e.screenX, e.screenY);
         });
         document.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+            /*e.preventDefault();
+            e.stopPropagation();*/
 
             this.inputAction(e, "up", e.changedTouches[0].screenX, e.changedTouches[0].screenY);
         });
