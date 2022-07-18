@@ -1389,6 +1389,7 @@ main > .container:nth-child(1) {
 
 .container__menu--outer {
   z-index: calc(var(--op-layer-important) - 200);
+  background-color: red;
 }
 
 .bg-day {

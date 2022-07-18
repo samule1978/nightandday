@@ -77,7 +77,7 @@ export class Menu {
         }
     }
 
-    logoMoving(e) {
+    logoMoving() {
         const threshold = this.menu.offsetWidth * 1.5;        
         
         let diffX, diffY = 0;
@@ -113,21 +113,21 @@ export class Menu {
                 this.moving = moveY;                
             }
         }
-        //console.log(this.moving);
+        console.log(this.moving);
     }
 
     moveLogo(direction) {
         if (direction === this.direction.down) {
-            this.srolling(false);
+            //this.srolling(false);
             this.moveLogoDown();
         } else if (direction === this.direction.right) {
-            this.srolling(false);
+            //this.srolling(false);
             this.moveLogoRight();
         } else if (direction === this.direction.up) {
-            this.srolling(false);
+            //this.srolling(false);
             this.moveLogoUp();
         } else if (direction === this.direction.left) {
-            this.srolling(false);
+            //this.srolling(false);
             this.moveLogoLeft();
         }
     }
@@ -163,14 +163,14 @@ export class Menu {
     }
 
     srolling(srolling) {
-        if (srolling) {
-            window.onscroll = function() {};
-        } else {
+        if (!srolling || document.body.classList.contains('menu--show')) {
             const x = window.scrollX;
             const y = window.scrollY;
             window.onscroll = function() {
                 window.scrollTo(x, y);
             };    
+        } else {
+            window.onscroll = function() {};
         }
     }    
 
@@ -178,7 +178,7 @@ export class Menu {
 		this.menuTlLeftToRight.pause();        
 		this.menuTlLeftToRight.add(gsap.to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1, onComplete: () => {
             this.moving = this.direction.none;
-            this.srolling(true); 
+            this.srolling(true);
         }}));
 
 		this.menuTlRightToLeft.pause();
@@ -201,14 +201,44 @@ export class Menu {
 
 
         this.hamburgerMenuTlShow.pause();
-        this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMenu, { opacity: "1", duration: 1, onComplete: () => {
-            // Do nothing.
+        this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMenu, { opacity: "1", duration: 1, onComplete: () => {            
+            this.srolling(false); 
         }}));
 
         this.hamburgerMenuTlHide.pause();
-        this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMenu, { opacity: "0", duration: 1, onComplete: () => {
-            // Do nothing.
+        this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMenu, { opacity: "0", duration: 1, onComplete: () => {            
+            this.srolling(true);
         }}));
+    }
+
+    inputAction(e, type, x, y) {
+        if (type === "down") {
+            this.srolling(false); 
+
+            if (this.scrollingToTop) return;
+            
+            this.input.x.start = x;
+            this.input.y.start = y;
+            console.log(`[DOWN]: X: ${this.input.x.start}, Y: ${this.input.y.start}`);
+            
+            gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
+
+        } else if (type === "up") {            
+            if (this.scrollingToTop) return;
+
+            this.input.x.end = x;
+            this.input.y.end = y;
+            console.log(`[UP]: X: ${this.input.x.end}, Y: ${this.input.y.end}`);
+
+            gsap.to(this.menu, { ease: "bounce.in", scale: "1" });            
+
+            this.logoMoving();
+            if (this.moving == this.direction.none) {
+                this.showHamburgerMenu();
+            } else {
+                this.moveLogo(this.moving);
+            }
+        }
     }
 
     init() {        
@@ -224,66 +254,22 @@ export class Menu {
         
         this.createTimeLines();
 
-        this.menu.addEventListener('dragstart', (e) => {
-            if (this.scrollingToTop) return;
-            
-            this.input.x.start = e.screenX;
-            this.input.y.start = e.screenY;         
-            
-            gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
-        });
-        this.menu.addEventListener('dragend', (e) => {
-            if (this.scrollingToTop) return;
-
-            gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
-
-            this.input.x.end = e.screenX;
-            this.input.y.end = e.screenY;
-
-            this.logoMoving(e);
-            if (this.moving !== this.direction.none) {
-                this.moveLogo(this.moving);
-            } else {
-                //this.showHamburgerMenu();
-            }  
+        this.menu.addEventListener('pointerdown', (e) => {
+            this.inputAction(e, "down", e.screenX, e.screenY);
         });
 
-
-        this.menu.addEventListener('touchstart', (e) => {
+        document.addEventListener('mouseup', (e) => {            
+            this.inputAction(e, "up", e.screenX, e.screenY);
+        });
+        document.addEventListener('touchend', (e) => {
             e.preventDefault();
             e.stopPropagation();
 
-            if (this.scrollingToTop) return;
-            
-            this.input.x.start = e.changedTouches[0].screenX;
-            this.input.y.start = e.changedTouches[0].screenY;            
-            
-            gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
-        });
-        document.addEventListener('touchend', (e) => {
-            if (this.scrollingToTop) return;
-
-            gsap.to(this.menu, { ease: "bounce.in", scale: "1" });
-
-            this.input.x.end = e.changedTouches[0].screenX;
-            this.input.y.end = e.changedTouches[0].screenY;                
-
-            this.logoMoving(e);
-            if (this.moving !== this.direction.none) {
-                this.moveLogo(this.moving);                
-            } else {
-                this.showHamburgerMenu();
-            }
+            this.inputAction(e, "up", e.changedTouches[0].screenX, e.changedTouches[0].screenY);
         });
 
-        this.menu.addEventListener('mouseup', (e) => {
-            if (this.scrollingToTop) return;
 
-            console.log(this.moving);
-            if (this.moving === this.direction.none) {
-                this.showHamburgerMenu();
-            }
-        });
+        
         /*this.menu.addEventListener('mouseup', (e) => {
             if (this.scrollingToTop) return;
 
