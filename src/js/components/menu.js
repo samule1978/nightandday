@@ -250,7 +250,7 @@ export class Menu {
                 this.moveLogo(this.moving);
             } else {
                 e.stopPropagation();
-                
+
                 this.showHamburgerMenu();
             }
             
@@ -259,6 +259,12 @@ export class Menu {
     }
 
     init() {        
+        let isTouch = false;
+        if(window.matchMedia("(pointer: coarse)").matches) {
+            isTouch = true;
+        }
+        console.log(`isTouch: ${isTouch}`);
+
         this.offset.x.start = `${(this.menu.offsetWidth / 3)}px`;
         this.offset.x.end = `${(this.menu.offsetWidth / 3) * 4}px`;
         this.menu.setAttribute("sg78-logo-menu-x", "left");
@@ -274,16 +280,16 @@ export class Menu {
         this.menu.addEventListener('pointerdown', (e) => {
             this.inputAction(e, "down", e.screenX, e.screenY);
         });
+        if (isTouch) {
+            document.addEventListener('touchend', (e) => {
+                this.inputAction(e, "up", e.changedTouches[0].screenX, e.changedTouches[0].screenY);
+            });
+        } else {    
+            document.addEventListener('mouseup', (e) => {            
+                this.inputAction(e, "up", e.screenX, e.screenY);
+            });    
+        }
 
-        document.addEventListener('mouseup', (e) => {            
-            this.inputAction(e, "up", e.screenX, e.screenY);
-        });
-        document.addEventListener('touchend', (e) => {
-            /*e.preventDefault();
-            e.stopPropagation();*/
-
-            this.inputAction(e, "up", e.changedTouches[0].screenX, e.changedTouches[0].screenY);
-        });
 
 
         
