@@ -55,7 +55,11 @@ export class Menu {
 			start: 0,
 			end: 0,
 		},
+
+        down: false,
 	};
+
+
 
     showHamburgerMenu() {
         if (document.body.classList.contains('menu--show')) {
@@ -78,7 +82,8 @@ export class Menu {
     }
 
     logoMoving() {
-        const threshold = this.menu.offsetWidth * 1.5;        
+        const thresholdExtra = 1;
+        let threshold = Math.max(this.menu.offsetWidth, this.menu.offsetHeight) * thresholdExtra;
         
         let diffX, diffY = 0;
         let moveX, moveY = this.direction.none;
@@ -103,11 +108,15 @@ export class Menu {
         }
 
         if (diffX >= diffY) {
+            threshold = this.menu.offsetWidth * thresholdExtra;
+
             if (diffX > threshold) {
                 // Moving on x axis.
                 this.moving = moveX;                
             } 
         } else {
+            threshold = this.menu.offsetHeight * thresholdExtra;
+
             if (diffY > threshold) {
                 // Moving on y axis
                 this.moving = moveY;                
@@ -211,8 +220,17 @@ export class Menu {
         }}));
     }
 
+    resetXY() {
+        this.input.x.start = 0;
+        this.input.y.start = 0;
+        this.input.x.end = 0;
+        this.input.y.end = 0;
+    }
+
     inputAction(e, type, x, y) {
         if (type === "down") {
+            this.input.down = true;
+
             this.srolling(false); 
 
             if (this.scrollingToTop) return;
@@ -223,7 +241,9 @@ export class Menu {
             
             gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
 
-        } else if (type === "up") {            
+        } else if (type === "up") {
+            if (!this.input.down) return;
+
             if (this.scrollingToTop) return;
 
             this.input.x.end = x;
@@ -233,11 +253,13 @@ export class Menu {
             gsap.to(this.menu, { ease: "bounce.in", scale: "1" });            
 
             this.logoMoving();
-            if (this.moving == this.direction.none) {
-                this.showHamburgerMenu();
-            } else {
+            if (this.moving !== this.direction.none) {
                 this.moveLogo(this.moving);
+            } else {
+                this.showHamburgerMenu();
             }
+            
+            this.input.down = false;
         }
     }
 
