@@ -241,6 +241,7 @@
             
             #maskMenu {
                 transform-origin: center;
+                transform-box: border-box;
             }
         }
     }

@@ -1596,6 +1596,7 @@ main > .container:nth-child(1) {
 }
 .container__menu--outer-bg #maskMenu {
   transform-origin: center;
+  transform-box: border-box;
 }
 .section__component--featured-cards {
   background-color: var(--core-components-featured-cards-colors-bg);
