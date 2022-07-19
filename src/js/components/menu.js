@@ -65,16 +65,21 @@ export class Menu {
         if (document.body.classList.contains('menu--show')) {
             this.srolling(true);
 
-            this.hamburgerMenuTlHide.play();
-            this.hamburgerMenuTlHide.restart();
+            /*this.hamburgerMenuTlHide.play();
+            this.hamburgerMenuTlHide.restart();*/
 
             document.body.classList.remove('menu--show');
-            document.body.classList.add('menu--hide');
+            document.body.classList.add('menu--hide');            
         } else if (document.body.classList.contains('menu--hide')) {
             this.srolling(false);
 
-            this.hamburgerMenuTlShow.play();
-            this.hamburgerMenuTlShow.restart();
+            /*this.hamburgerMenuTlShow.play();
+            this.hamburgerMenuTlShow.restart();*/
+            const wi = window.innerWidth;
+            const he = window.innerHeight;
+            gsap.set('#cube', {scale: 0, x: 0, y: 0} );
+            gsap.to('#cube', {transformOrigin: "center", scale: 3, duration: 3});            
+    
 
             document.body.classList.remove('menu--hide');
             document.body.classList.add('menu--show');                
@@ -122,7 +127,7 @@ export class Menu {
                 this.moving = moveY;                
             }
         }
-        console.log(this.moving);
+        //console.log(this.moving);
     }
 
     moveLogo(direction) {
@@ -230,7 +235,7 @@ export class Menu {
             
             this.input.x.start = x;
             this.input.y.start = y;
-            console.log(`[DOWN]: X: ${this.input.x.start}, Y: ${this.input.y.start}`);
+            //console.log(`[DOWN]: X: ${this.input.x.start}, Y: ${this.input.y.start}`);
             
             gsap.to(this.menu, { ease: "bounce.out", scale: "1.1" });
 
@@ -241,7 +246,7 @@ export class Menu {
 
             this.input.x.end = x;
             this.input.y.end = y;
-            console.log(`[UP]: X: ${this.input.x.end}, Y: ${this.input.y.end}`);
+            //console.log(`[UP]: X: ${this.input.x.end}, Y: ${this.input.y.end}`);
 
             gsap.to(this.menu, { ease: "bounce.in", scale: "1" });            
 
@@ -289,8 +294,6 @@ export class Menu {
                 this.inputAction(e, "up", e.screenX, e.screenY);
             });    
         }
-
-
 
         
         /*this.menu.addEventListener('mouseup', (e) => {
