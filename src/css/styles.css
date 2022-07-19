@@ -1594,6 +1594,9 @@ main > .container:nth-child(1) {
   height: 100%;
   object-fit: cover;
 }
+.container__menu--outer-bg #maskMenu {
+  transform-origin: center;
+}
 .section__component--featured-cards {
   background-color: var(--core-components-featured-cards-colors-bg);
   color: var(--core-components-featured-cards-colors-fg);

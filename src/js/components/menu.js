@@ -220,7 +220,8 @@ export class Menu {
 
         this.hamburgerMenuTlShow.pause();                
         this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMenu, { opacity: 0, display: "none" }));
-        this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMask, { transformOrigin: "center", scale: 0, x: window.innerWidth / 2, y: window.innerHeight / 2 }));
+        //this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMask, { transformOrigin: "center", scale: 0, x: window.innerWidth / 2, y: window.innerHeight / 2 }));
+        this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMask, { scale: 0, x: window.innerWidth / 2, y: window.innerHeight / 2 }));
         this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMenu, { opacity: 1, display: "block", duration: 0 }));
         this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMask, { scale: this.getScale(this.hamburgerMask), duration: 2, onComplete: () => {            
             this.srolling(false);
@@ -242,7 +243,7 @@ export class Menu {
         availableWidth = window.innerWidth, 
         availableHeight = window.innerHeight;
 
-        const scale = Math.max(availableWidth / requiredWidth, availableHeight / requiredHeight) * 5;
+        const scale = Math.max(availableWidth / requiredWidth, availableHeight / requiredHeight) * 7;
 
         console.log(scale);
         console.log(window.innerWidth);
