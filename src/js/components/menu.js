@@ -259,7 +259,7 @@ export class Menu {
     }
 
     init() {        
-        let isTouch = false;
+        let isTouch = false; //https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript
         if(window.matchMedia("(pointer: coarse)").matches) {
             isTouch = true;
         }
