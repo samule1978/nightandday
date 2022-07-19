@@ -1383,7 +1383,7 @@ main > .container:nth-child(1) {
   z-index: var(--op-layer-important);
 }
 
-.container__logo--outer {
+.container__logo {
   z-index: calc(var(--op-layer-important) - 100);
 }
 
@@ -1433,6 +1433,7 @@ main > .container:nth-child(1) {
   cursor: pointer;
   width: 4rem;
   isolation: isolate;
+  position: fixed;
   margin-inline-start: 0;
   margin-inline-end: 0;
   margin-block-start: 0;
@@ -1579,21 +1580,19 @@ main > .container:nth-child(1) {
 }
 
 .container__menu--outer {
-  opacity: 1;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  display: none;
 }
 .container__menu--outer-bg {
+  clip-path: url(#maskMenu);
   background-image: url(https://source.unsplash.com/1024x768/?dentist);
   width: 100%;
   height: 100%;
-  clip-path: url(#cube);
-  position: absolute;
   object-fit: cover;
-}
-.container__menu--outer-bg #cube {
-  transform: scale(0);
 }
 .section__component--featured-cards {
   background-color: var(--core-components-featured-cards-colors-bg);

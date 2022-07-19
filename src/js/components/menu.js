@@ -18,6 +18,7 @@ export class Menu {
         this.menuTlTopToBottom = gsap.timeline();
         this.menuTlBottomToTop = gsap.timeline();
 
+        this.hamburgerMask = qs("[sg78-hamburger-mask]");
         this.hamburgerMenu = qs("[sg78-hamburger-menu]");
         this.hamburgerMenuTlShow = gsap.timeline();
         this.hamburgerMenuTlHide = gsap.timeline();
@@ -34,6 +35,8 @@ export class Menu {
     };
 
     moving = this.direction.none;
+
+    animatingMenu = false;
 
 	offset = {
 		x: {
@@ -62,24 +65,25 @@ export class Menu {
 
 
     showHamburgerMenu() {
+        if (this.animatingMenu) return;
+
         if (document.body.classList.contains('menu--show')) {
+            this.animatingMenu = true;
+
             this.srolling(true);
 
-            /*this.hamburgerMenuTlHide.play();
-            this.hamburgerMenuTlHide.restart();*/
+            this.hamburgerMenuTlHide.play();
+            this.hamburgerMenuTlHide.restart();
 
             document.body.classList.remove('menu--show');
             document.body.classList.add('menu--hide');            
         } else if (document.body.classList.contains('menu--hide')) {
+            this.animatingMenu = true;
+
             this.srolling(false);
 
-            /*this.hamburgerMenuTlShow.play();
-            this.hamburgerMenuTlShow.restart();*/
-            const wi = window.innerWidth;
-            const he = window.innerHeight;
-            gsap.set('#cube', {scale: 0, x: 0, y: 0} );
-            gsap.to('#cube', {transformOrigin: "center", scale: 3, duration: 3});            
-    
+            this.hamburgerMenuTlShow.play();
+            this.hamburgerMenuTlShow.restart();
 
             document.body.classList.remove('menu--hide');
             document.body.classList.add('menu--show');                
@@ -214,15 +218,38 @@ export class Menu {
         }}));
 
 
-        this.hamburgerMenuTlShow.pause();
-        this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMenu, { opacity: "1", duration: 1, onComplete: () => {            
-            this.srolling(false); 
+        this.hamburgerMenuTlShow.pause();                
+        this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMenu, { opacity: 0, display: "none" }));
+        this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMask, { transformOrigin: "center", scale: 0, x: window.innerWidth / 2, y: window.innerHeight / 2 }));
+        this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMenu, { opacity: 1, display: "block", duration: 0 }));
+        this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMask, { scale: this.getScale(this.hamburgerMask), duration: 2, onComplete: () => {            
+            this.srolling(false);
+            this.animatingMenu = false;
         }}));
 
         this.hamburgerMenuTlHide.pause();
-        this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMenu, { opacity: "0", duration: 1, onComplete: () => {            
+        this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMask, { scale: 0, duration: 1 }));
+        this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMenu, { opacity: 0, duration: 1, onComplete: () => {            
+            gsap.set(this.hamburgerMenu, { display: "none" })
             this.srolling(true);
+            this.animatingMenu = false;
         }}));
+    }
+
+    getScale(object) {
+        const requiredWidth = object.ownerSVGElement.clientWidth, 
+        requiredHeight = object.ownerSVGElement.clientHeight, 
+        availableWidth = window.innerWidth, 
+        availableHeight = window.innerHeight;
+
+        const scale = Math.max(availableWidth / requiredWidth, availableHeight / requiredHeight) * 5;
+
+        console.log(scale);
+        console.log(window.innerWidth);
+        console.log(object.ownerSVGElement.clientWidth);
+        console.log(window.innerWidth / object.ownerSVGElement.clientWidth);
+
+        return scale;
     }
 
     inputAction(e, type, x, y) {
