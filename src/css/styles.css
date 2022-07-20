@@ -1580,23 +1580,28 @@ main > .container:nth-child(1) {
 }
 
 .container__menu--outer {
-  opacity: 0;
+  /*opacity: 0;
+  display: none;*/
   width: 100%;
   height: 100%;
-  position: absolute;
-  inset: 0;
-  display: none;
+  text-align: center;
+  position: fixed;
 }
 .container__menu--outer-bg {
-  clip-path: url(#maskMenu);
   background-image: url(https://source.unsplash.com/1024x768/?dentist);
-  width: 100%;
-  height: 100%;
+  clip-path: url(#maskMenu);
+  width: 4rem;
+  height: 4rem;
+  aspect-ratio: 1/1;
   object-fit: cover;
+  position: absolute;
+  transform: scale(1);
+  left: 50%;
+  top: 50%;
 }
 .container__menu--outer-bg #maskMenu {
-  transform-origin: center;
-  transform-box: border-box;
+  /*transform-origin:50% 50%;
+  transform-box: fill-box;*/
 }
 .section__component--featured-cards {
   background-color: var(--core-components-featured-cards-colors-bg);
