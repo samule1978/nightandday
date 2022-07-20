@@ -1586,12 +1586,14 @@ main > .container:nth-child(1) {
   height: 100%;
   position: fixed;
   outline: 1px solid transparent;
+  isolation: isolate;
 }
 .container__menu--mask {
   background-image: url(https://source.unsplash.com/2000x2000/?dentist);
   background-position: center;
   object-fit: cover;
-  clip-path: url(#maskMenu);
+  -webkit-clip-path: polygon(50% 0%, 94% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+  clip-path: polygon(50% 0%, 94% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
   width: 4rem;
   aspect-ratio: 1;
   position: absolute;

@@ -232,15 +232,20 @@
         height: 100%;        
         position: fixed;        
         outline: 1px solid transparent;
+
+        isolation: isolate;
     }
 
     &--mask {
         background-image: url(https://source.unsplash.com/2000x2000/?dentist);
         background-position: center;
-        object-fit: cover;        
+        object-fit: cover;
         //background-color: grey;
         
-        clip-path: url(#maskMenu);
+        //clip-path: url(#maskMenu);
+        -webkit-clip-path: polygon(50% 0%, 94% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+        clip-path: polygon(50% 0%, 94% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+
         width: 4rem;
         aspect-ratio: 1;
         
