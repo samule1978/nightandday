@@ -217,29 +217,33 @@ export class Menu {
             this.srolling(true); 
         }}));
 
-
-        /*this.hamburgerMenuTlShow.pause();                
+        
+        this.hamburgerMenuTlShow.pause();                
         this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMenu, { opacity: 0, display: "none" }));
         this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMenu, { opacity: 1, display: "block", duration: 0 }));
 
         //this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMask, { transformOrigin: "center", scale: 0, x: window.innerWidth / 2, y: window.innerHeight / 2 }));
         //this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMask, { scale: 0, x: window.innerWidth / 2, y: window.innerHeight / 2 }));
-        this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMask, { scale: 0, x: this.hamburgerMask.ownerSVGElement.clientWidth / 2, y: this.hamburgerMask.ownerSVGElement.clientHeight / 2 }));
-        this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMask, { scale: this.getScale(this.hamburgerMask), x: this.hamburgerMask.ownerSVGElement.clientWidth / 2, y: this.hamburgerMask.ownerSVGElement.clientHeight / 2, duration: 2, onComplete: () => {            
+        //this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMask, { scale: 0 }));
+        this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMask, { width: 0 }));
+        this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMask, { width: (Math.max(window.innerWidth, window.innerHeight) * 2), duration: 2, onComplete: () => {            
             this.srolling(false);
             this.animatingMenu = false;
-        }}));
+        }}));        
 
         this.hamburgerMenuTlHide.pause();
-        this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMask, { scale: 0, duration: 1 }));
+        this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMask, { width: 0, duration: 1 }));
         this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMenu, { opacity: 0, duration: 1, onComplete: () => {            
             gsap.set(this.hamburgerMenu, { display: "none" })
             this.srolling(true);
             this.animatingMenu = false;
-        }}));*/
+        }}));                
     }
 
     getScale(object) {
+        console.log(object);
+        return 25;
+
         const requiredWidth = object.ownerSVGElement.clientWidth, 
         requiredHeight = object.ownerSVGElement.clientHeight, 
         availableWidth = window.innerWidth, 

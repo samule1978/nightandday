@@ -225,30 +225,33 @@
 
 .container__menu {
     &--outer {
-        /*opacity: 0;
-        display: none;*/
+        opacity: 0;
+        display: none;
 
         width: 100%;
-        height: 100%;
-        text-align: center;
-        position: fixed;
+        height: 100%;        
+        position: fixed;        
+        outline: 1px solid transparent;
+    }
 
-        &-bg {
-            background-image: url(https://source.unsplash.com/1024x768/?dentist);            
-            clip-path: url(#maskMenu);
-            width: 4rem;  
-            height: 4rem;          
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            position: absolute;
-            transform: scale(1);
-            left: 50%;
-            top: 50%;
+    &--mask {
+        background-image: url(https://source.unsplash.com/2000x2000/?dentist);
+        background-position: center;
+        object-fit: cover;        
+        //background-color: grey;
+        
+        clip-path: url(#maskMenu);
+        width: 4rem;
+        aspect-ratio: 1;
+        
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);        
 
-            #maskMenu {
-                /*transform-origin:50% 50%;
-                transform-box: fill-box;*/
-            }
+        outline: 1px solid transparent;
+
+        #maskMenu {
         }
     }
 
