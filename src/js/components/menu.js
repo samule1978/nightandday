@@ -219,7 +219,7 @@ export class Menu {
 
         
         this.hamburgerMenuTlShow.pause();
-        this.hamburgerMenuTlShow.add(gsap.from(this.hamburgerMenu, { opacity: 0, display: "none" }));        
+        this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMenu, { opacity: 0, display: "none" }));        
         this.hamburgerMenuTlShow.add(gsap.to(this.hamburgerMenu, { opacity: 1, display: "block", duration: 0 }));
 
         //this.hamburgerMenuTlShow.add(gsap.set(this.hamburgerMask, { transformOrigin: "center", scale: 0, x: window.innerWidth / 2, y: window.innerHeight / 2 }));
@@ -232,12 +232,11 @@ export class Menu {
         }}));        
 
         this.hamburgerMenuTlHide.pause();
-        this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMask, { width: 0, duration: 1, onComplete: () => {            
-            this.animatingMenu = false;
-        }}));
+        this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMask, { width: 0, duration: 1 }));
         this.hamburgerMenuTlHide.add(gsap.to(this.hamburgerMenu, { opacity: 0, duration: 1, onComplete: () => {            
             gsap.set(this.hamburgerMenu, { display: "none" })
             this.srolling(true);
+            this.animatingMenu = false;
         }}));
     }
 
