@@ -212,7 +212,7 @@ export class Menu {
             this.srolling(true); 
         }});
 
-        const maskSize = "786%";
+        const maskSize = "300%";
         this.hamburgerMenuTlShow.set(this.hamburgerMenuOuter, { display:"none" })
         .set(this.hamburgerMenuInner, { webkitMaskSize:"0%, 0%" })
         .to(this.hamburgerMenuOuter, { display:"block", duration:0 })
