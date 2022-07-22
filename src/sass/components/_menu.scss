@@ -260,7 +260,7 @@
 
 .container__menu {
 	&--outer {
-		display: none;
+		display: block;
 		width: 100%;
 		height: 100%;
 		position: fixed;
@@ -291,8 +291,8 @@
         mask-size: 0%, 0%;*/
         -webkit-mask-image: url(../../assets/img/menu-mask.svg);
         mask-image: url(../../assets/img/menu-mask.svg);
-		-webkit-mask-size: 0%;
-        mask-size: 0%;       
+		-webkit-mask-size: 50%;
+        mask-size: 50%;
 
 		display: grid;
 		place-content: center;

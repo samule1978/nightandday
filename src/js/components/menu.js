@@ -213,7 +213,7 @@ export class Menu {
         }});
 
         const maskSize = "125%";
-
+        /*
         this.hamburgerMenuTlShow.set(this.hamburgerMenuOuter, { display:"none" })
         .set(this.hamburgerMenuInner, { maskSize:"0%" })
         .to(this.hamburgerMenuOuter, { display:"block", duration:0 })
@@ -227,7 +227,7 @@ export class Menu {
             this.srolling(true);
             this.animatingMenu = false;            
         }});        
-
+        */
         /*this.hamburgerMenuTlShow.set(this.hamburgerMenuOuter, { display:"none" })
         .set(this.hamburgerMenuInner, { maskSize:"0%, 0%" })
         .to(this.hamburgerMenuOuter, { display:"block", duration:0 })
