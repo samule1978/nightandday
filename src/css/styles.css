@@ -1628,10 +1628,14 @@ main > .container:nth-child(1) {
   mask-repeat: no-repeat;
   -webkit-mask-mode: alpha;
   mask-mode: alpha;
-  -webkit-mask-image: url(../../assets/img/menu-logo-mask.svg), url(../../assets/img/menu-mask.svg);
-  mask-image: url(../../assets/img/menu-logo-mask.svg), url(../../assets/img/menu-mask.svg);
+  /*-webkit-mask-image: url(../../assets/img/menu-logo-mask.svg), url(../../assets/img/menu-mask.svg);
+        mask-image: url(../../assets/img/menu-logo-mask.svg), url(../../assets/img/menu-mask.svg);
   -webkit-mask-size: 0%, 0%;
-  mask-size: 0%, 0%;
+        mask-size: 0%, 0%;*/
+  -webkit-mask-image: url(../../assets/img/menu-mask.svg);
+  mask-image: url(../../assets/img/menu-mask.svg);
+  -webkit-mask-size: 0%;
+  mask-size: 0%;
   display: grid;
   place-content: center;
   place-items: center;

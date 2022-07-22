@@ -213,14 +213,30 @@ export class Menu {
         }});
 
         const maskSize = "125%";
+
         this.hamburgerMenuTlShow.set(this.hamburgerMenuOuter, { display:"none" })
+        .set(this.hamburgerMenuInner, { maskSize:"0%" })
+        .to(this.hamburgerMenuOuter, { display:"block", duration:0 })
+        .to(this.hamburgerMenuInner, { maskSize:`${maskSize}`, duration:1 })
+        .to(this.hamburgerMenuInner, { maskSize:`${maskSize}`, duration:1, delay:0.5, onComplete: () => {            
+            this.srolling(false);
+            this.animatingMenu = false;
+        }}, 0);
+        this.hamburgerMenuTlHide.to(this.hamburgerMenuInner, { maskSize:"0%", duration: 1, onComplete: () => {            
+            gsap.set(this.hamburgerMenuOuter, { display: "none" })
+            this.srolling(true);
+            this.animatingMenu = false;            
+        }});        
+
+        /*this.hamburgerMenuTlShow.set(this.hamburgerMenuOuter, { display:"none" })
         .set(this.hamburgerMenuInner, { maskSize:"0%, 0%" })
         .to(this.hamburgerMenuOuter, { display:"block", duration:0 })
         .to(this.hamburgerMenuInner, { maskSize:`${maskSize}, 0%`, duration:1 })
         .to(this.hamburgerMenuInner, { maskSize:`${maskSize}, ${maskSize}`, duration:1, delay:0.5, onComplete: () => {            
             this.srolling(false);
             this.animatingMenu = false;
-        }}, 0);
+        }}, 0);*/
+
         /*
         this.hamburgerMenuTlHide.to(this.hamburgerMenuInner, { webkitMaskSize:`${maskSize}, 0%`, duration: 1 })
         .to(this.hamburgerMenuInner, { webkitMaskSize:"0%, 0%", duration:1, onComplete: () => {
@@ -229,11 +245,13 @@ export class Menu {
             this.animatingMenu = false;
         }});
         */
+        /*
         this.hamburgerMenuTlHide.to(this.hamburgerMenuInner, { webkitMaskSize:"0%, 0%", duration: 1, onComplete: () => {            
             gsap.set(this.hamburgerMenuOuter, { display: "none" })
             this.srolling(true);
             this.animatingMenu = false;            
         }});        
+        */
     }
 
     inputAction(e, type, x, y) {
