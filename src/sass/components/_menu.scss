@@ -259,21 +259,38 @@
 //}
 
 .container__menu {
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    
-    background-color: grey;
+    &--outer {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: fixed;    
+    }
 
-    -webkit-mask-image: url(../../assets/img/menu-mask.svg);
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center center;
-    
-    mask-image: url(../../assets/img/menu-mask.svg);
-    mask-repeat: no-repeat;    
-    mask-position: center center;    
+    &--inner {
+        display: grid;
+        width: 100%;
+        height: 100%;
+        position: absolute;
 
+        /*background-image: url(https://source.unsplash.com/2000x2000/?dentist);
+        background-position: center;
+        object-fit: cover;*/
+        background-color: grey;
+
+        -webkit-mask-image: url(../../assets/img/menu-logo-mask.svg), url(../../assets/img/menu-mask.svg);
+        mask-image: url(../../assets/img/menu-logo-mask.svg), url(../../assets/img/menu-mask.svg);
+        -webkit-mask-position: center;
+        mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-mode: alpha;
+        mask-mode: alpha;
+        -webkit-mask-size: 0%, 0%;
+        mask-size: 0%, 0%;
+        
+        place-content: center;
+        place-items: center;    
+    }
 }
 
 /*[sg78-logo-menu][sg78-logo-menu-pulse="false"] {

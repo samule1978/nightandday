@@ -18,7 +18,8 @@ export class Menu {
         this.menuTlTopToBottom = gsap.timeline({ paused:true });
         this.menuTlBottomToTop = gsap.timeline({ paused:true });
 
-        this.hamburgerMenu = qs("[sg78-hamburger-menu]");
+        this.hamburgerMenuOuter = qs("[sg78-hamburger-menu-outer]");
+        this.hamburgerMenuInner = qs("[sg78-hamburger-menu-inner]");
         this.hamburgerMenuTlShow = gsap.timeline({ paused:true });
         this.hamburgerMenuTlHide = gsap.timeline({ paused:true });
     };
@@ -191,7 +192,6 @@ export class Menu {
     }    
 
     createTimeLines() {
-        /*
 		this.menuTlLeftToRight.to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1, onComplete: () => {
             this.moving = this.direction.none;
             this.srolling(true);
@@ -213,39 +213,22 @@ export class Menu {
         }});
 
         const maskSize = "125%";
-        
-        this.hamburgerMenuTlShow.set(this.hamburgerMenu, { display:"none" })
-        .set(this.hamburgerMenu, { maskSize:"0%" })
-        .to(this.hamburgerMenu, { display:"block", duration:0 })
-        .to(this.hamburgerMenu, { maskSize:`${maskSize}`, duration:1 })
-        .to(this.hamburgerMenu, { maskSize:`${maskSize}`, duration:1, delay:0.5, onComplete: () => {            
+        this.hamburgerMenuTlShow.set(this.hamburgerMenuOuter, { display:"none" })
+        .set(this.hamburgerMenuInner, { webkitMaskSize:"0%, 0%" })
+        .to(this.hamburgerMenuOuter, { display:"block", duration:0 })
+        .to(this.hamburgerMenuInner, { webkitMaskSize:`${maskSize}, 0%`, duration:1 })
+        .to(this.hamburgerMenuInner, { webkitMaskSize:`${maskSize}, ${maskSize}`, duration:1, delay:0.5, onComplete: () => {            
             this.srolling(false);
             this.animatingMenu = false;
         }}, 0);
-        this.hamburgerMenuTlHide.to(this.hamburgerMenu, { maskSize:"0%", duration: 1, onComplete: () => {            
-            gsap.set(this.hamburgerMenu, { display: "none" })
-            this.srolling(true);
-            this.animatingMenu = false;            
-        }});        
-        */
-       
-        /*this.hamburgerMenuTlShow.set(this.hamburgerMenuOuter, { display:"none" })
-        .set(this.hamburgerMenuInner, { maskSize:"0%, 0%" })
-        .to(this.hamburgerMenuOuter, { display:"block", duration:0 })
-        .to(this.hamburgerMenuInner, { maskSize:`${maskSize}, 0%`, duration:1 })
-        .to(this.hamburgerMenuInner, { maskSize:`${maskSize}, ${maskSize}`, duration:1, delay:0.5, onComplete: () => {            
-            this.srolling(false);
-            this.animatingMenu = false;
-        }}, 0);*/
 
-        /*
         this.hamburgerMenuTlHide.to(this.hamburgerMenuInner, { webkitMaskSize:`${maskSize}, 0%`, duration: 1 })
         .to(this.hamburgerMenuInner, { webkitMaskSize:"0%, 0%", duration:1, onComplete: () => {
             gsap.set(this.hamburgerMenuOuter, { display: "none" })
             this.srolling(true);
             this.animatingMenu = false;
         }});
-        */
+        
         /*
         this.hamburgerMenuTlHide.to(this.hamburgerMenuInner, { webkitMaskSize:"0%, 0%", duration: 1, onComplete: () => {            
             gsap.set(this.hamburgerMenuOuter, { display: "none" })
