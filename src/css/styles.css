@@ -1623,15 +1623,15 @@ main > .container:nth-child(1) {
         object-fit: cover;*/
   background-color: grey;
   -webkit-mask-position: center;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: 0%, 0%;
-  -webkit-mask-image: url(../../assets/img/menu-logo-mask.svg), url(../../assets/img/menu-mask.svg);
-  -webkit-mask-mode: alpha;
   mask-position: center;
+  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  mask-size: 0%, 0%;
-  mask-image: url(../../assets/img/menu-logo-mask.svg), url(../../assets/img/menu-mask.svg);
+  -webkit-mask-mode: alpha;
   mask-mode: alpha;
+  -webkit-mask-image: url(../../assets/img/menu-logo-mask.svg), url(../../assets/img/menu-mask.svg);
+  mask-image: url(../../assets/img/menu-logo-mask.svg), url(../../assets/img/menu-mask.svg);
+  -webkit-mask-size: 0%, 0%;
+  mask-size: 0%, 0%;
   display: grid;
   place-content: center;
   place-items: center;
