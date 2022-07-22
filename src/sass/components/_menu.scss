@@ -293,7 +293,7 @@
     }
 }
 
-/*[sg78-logo-menu][sg78-logo-menu-pulse="false"] {
+[sg78-logo-menu][sg78-logo-menu-pulse="false"] {
     filter: drop-shadow(4px 4px 5px rgb(0 0 0 / 0.4));
 }
 @keyframes pulse-animation {
@@ -309,4 +309,4 @@
 }
 [sg78-logo-menu-pulse="true"] {
     animation: pulse-animation 2s infinite;
-}*/
+}

@@ -1635,23 +1635,25 @@ main > .container:nth-child(1) {
   place-items: center;
 }
 
-/*[sg78-logo-menu][sg78-logo-menu-pulse="false"] {
-    filter: drop-shadow(4px 4px 5px rgb(0 0 0 / 0.4));
+[sg78-logo-menu][sg78-logo-menu-pulse=false] {
+  filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.4));
 }
+
 @keyframes pulse-animation {
-	0% {
-		filter: drop-shadow(4px 4px 2px rgb(0 0 0 / 0.4));
-	}
-	50% {
-		filter: drop-shadow(4px 4px 5px rgb(0 0 0 / 0.4));
-	}
-	100% {
-		filter: drop-shadow(4px 4px 2px rgb(0 0 0 / 0.4));
-	}
+  0% {
+    filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.4));
+  }
+  50% {
+    filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.4));
+  }
+  100% {
+    filter: drop-shadow(4px 4px 2px rgba(0, 0, 0, 0.4));
+  }
 }
-[sg78-logo-menu-pulse="true"] {
-    animation: pulse-animation 2s infinite;
-}*/
+[sg78-logo-menu-pulse=true] {
+  animation: pulse-animation 2s infinite;
+}
+
 .section__component--featured-cards {
   background-color: var(--core-components-featured-cards-colors-bg);
   color: var(--core-components-featured-cards-colors-fg);
