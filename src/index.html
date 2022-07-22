@@ -34,29 +34,22 @@
 	</head>
 
 	<body class="menu--hide">
-		<section class="container__menu--outer" sg78-hamburger-menu>
-			<section class="container__menu--mask" sg78-hamburger-mask>
-				<!--svg>
-					<defs>
-						<clipPath id="maskMenu" clipPathUnits="objectBoundingBox">
-							<path d="M303.49,371.1l-.2-.511a.145.145,0,0,0-.188-.082l-.511.2a.145.145,0,0,0-.082.188l.2.511a.145.145,0,0,0,.188.082l.511-.2A.145.145,0,0,0,303.49,371.1Zm-.547.166a.079.079,0,0,1-.1-.045l-.109-.281a.079.079,0,0,1,.045-.1l.281-.109a.079.079,0,0,1,.1.045l.109.281a.079.079,0,0,1-.045.1Z" transform="translate(-302.5 -370.5)"/>
-						</clipPath>
-					</defs>					
-				</svg-->
-
-				<!--svg viewBox="0 0 1 1">
-					<defs>
-						<clipPath id="maskMenu" clipPathUnits="objectBoundingBox">
-							<path d="M303.49,371.1l-.2-.511a.145.145,0,0,0-.188-.082l-.511.2a.145.145,0,0,0-.082.188l.2.511a.145.145,0,0,0,.188.082l.511-.2A.145.145,0,0,0,303.49,371.1Zm-.547.166a.079.079,0,0,1-.1-.045l-.109-.281a.079.079,0,0,1,.045-.1l.281-.109a.079.079,0,0,1,.1.045l.109.281a.079.079,0,0,1-.045.1Z" transform="translate(-302.5 -370.5)"/>
-						</clipPath>
-					</defs>
-				</svg-->
-			</section>
-			<section class="container__menu--inner">
+		<section class="container__menu--outer" sg78-hamburger-menu-outer>
+			<section class="container__menu--inner" sg78-hamburger-menu-inner>				
+				<nav>
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li><a href="#">Dentists</a></li>
+						<li><a href="#">Patients</a></li>
+						<li><a href="#">Emergencies</a></li>
+						<li><a href="#">About Us</a></li>
+						<li><a href="#">Contact Us</a></li>
+					</ul>
+				</nav>
 			</section>
 		</section>
 		
-		<section class="container__logo" sg78-logo-menu>
+		<section class="container__logo" sg78-logo-menu sg78-logo-menu-pulse="true">
 			<section class="container__hamburger">
 				<!-- See: https://codepen.io/designcouch/pen/ExvwPY?editors=1100 -->
 				<hamburger>
@@ -107,7 +100,7 @@
 				<section class="container">
 					<p>
 						<a class="cta__anchor cta__anchor--body" href="/" sg78-ux-toastie>
-							Ver 1.0.1.29 : Logo + Menu (Mask) - Animate -- So Close!
+							Ver 1.0.1.30 : Logo + Menu (Mask) - Animate -- OMG!
 						</a>
 					</p>	
 				</section>
