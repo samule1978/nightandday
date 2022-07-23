@@ -269,7 +269,6 @@ export class Menu {
         }});
         */
 
-        /*
         const maskSize = "250%";
         this.hamburgerMenuTlShow
         .set(this.hamburgerMenuOuter, { display:"none" })
@@ -288,7 +287,6 @@ export class Menu {
             this.srolling(true);
             this.animatingMenu = false;
         }});
-        */
         
         /*
         this.hamburgerMenuTlHide.to(this.hamburgerMenuInner, { webkitMaskSize:"0%, 0%", duration: 1, onComplete: () => {            
