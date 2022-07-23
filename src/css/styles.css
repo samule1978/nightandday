@@ -1607,7 +1607,7 @@ main > .container:nth-child(1) {
   display: none;
   width: 100%;
   height: 100%;
-  position: relative;
+  position: fixed;
 }
 .container__menu--inner {
   display: grid;
