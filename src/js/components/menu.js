@@ -204,8 +204,10 @@ export class Menu {
     }
     moveLogoDown() {        
         if (this.menu.getAttribute("sg78-logo-menu-y") == "top") {
-            const x = this.menu.getAttribute("sg78-logo-menu-x"), y = "bottom";
-            gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
+            if (this.hamburgerMenu.linearGradient.animate === "true") {
+                const x = this.menu.getAttribute("sg78-logo-menu-x"), y = "bottom";
+                gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
+            }
             gsap.to(this.menu, { ease: "bounce.out", top: "100%", y: `-${this.offset.y.end}}`, duration: 1, onComplete: () => {
                 this.moving = this.direction.none;
                 this.srolling(true); 
