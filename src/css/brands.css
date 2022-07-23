@@ -4,7 +4,7 @@
 }
 [sg78-brand-option]:where(html) {
   --core-assets-logo: url(./../assets/img/logo.png);
-  --core-font-family-1: Helvetica, sans-serif;
+  --core-font-family-1: Josefin Sans, sans-serif;
   --core-colors-rule-60: hsl(0, 0%, 96%);
   --core-colors-rule-30: hsl(0, 0%, 19%);
   --core-colors-rule-10: hsl(209, 42%, 38%);

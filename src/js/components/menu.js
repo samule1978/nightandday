@@ -13,10 +13,10 @@ import { alertToast, makeToast } from "../vendor/toast/toast.js";
 export class Menu {
     constructor() {
         this.menu = qs("[sg78-logo-menu]");  
-        this.menuTlLeftToRight = gsap.timeline({ paused:true });
+        /*this.menuTlLeftToRight = gsap.timeline({ paused:true });
         this.menuTlRightToLeft = gsap.timeline({ paused:true });
         this.menuTlTopToBottom = gsap.timeline({ paused:true });
-        this.menuTlBottomToTop = gsap.timeline({ paused:true });
+        this.menuTlBottomToTop = gsap.timeline({ paused:true });*/
 
         this.hamburgerMenuOuter = qs("[sg78-hamburger-menu-outer]");
         this.hamburgerMenuInner = qs("[sg78-hamburger-menu-inner]");
@@ -62,6 +62,12 @@ export class Menu {
         down: false,
 	};
 
+    hamburgerMenu = {
+        linearGradient: {
+            base: "rgb(204,204,204)",
+            colors: "rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%",
+        }
+    }
 
 
     showHamburgerMenu() {
@@ -151,11 +157,8 @@ export class Menu {
 
     moveLogoRight() {        
         if (this.menu.getAttribute("sg78-logo-menu-x") == "left") {
-            const linearGradientBase = "rgb(204,204,204)";
-            const linearGradient = "rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%";
             const x = "right", y = this.menu.getAttribute("sg78-logo-menu-y");
-
-            gsap.to(this.hamburgerMenuInner, { background:`${linearGradientBase} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${linearGradient})`, duration:1 });
+            gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
             gsap.to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1, onComplete: () => {
                 this.moving = this.direction.none;
                 this.srolling(true);
@@ -167,16 +170,12 @@ export class Menu {
     }
     moveLogoLeft() {        
         if (this.menu.getAttribute("sg78-logo-menu-x") == "right") {
-            const linearGradientBase = "rgb(204,204,204)";
-            const linearGradient = "rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%";
             const x = "left", y = this.menu.getAttribute("sg78-logo-menu-y");
-
-            gsap.to(this.hamburgerMenuInner, { background:`${linearGradientBase} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${linearGradient})`, duration:1 });
+            gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
             gsap.to(this.menu, { ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1, onComplete: () => {
                 this.moving = this.direction.none;
                 this.srolling(true); 
-            }});
-            
+            }});            
             //this.menuTlRightToLeft.play();
             //this.menuTlRightToLeft.restart();
             this.menu.setAttribute("sg78-logo-menu-x", "left");
@@ -185,16 +184,12 @@ export class Menu {
 
     moveLogoUp() {        
         if (this.menu.getAttribute("sg78-logo-menu-y") == "bottom") {
-            const linearGradientBase = "rgb(204,204,204)";
-            const linearGradient = "rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%";
             const x = this.menu.getAttribute("sg78-logo-menu-x"), y = "top";
-
-            gsap.to(this.hamburgerMenuInner, { background:`${linearGradientBase} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${linearGradient})`, duration:1 });
+            gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
             gsap.to(this.menu, { ease: "bounce.out", top: "0%", y: `${this.offset.y.start}}`, duration: 1, onComplete: () => {
                 this.moving = this.direction.none;
                 this.srolling(true); 
-            }});
-    
+            }});    
             //this.menuTlBottomToTop.play();
             //this.menuTlBottomToTop.restart();
             this.menu.setAttribute("sg78-logo-menu-y", "top");
@@ -202,16 +197,12 @@ export class Menu {
     }
     moveLogoDown() {        
         if (this.menu.getAttribute("sg78-logo-menu-y") == "top") {
-            const linearGradientBase = "rgb(204,204,204)";
-            const linearGradient = "rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%";
             const x = this.menu.getAttribute("sg78-logo-menu-x"), y = "bottom";
-
-            gsap.to(this.hamburgerMenuInner, { background:`${linearGradientBase} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${linearGradient})`, duration:1 });
+            gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
             gsap.to(this.menu, { ease: "bounce.out", top: "100%", y: `-${this.offset.y.end}}`, duration: 1, onComplete: () => {
                 this.moving = this.direction.none;
                 this.srolling(true); 
             }});
-    
             //this.menuTlTopToBottom.play();
             //this.menuTlTopToBottom.restart();
             this.menu.setAttribute("sg78-logo-menu-y", "bottom");
@@ -242,9 +233,8 @@ export class Menu {
         return linearGradientAngle;
     }
 
-    createTimeLines() {       
-        const maskSize = "250%";
-
+    createTimeLines() {
+        /*
 		this.menuTlLeftToRight
         .to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1, onComplete: () => {
             this.moving = this.direction.none;
@@ -268,8 +258,9 @@ export class Menu {
             this.moving = this.direction.none;
             this.srolling(true); 
         }});
+        */
 
-        
+        const maskSize = "250%";
         this.hamburgerMenuTlShow
         .set(this.hamburgerMenuOuter, { display:"none" })
         .set(this.hamburgerMenuInner, { webkitMaskSize:"0%, 0%" })
@@ -368,7 +359,6 @@ export class Menu {
                 this.inputAction(e, "up", e.screenX, e.screenY);
             });    
         }
-
         
         /*this.menu.addEventListener('mouseup', (e) => {
             if (this.scrollingToTop) return;

@@ -290,7 +290,42 @@
         mask-size: 0%, 0%;
         
         place-content: center;
-        place-items: center;    
+        place-items: center;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 2rem;
+
+            li {    
+                a {
+                    text-decoration: none;
+                    color: svar(--op-color-grey-7);
+                }
+                ul {
+                    display: none;
+                }
+
+                &.active {
+                    > ul {
+                        display: block;
+                    }    
+                }
+            }
+        }
+        
+        ul {
+            &:nth-child(1) {
+                li {
+                    
+                }
+            }
+            &:nth-child(2) {
+            }
+            &:nth-child(3) {
+            }
+        }
     }
 }
 /*
