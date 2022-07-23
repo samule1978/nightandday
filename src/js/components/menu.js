@@ -151,30 +151,69 @@ export class Menu {
 
     moveLogoRight() {        
         if (this.menu.getAttribute("sg78-logo-menu-x") == "left") {
-            this.menuTlLeftToRight.play();
-            this.menuTlLeftToRight.restart();
+            const linearGradientBase = "rgb(204,204,204)";
+            const linearGradient = "rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%";
+            const x = "right", y = this.menu.getAttribute("sg78-logo-menu-y");
+
+            gsap.to(this.hamburgerMenuInner, { background:`${linearGradientBase} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${linearGradient})`, duration:1 });
+            gsap.to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1, onComplete: () => {
+                this.moving = this.direction.none;
+                this.srolling(true);
+            }});    
+            //this.menuTlLeftToRight.play();
+            //this.menuTlLeftToRight.restart();
             this.menu.setAttribute("sg78-logo-menu-x", "right");
         }
     }
     moveLogoLeft() {        
         if (this.menu.getAttribute("sg78-logo-menu-x") == "right") {
-            this.menuTlRightToLeft.play();
-            this.menuTlRightToLeft.restart();
+            const linearGradientBase = "rgb(204,204,204)";
+            const linearGradient = "rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%";
+            const x = "left", y = this.menu.getAttribute("sg78-logo-menu-y");
+
+            gsap.to(this.hamburgerMenuInner, { background:`${linearGradientBase} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${linearGradient})`, duration:1 });
+            gsap.to(this.menu, { ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1, onComplete: () => {
+                this.moving = this.direction.none;
+                this.srolling(true); 
+            }});
+            
+            //this.menuTlRightToLeft.play();
+            //this.menuTlRightToLeft.restart();
             this.menu.setAttribute("sg78-logo-menu-x", "left");
         }
     }
 
     moveLogoUp() {        
         if (this.menu.getAttribute("sg78-logo-menu-y") == "bottom") {
-            this.menuTlBottomToTop.play();
-            this.menuTlBottomToTop.restart();
+            const linearGradientBase = "rgb(204,204,204)";
+            const linearGradient = "rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%";
+            const x = this.menu.getAttribute("sg78-logo-menu-x"), y = "top";
+
+            gsap.to(this.hamburgerMenuInner, { background:`${linearGradientBase} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${linearGradient})`, duration:1 });
+            gsap.to(this.menu, { ease: "bounce.out", top: "0%", y: `${this.offset.y.start}}`, duration: 1, onComplete: () => {
+                this.moving = this.direction.none;
+                this.srolling(true); 
+            }});
+    
+            //this.menuTlBottomToTop.play();
+            //this.menuTlBottomToTop.restart();
             this.menu.setAttribute("sg78-logo-menu-y", "top");
         }
     }
     moveLogoDown() {        
         if (this.menu.getAttribute("sg78-logo-menu-y") == "top") {
-            this.menuTlTopToBottom.play();
-            this.menuTlTopToBottom.restart();
+            const linearGradientBase = "rgb(204,204,204)";
+            const linearGradient = "rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%";
+            const x = this.menu.getAttribute("sg78-logo-menu-x"), y = "bottom";
+
+            gsap.to(this.hamburgerMenuInner, { background:`${linearGradientBase} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${linearGradient})`, duration:1 });
+            gsap.to(this.menu, { ease: "bounce.out", top: "100%", y: `-${this.offset.y.end}}`, duration: 1, onComplete: () => {
+                this.moving = this.direction.none;
+                this.srolling(true); 
+            }});
+    
+            //this.menuTlTopToBottom.play();
+            //this.menuTlTopToBottom.restart();
             this.menu.setAttribute("sg78-logo-menu-y", "bottom");
         }
     }
@@ -189,31 +228,50 @@ export class Menu {
         } else {
             window.onscroll = function() {};
         }
-    }    
+    }
+    
+    getLinearGradientAngle(x, y) {
+        let linearGradientAngle = "0deg";
 
-    createTimeLines() {
-		this.menuTlLeftToRight.to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1, onComplete: () => {
+        //const x = this.menu.getAttribute("sg78-logo-menu-x"), y = this.menu.getAttribute("sg78-logo-menu-y");if (y === "top" && x === "left") linearGradientAngle = "45deg";
+        if (y === "top" && x === "left") linearGradientAngle = "315deg";
+        if (y === "top" && x === "right") linearGradientAngle = "45deg";
+        if (y === "bottom" && x === "left") linearGradientAngle = "225deg";
+        if (y === "bottom" && x === "right") linearGradientAngle = "135deg";
+        
+        return linearGradientAngle;
+    }
+
+    createTimeLines() {       
+        const maskSize = "250%";
+
+		this.menuTlLeftToRight
+        .to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1, onComplete: () => {
             this.moving = this.direction.none;
             this.srolling(true);
         }});
 
-		this.menuTlRightToLeft.to(this.menu, { ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1, onComplete: () => {
+		this.menuTlRightToLeft        
+        .to(this.menu, { ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1, onComplete: () => {
             this.moving = this.direction.none;
             this.srolling(true); 
         }});
 
-		this.menuTlTopToBottom.to(this.menu, { ease: "bounce.out", top: "100%", y: `-${this.offset.y.end}}`, duration: 1, onComplete: () => {
+		this.menuTlTopToBottom
+        .to(this.menu, { ease: "bounce.out", top: "100%", y: `-${this.offset.y.end}}`, duration: 1, onComplete: () => {
             this.moving = this.direction.none;
             this.srolling(true); 
         }});
 
-		this.menuTlBottomToTop.to(this.menu, { ease: "bounce.out", top: "0%", y: `${this.offset.y.start}}`, duration: 1, onComplete: () => {
+		this.menuTlBottomToTop
+        .to(this.menu, { ease: "bounce.out", top: "0%", y: `${this.offset.y.start}}`, duration: 1, onComplete: () => {
             this.moving = this.direction.none;
             this.srolling(true); 
         }});
 
-        const maskSize = "250%";
-        this.hamburgerMenuTlShow.set(this.hamburgerMenuOuter, { display:"none" })
+        
+        this.hamburgerMenuTlShow
+        .set(this.hamburgerMenuOuter, { display:"none" })
         .set(this.hamburgerMenuInner, { webkitMaskSize:"0%, 0%" })
         .to(this.hamburgerMenuOuter, { display:"block", duration:0 })
         .to(this.hamburgerMenuInner, { webkitMaskSize:`${maskSize}, 0%`, duration:1 })
@@ -222,7 +280,8 @@ export class Menu {
             this.animatingMenu = false;
         }}, 0);
 
-        this.hamburgerMenuTlHide.to(this.hamburgerMenuInner, { webkitMaskSize:`${maskSize}, 0%`, duration: 1 })
+        this.hamburgerMenuTlHide
+        .to(this.hamburgerMenuInner, { webkitMaskSize:`${maskSize}, 0%`, duration: 1 })
         .to(this.hamburgerMenuInner, { webkitMaskSize:"0%, 0%", duration:1, onComplete: () => {
             gsap.set(this.hamburgerMenuOuter, { display: "none" })
             this.srolling(true);
@@ -281,7 +340,7 @@ export class Menu {
         if(window.matchMedia("(pointer: coarse)").matches) {
             isTouch = true;
         }
-        console.log(`isTouch: ${isTouch}`);
+        //console.log(`isTouch: ${isTouch}`);
 
         this.offset.x.start = `${(this.menu.offsetWidth / 3)}px`;
         this.offset.x.end = `${(this.menu.offsetWidth / 3) * 4}px`;
