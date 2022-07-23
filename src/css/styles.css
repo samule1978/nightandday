@@ -718,6 +718,7 @@ body {
   background-color: var(--core-colors-html-layout-body-bg);
   color: var(--core-colors-html-layout-body-fg);
   scroll-behavior: smooth;
+  position: relative;
 }
 
 [user-select=none] {
@@ -1389,15 +1390,15 @@ main > .container:nth-child(1) {
 }
 
 .progress {
-  z-index: var(--op-layer-important);
+  z-index: 7;
 }
 
 .container__logo {
-  z-index: calc(var(--op-layer-important) - 100);
+  z-index: 5;
 }
 
 .container__menu--outer {
-  z-index: calc(var(--op-layer-important) - 200);
+  z-index: 3;
 }
 
 .progress {
@@ -1439,6 +1440,7 @@ main > .container:nth-child(1) {
   padding-inline-end: 0;
   padding-block-start: 0;
   padding-block-end: 0;
+  isolation: isolate;
 }
 .container__logo .container__hamburger {
   position: absolute;

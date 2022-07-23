@@ -4,13 +4,13 @@
 
 // Z-Indexes
 .progress {
-	z-index: svar(--op-layer-important);
+	z-index: 7;//svar(--op-layer-important);
 }
 .container__logo {
-	z-index: calc(svar(--op-layer-important) - 100);
+	z-index: 5;//calc(svar(--op-layer-important) - 100);
 }
 .container__menu--outer {
-	z-index: calc(svar(--op-layer-important) - 200);
+	z-index: 3;//calc(svar(--op-layer-important) - 200);
 }
 
 .progress {
@@ -50,6 +50,7 @@
 	width: 4rem;	
 	position: fixed;
 	@include mixins.logicalSpacing(0, 0, 0, 0);
+    isolation: isolate;
 
 	.container__hamburger {
 		position: absolute;

@@ -30,6 +30,7 @@ body {
 	background-color: svar(--core-colors-html-layout-body-bg);
 	color: svar(--core-colors-html-layout-body-fg);
 	scroll-behavior: smooth;
+	position: relative;
 }
 
 [user-select="none"] {
