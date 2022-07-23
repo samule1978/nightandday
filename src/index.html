@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" sg78-site-configurable="true" sg78-debug-outline="false" sg78-brand-option="1" sg78-ux-header-fixed="true" sg78-ux-horizontal-scroll="enabled" sg78-ux-scroll-trigger>
+<html lang="en" sg78-site-configurable="false" sg78-debug-outline="false" sg78-brand-option="1" sg78-ux-header-fixed="true" sg78-ux-horizontal-scroll="enabled" sg78-ux-scroll-trigger>
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
@@ -34,22 +34,7 @@
 	</head>
 
 	<body class="menu--hide">
-		<section class="container__menu--outer" sg78-hamburger-menu-outer>
-			<section class="container__menu--inner" sg78-hamburger-menu-inner>				
-				<nav>
-					<ul>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Dentists</a></li>
-						<li><a href="#">Patients</a></li>
-						<li><a href="#">Emergencies</a></li>
-						<li><a href="#">About Us</a></li>
-						<li><a href="#">Contact Us</a></li>
-					</ul>
-				</nav>
-			</section>
-		</section>
-		
-		<section class="container__logo" sg78-logo-menu sg78-logo-menu-pulse="true">
+		<section class="container__logo" sg78-logo-menu sg78-logo-menu-pulse="true" user-select="none">
 			<section class="container__hamburger">
 				<!-- See: https://codepen.io/designcouch/pen/ExvwPY?editors=1100 -->
 				<hamburger>
@@ -88,19 +73,50 @@
 				</g>
 			</svg>
 		</section>
+		<section class="container__menu--outer" sg78-hamburger-menu-outer>
+			<section class="container__menu--inner" sg78-hamburger-menu-inner>				
+				<nav>
+					<ul>
+						<li>
+							<a href="#">Home</a>
+							<ul>
+								<li><a href="#">Nervous Patients</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">Treatments</a>
+							<ul>
+								<li><a href="#">FAQs</a></li>
+								<li><a href="#">Emergencies</a></li>
+								<li><a href="#">Dentistry</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Price List</a></li>
+						<li>
+							<a href="#">About Us</a>
+							<ul>
+								<li><a href="#">Clinics</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">Contact Us</a>
+							<ul>
+								<li><a href="#">For Dentists</a></li>
+								<li><a href="#">Complaints</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</section>
+		</section>		
 
 		<section class="grid__container grid__container--page" sg78-layout-option="2">
-			<header class="grid__area grid__area--header">
-				<!--canvas id="riveHeader" width="1024" height="100" style="margin: 0; padding: 0;"></canvas-->
-				<section class="container">
-					
-				</section>
-			</header>
 			<main class="grid__area grid__area--main">
 				<section class="container">
 					<p>
 						<a class="cta__anchor cta__anchor--body" href="/" sg78-ux-toastie>
-							Ver 1.0.2.4 : Logo + Menu (Mask) - Animate -- Inshallah!
+							Ver 1.0.2.5 : Breadcrumb Menu.
 						</a>
 					</p>	
 				</section>

@@ -130,7 +130,7 @@ if (is(qs("[sg78-ux-scroll-trigger]"))) {
 		scrollTrigger: { scrub: 0.3 },
 	});*/
 
-	if (is(qsa("#riveHeader"))) {
+	/*if (is(qsa("#riveHeader"))) {
 		new rive.Rive({
 			src: "assets/rive/header.riv",
 			canvas: document.getElementById("riveHeader"),
@@ -146,6 +146,7 @@ if (is(qs("[sg78-ux-scroll-trigger]"))) {
 			opacity: 0,
 			ease: "none",
 			scrollTrigger: { scrub: 0.3 },
-		});		
+		});
 	}
+	*/
 }
