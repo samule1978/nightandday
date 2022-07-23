@@ -264,7 +264,9 @@
         /*background-image: url(https://source.unsplash.com/2000x2000/?dentist);
         background-position: center;
         object-fit: cover;*/
-        background: rgb(204,204,204);        
+        //background: rgb(204,204,204);        
+        background: -webkit-linear-gradient(315deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%);
+        background: linear-gradient(315deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%);
 
         -webkit-mask-image: url(../assets/img/menu-logo-mask.svg), url(../assets/img/menu-mask.svg);
         mask-image: url(../assets/img/menu-logo-mask.svg), url(../assets/img/menu-mask.svg);
@@ -321,7 +323,8 @@
     &[sg78-logo-menu-y="top"][sg78-logo-menu-x="left"] {        
         + .container__menu--outer {            
             .container__menu--inner {
-                &[sg78-hamburger-menu-inner-animate-gradient="false"] {
+                &[sg78-hamburger-menu-inner-animate-gradient="false"] {                    
+                    background: -webkit-linear-gradient(315deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%);
                     background: linear-gradient(315deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%);
                 }
             }            
@@ -330,7 +333,8 @@
     &[sg78-logo-menu-y="top"][sg78-logo-menu-x="right"] {
         + .container__menu--outer {            
             .container__menu--inner {
-                &[sg78-hamburger-menu-inner-animate-gradient="false"] {
+                &[sg78-hamburger-menu-inner-animate-gradient="false"] {                    
+                    background: -webkit-linear-gradient(45deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%);
                     background: linear-gradient(45deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%);
                 }
             }            
@@ -339,7 +343,8 @@
     &[sg78-logo-menu-y="bottom"][sg78-logo-menu-x="left"] {        
         + .container__menu--outer {            
             .container__menu--inner {
-                &[sg78-hamburger-menu-inner-animate-gradient="false"] {
+                &[sg78-hamburger-menu-inner-animate-gradient="false"] {                    
+                    background: -webkit-linear-gradient(225deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%);
                     background: linear-gradient(225deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%);
                 }
             }            
@@ -349,6 +354,7 @@
         + .container__menu--outer {            
             .container__menu--inner {
                 &[sg78-hamburger-menu-inner-animate-gradient="false"] {
+                    background: -webkit-linear-gradient(135deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%);
                     background: linear-gradient(135deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%);
                 }
             }            

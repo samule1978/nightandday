@@ -160,7 +160,7 @@ export class Menu {
         if (this.menu.getAttribute("sg78-logo-menu-x") == "left") {
             if (this.hamburgerMenu.linearGradient.animate === "true") {
                 const x = "right", y = this.menu.getAttribute("sg78-logo-menu-y");
-                gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });    
+                gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
             }
             gsap.to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1, onComplete: () => {
                 this.moving = this.direction.none;

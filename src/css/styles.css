@@ -1619,7 +1619,8 @@ main > .container:nth-child(1) {
   /*background-image: url(https://source.unsplash.com/2000x2000/?dentist);
   background-position: center;
   object-fit: cover;*/
-  background: rgb(204, 204, 204);
+  background: -webkit-linear-gradient(315deg, rgb(204, 204, 204) 0%, rgb(178, 178, 178) 70%, rgb(128, 128, 128) 100%);
+  background: linear-gradient(315deg, rgb(204, 204, 204) 0%, rgb(178, 178, 178) 70%, rgb(128, 128, 128) 100%);
   -webkit-mask-image: url(../assets/img/menu-logo-mask.svg), url(../assets/img/menu-mask.svg);
   mask-image: url(../assets/img/menu-logo-mask.svg), url(../assets/img/menu-mask.svg);
   -webkit-mask-position: center;
@@ -1650,15 +1651,19 @@ main > .container:nth-child(1) {
   display: block;
 }
 [sg78-logo-menu][sg78-logo-menu-y=top][sg78-logo-menu-x=left] + .container__menu--outer .container__menu--inner[sg78-hamburger-menu-inner-animate-gradient=false] {
+  background: -webkit-linear-gradient(315deg, rgb(204, 204, 204) 0%, rgb(178, 178, 178) 70%, rgb(128, 128, 128) 100%);
   background: linear-gradient(315deg, rgb(204, 204, 204) 0%, rgb(178, 178, 178) 70%, rgb(128, 128, 128) 100%);
 }
 [sg78-logo-menu][sg78-logo-menu-y=top][sg78-logo-menu-x=right] + .container__menu--outer .container__menu--inner[sg78-hamburger-menu-inner-animate-gradient=false] {
+  background: -webkit-linear-gradient(45deg, rgb(204, 204, 204) 0%, rgb(178, 178, 178) 70%, rgb(128, 128, 128) 100%);
   background: linear-gradient(45deg, rgb(204, 204, 204) 0%, rgb(178, 178, 178) 70%, rgb(128, 128, 128) 100%);
 }
 [sg78-logo-menu][sg78-logo-menu-y=bottom][sg78-logo-menu-x=left] + .container__menu--outer .container__menu--inner[sg78-hamburger-menu-inner-animate-gradient=false] {
+  background: -webkit-linear-gradient(225deg, rgb(204, 204, 204) 0%, rgb(178, 178, 178) 70%, rgb(128, 128, 128) 100%);
   background: linear-gradient(225deg, rgb(204, 204, 204) 0%, rgb(178, 178, 178) 70%, rgb(128, 128, 128) 100%);
 }
 [sg78-logo-menu][sg78-logo-menu-y=bottom][sg78-logo-menu-x=right] + .container__menu--outer .container__menu--inner[sg78-hamburger-menu-inner-animate-gradient=false] {
+  background: -webkit-linear-gradient(135deg, rgb(204, 204, 204) 0%, rgb(178, 178, 178) 70%, rgb(128, 128, 128) 100%);
   background: linear-gradient(135deg, rgb(204, 204, 204) 0%, rgb(178, 178, 178) 70%, rgb(128, 128, 128) 100%);
 }
 
