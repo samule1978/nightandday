@@ -64,6 +64,7 @@ export class Menu {
 
     hamburgerMenu = {
         linearGradient: {
+            animate: qs("[sg78-hamburger-menu-inner]").getAttribute("sg78-hamburger-menu-inner-animate-gradient"),
             base: "rgb(204,204,204)",
             colors: "rgba(204,204,204,1) 0%, rgba(178,178,178,1) 70%, rgba(128,128,128,1) 100%",
         }
@@ -157,8 +158,10 @@ export class Menu {
 
     moveLogoRight() {        
         if (this.menu.getAttribute("sg78-logo-menu-x") == "left") {
-            const x = "right", y = this.menu.getAttribute("sg78-logo-menu-y");
-            gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
+            if (this.hamburgerMenu.linearGradient.animate === "true") {
+                const x = "right", y = this.menu.getAttribute("sg78-logo-menu-y");
+                gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });    
+            }
             gsap.to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1, onComplete: () => {
                 this.moving = this.direction.none;
                 this.srolling(true);
@@ -170,8 +173,10 @@ export class Menu {
     }
     moveLogoLeft() {        
         if (this.menu.getAttribute("sg78-logo-menu-x") == "right") {
-            const x = "left", y = this.menu.getAttribute("sg78-logo-menu-y");
-            gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
+            if (this.hamburgerMenu.linearGradient.animate === "true") {
+                const x = "left", y = this.menu.getAttribute("sg78-logo-menu-y");
+                gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
+            }
             gsap.to(this.menu, { ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1, onComplete: () => {
                 this.moving = this.direction.none;
                 this.srolling(true); 
@@ -184,8 +189,10 @@ export class Menu {
 
     moveLogoUp() {        
         if (this.menu.getAttribute("sg78-logo-menu-y") == "bottom") {
-            const x = this.menu.getAttribute("sg78-logo-menu-x"), y = "top";
-            gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
+            if (this.hamburgerMenu.linearGradient.animate === "true") {
+                const x = this.menu.getAttribute("sg78-logo-menu-x"), y = "top";
+                gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
+            }
             gsap.to(this.menu, { ease: "bounce.out", top: "0%", y: `${this.offset.y.start}}`, duration: 1, onComplete: () => {
                 this.moving = this.direction.none;
                 this.srolling(true); 
@@ -350,12 +357,12 @@ export class Menu {
         });
         if (isTouch) {
             document.addEventListener('touchend', (e) => {
-                this.menu.setAttribute("sg78-logo-menu-pulse", "false");
+                if (this.menu.getAttribute("sg78-logo-menu-pulse") !== "disabled") this.menu.setAttribute("sg78-logo-menu-pulse", "false");
                 this.inputAction(e, "up", e.changedTouches[0].screenX, e.changedTouches[0].screenY);
             });
         } else {    
             document.addEventListener('mouseup', (e) => {            
-                this.menu.setAttribute("sg78-logo-menu-pulse", "false");
+                if (this.menu.getAttribute("sg78-logo-menu-pulse") !== "disabled") this.menu.setAttribute("sg78-logo-menu-pulse", "false");
                 this.inputAction(e, "up", e.screenX, e.screenY);
             });    
         }
