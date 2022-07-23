@@ -119,34 +119,4 @@ if (is(qs("[sg78-ux-scroll-trigger]"))) {
 		ease: "none",
 		scrollTrigger: { scrub: 0.3 },
 	});
-
-	/*const progress = createElement("progress");
-	progress.setAttribute("max", "100");
-	progress.setAttribute("value", "0");
-	document.body.prepend(progress);
-	gsap.to("progress", {
-		value: 100,
-		ease: "none",
-		scrollTrigger: { scrub: 0.3 },
-	});*/
-
-	/*if (is(qsa("#riveHeader"))) {
-		new rive.Rive({
-			src: "assets/rive/header.riv",
-			canvas: document.getElementById("riveHeader"),
-			autoplay: true
-		});		
-	} else {
-		qs(["header"]).prepend(
-			createElement("div", {
-				classList: "bg-day",
-			})
-		);
-		gsap.to(".bg-day", {
-			opacity: 0,
-			ease: "none",
-			scrollTrigger: { scrub: 0.3 },
-		});
-	}
-	*/
 }

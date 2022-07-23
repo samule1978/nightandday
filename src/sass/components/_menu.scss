@@ -12,9 +12,6 @@
 .container__menu--outer {
 	z-index: calc(svar(--op-layer-important) - 200);
 }
-.bg-day {
-	z-index: calc(svar(--op-layer-important) - 300);
-}
 
 .progress {
 	position: fixed;
@@ -24,14 +21,6 @@
 	transform-origin: left;
 	//background-color: hsla(78, 90%, 57%, 78%);
 	background-color: #9c2b2b;
-}
-
-.bg-day {
-	//background-color: hsl(164, 100%, 93%);
-	background-color: hsl(201, 54%, 69%);
-	width: 100%;
-	height: 50px;
-	position: absolute;
 }
 
 .container__logo--outer {
@@ -58,8 +47,7 @@
 .container__logo {
 	cursor: pointer;
 	//touch-action: manipulation;
-	width: 4rem;
-	isolation: isolate;
+	width: 4rem;	
 	position: fixed;
 	@include mixins.logicalSpacing(0, 0, 0, 0);
 
