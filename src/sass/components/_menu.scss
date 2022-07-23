@@ -317,7 +317,7 @@
     }
 }
 
-/*[sg78-logo-menu] {
+[sg78-logo-menu] {
     &[sg78-logo-menu-y="top"][sg78-logo-menu-x="left"] {        
         + .container__menu--outer {            
             .container__menu--inner {
@@ -354,7 +354,7 @@
             }            
         }
     }
-}*/
+}
 
 [sg78-logo-menu][sg78-logo-menu-pulse="false"] {
     filter: drop-shadow(4px 4px 5px rgb(0 0 0 / 0.4));
