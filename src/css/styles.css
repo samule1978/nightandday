@@ -518,7 +518,7 @@ category: legacy browsers
 
 [sg78-brand-option]:where(html) {
   --core-assets-logo: url(./../assets/img/logo.png);
-  --core-font-family-1: Helvetica, sans-serif;
+  --core-font-family-1: 'Josefin Sans', sans-serif;
   --core-font-html-family: var(--core-font-family-1);
   --core-font-html-size: 16px;
   --core-font-header-family: var(--core-font-family-1);

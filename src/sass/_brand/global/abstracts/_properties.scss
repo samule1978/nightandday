@@ -10,16 +10,6 @@ $globalPropsAssets: (
 	),
 );
 
-$globalPropsFont: (
-	core: (
-		font: (
-			family: (
-				1: "Josefin Sans, sans-serif",
-			),
-		),
-	),
-);
-
 $globalPropsColors: (
 	core: (
 		colors: (
@@ -66,8 +56,7 @@ $globalPropsVendors: (
 	@include cfg.setCssPropertyConfigOptionDescription("brand", "Global");
 
 	&:where(html) {
-		@include sg78.cssPropertiesFromSassMap($globalPropsAssets);
-		@include sg78.cssPropertiesFromSassMap($globalPropsFont);
+		@include sg78.cssPropertiesFromSassMap($globalPropsAssets);		
 		@include sg78.cssPropertiesFromSassMap($globalPropsColors);
 		@include sg78.cssPropertiesFromSassMap($globalPropsVendors);
 	}
