@@ -20,6 +20,7 @@ export class Menu {
 
         this.hamburgerMenuOuter = qs("[sg78-hamburger-menu-outer]");
         this.hamburgerMenuInner = qs("[sg78-hamburger-menu-inner]");
+        this.hamburgerMenu = qs("[sg78-hamburger-menu]");
         this.hamburgerMenuTlShow = gsap.timeline({ paused:true });
         this.hamburgerMenuTlHide = gsap.timeline({ paused:true });
     };
@@ -367,6 +368,25 @@ export class Menu {
                 if (this.menu.getAttribute("sg78-logo-menu-pulse") !== "disabled") this.menu.setAttribute("sg78-logo-menu-pulse", "false");
                 this.inputAction(e, "up", e.screenX, e.screenY);
             });    
+        }
+
+        if (this.hamburgerMenu) {
+            const listItems = qsa("li", this.hamburgerMenu);
+            listItems.forEach(listItem => {
+                const hasChildren = qs("ul", listItem);
+                if (hasChildren) {
+                    listItem.classList.add("parent");
+                    
+                    const span = createElement("span", {
+                        classList: "marker",                        
+                    });
+                    span.addEventListener('pointerup', (e) => {
+                        span.closest("li").classList.toggle("active");
+                    });
+                    qs("a", listItem).append(span);
+                };
+            });
+
         }
         
         /*this.menu.addEventListener('mouseup', (e) => {
