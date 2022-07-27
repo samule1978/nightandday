@@ -266,7 +266,8 @@
 }
 
 	.container__menu--inner {	
-		background: linear-gradient(45deg, #32a6ff 0%, #3f6fff 49%, #8d54ff 82%);		
+		//background: linear-gradient(45deg, #32a6ff 0%, #3f6fff 49%, #8d54ff 82%);		
+		background: linear-gradient(45deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 40%, rgba(128,128,128,1) 80%);
 		background-size: 200%;
 		animation: aurora 7s infinite;
 		isolation: isolate;
@@ -287,6 +288,26 @@
 		}
 	}
 
+	@keyframes accordionIn {
+		0% {
+			visibility: visible;
+			height: auto;
+			opacity: 0;
+			transform: scaleY(0);
+		}
+		100% {
+			opacity: 1;
+			transform: scaleY(1);
+		}
+	}
+	@keyframes accordionOut {
+		100% {
+			visibility: hidden;
+			height: 0;
+			opacity: 0;
+			transform: scaleY(0);
+		}
+	}
 
 .container__menu {
     &--outer {
@@ -320,37 +341,40 @@
         -webkit-mask-size: 250%, 0%;
         mask-size: 270%, 0%;
         
-        //place-content: center;
-        //place-items: center;
+        place-content: center;
+        place-items: center;
 
 		nav {
-			@include mixins.logicalSpacing(8em, 2em, 2em, 2em, "padding");
-
-			> ul {
-				width: 350px;
-				overflow: hidden;
-			} 
+			//@include mixins.logicalSpacing(8em, 2em, 2em, 2em, "padding");
 
 			ul {
-				list-style: none;
-				margin: 0;
-				padding: 0;
-				font-size: 2rem;
+				list-style: none;								
+				font-size: 1.5rem;
+				line-height: 1em;				
 				text-transform: uppercase;
 				font-weight: normal;
+
+				@include mixins.logicalSpacing(0, 0, 0, 0);
+				padding-block-start: 0.25em;
+				padding-block-end: 0.5em;
 	
 				li {
-					display: block;
+					display: block;					
 
 					a {
 						text-decoration: none;
-						color: svar(--op-color-grey-7);
+						color: svar(--op-color-grey-8);
+						padding-block-start: 0.25em;
+						padding-block-end: 0.25em;
+						display: block;
+						
 						cursor: default;
 
 						&[href] {
 							cursor: pointer;
 						}
 					}
+
 					ul {
 						display: none;
 					}
@@ -361,39 +385,82 @@
 							flex-direction: row;
 							justify-content: space-between;
 							.marker {
-								&::after {								
-									content: "+";
-									cursor: pointer;
+								position: relative;
+								cursor: pointer;
+
+								&::after {		
+									content: "";										
+									display: grid;
+									place-content: center;
+									width: 1rem;
+									aspect-ratio: 1;
+									
+									clip-path: polygon(0 40%, 40% 40%, 40% 0, 60% 0, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0 60%);
+									background-color: #9c2b2b;
 								}	
 							}
 						} 
 	
-						//@include mixins.hover("active") {
+						> a .marker {
+							@include mixins.hover() {
+								&::after {
+									background-color: svar(--op-color-grey-9);
+								}
+							}	
+						}
+
 						&.active {
 							> a .marker::after {
-								content: "-";
+								clip-path: polygon(0 40%, 40% 40%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 40% 60%, 0 60%);								
 							}
 							> ul {
-								display: block;
+								display: block;								
 							}
 						}
 					}
 				}
-			}
-			
-			ul {
-				&:nth-child(1) {
-					> li > a {
-						color: black;
-					}
-					font-weight: bold;
-				}
-				&:nth-child(2) {
-				}
-				&:nth-child(3) {
-				}
-			}
+			}			
+
+			> ul {
+				width: 350px;
+				overflow: hidden;
+				font-weight: bold;
+
+				ul {
+					font-size: 1.25rem;
+					font-weight: normal;
 	
+				}
+
+				> li > a {					
+					color: svar(--op-color-grey-9);
+
+					@include mixins.hover() {
+						color: #9c2b2b;
+					}
+				}
+
+				> li > ul {
+					a {
+						padding-block-start: 0.5em;
+						padding-block-end: 0.5em;
+
+						@include mixins.hover() {
+							color: #9c2b2b;
+						}						
+					}
+
+					padding-inline-start: 1em;					
+
+					> li > ul {
+						padding-inline-start: 1.5em;	
+
+						> li > ul {
+							padding-inline-start: 2em;	
+						}	
+					}
+				}
+			}
 		}
     }
 }
@@ -442,19 +509,22 @@
 }
 
 [sg78-logo-menu][sg78-logo-menu-pulse="false"] {
-    filter: drop-shadow(4px 4px 5px rgb(0 0 0 / 0.4));
+    filter: drop-shadow(4px 4px 5px rgb(0 0 0 / 0.5));
 }
 @keyframes pulse-animation {
 	0% {
-		filter: drop-shadow(4px 4px 2px rgb(0 0 0 / 0.4));
+		filter: drop-shadow(2px 2px 2px rgb(0 0 0 / 0.2));
+		//transform: scale(0.99);
 	}
 	50% {
-		filter: drop-shadow(4px 4px 5px rgb(0 0 0 / 0.4));
+		filter: drop-shadow(4px 4px 5px rgb(0 0 0 / 0.5));
+		//transform: scale(1);
 	}
 	100% {
-		filter: drop-shadow(4px 4px 2px rgb(0 0 0 / 0.4));
+		filter: drop-shadow(2px 4px 2px rgb(0 0 0 / 0.2));
+		//transform: scale(0.99);
 	}
 }
 [sg78-logo-menu-pulse="true"] {
-    animation: pulse-animation 2s infinite;
+    animation: pulse-animation 3s infinite;
 }
