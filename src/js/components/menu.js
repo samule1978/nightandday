@@ -19,8 +19,7 @@ export class Menu {
         this.menuTlBottomToTop = gsap.timeline({ paused:true });*/
 
         this.hamburgerMenuOuter = qs("[sg78-hamburger-menu-outer]");
-        this.hamburgerMenuInner = qs("[sg78-hamburger-menu-inner]");
-        this.hamburgerMenu = qs("[sg78-hamburger-menu]");
+        this.hamburgerMenuInner = qs("[sg78-hamburger-menu-inner]");        
         this.hamburgerMenuTlShow = gsap.timeline({ paused:true });
         this.hamburgerMenuTlHide = gsap.timeline({ paused:true });
     };
@@ -64,6 +63,7 @@ export class Menu {
 	};
 
     hamburgerMenu = {
+        menu: qs("[sg78-hamburger-menu]"),
         linearGradient: {
             animate: qs("[sg78-hamburger-menu-inner]").getAttribute("sg78-hamburger-menu-inner-animate-gradient"),
             base: "rgb(204,204,204)",
@@ -336,6 +336,12 @@ export class Menu {
         }
     }
 
+    getAllSiblings(element, parent) {
+        const children = [...parent.children];
+
+        return children.filter(child => child !== element);
+    }
+
     init() {        
         let isTouch = false; //https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript
         if(window.matchMedia("(pointer: coarse)").matches) {
@@ -370,8 +376,8 @@ export class Menu {
             });    
         }
 
-        if (this.hamburgerMenu) {
-            const listItems = qsa("li", this.hamburgerMenu);
+        if (this.hamburgerMenu.menu) {
+            const listItems = qsa("li", this.hamburgerMenu.menu);
             listItems.forEach(listItem => {
                 const hasChildren = qs("ul", listItem);
                 if (hasChildren) {
@@ -381,7 +387,35 @@ export class Menu {
                         classList: "marker",                        
                     });
                     span.addEventListener('pointerup', (e) => {
-                        span.closest("li").classList.toggle("active");
+                        // Toggle 'active' class for clicked list item.
+                        const activeListItem = span.closest("li.parent");                        
+                        activeListItem.classList.toggle("active");
+
+
+                        // Identify root parent of clicked list item.
+                        let rootParentActiveListItem = activeListItem;
+                        while (rootParentActiveListItem.parentNode.parentNode.nodeName !== "NAV") {
+                            rootParentActiveListItem = rootParentActiveListItem.parentNode;
+                        }
+
+                        // Remove 'active' class from all root parent list items except for parent list item of the clicked list item.
+                        qsa("nav > ul > li.parent").forEach(rootParentListItem => {                            
+                            if (rootParentListItem !== rootParentActiveListItem) {
+                                rootParentListItem.classList.remove("active");
+                                qsa("li.parent", rootParentListItem).forEach(listItem => {
+                                    listItem.classList.remove("active");
+                                });
+                            }
+                        });
+
+                        // Remove 'active' class of any siblings of clicked list item.
+                        const siblings = this.getAllSiblings(activeListItem, activeListItem.parentNode);
+                        siblings.forEach(sibling => {
+                            sibling.classList.remove("active");
+                            qsa("li.parent", sibling).forEach(listItem => {
+                                listItem.classList.remove("active");
+                            });
+                        });
                     });
                     qs("a", listItem).append(span);
                 };

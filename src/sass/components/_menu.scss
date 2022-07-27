@@ -326,15 +326,22 @@
 		nav {
 			@include mixins.logicalSpacing(8em, 2em, 2em, 2em, "padding");
 
+			> ul {
+				width: 350px;
+				overflow: hidden;
+			} 
+
 			ul {
 				list-style: none;
 				margin: 0;
 				padding: 0;
 				font-size: 2rem;
 				text-transform: uppercase;
-				font-weight: bold;
+				font-weight: normal;
 	
 				li {
+					display: block;
+
 					a {
 						text-decoration: none;
 						color: svar(--op-color-grey-7);
@@ -349,12 +356,17 @@
 					}
 
 					&.parent {
-						> a .marker {
-							&::after {								
-								content: "+";
-								cursor: pointer;
-							}	
-						}
+						> a {
+							display: flex;
+							flex-direction: row;
+							justify-content: space-between;
+							.marker {
+								&::after {								
+									content: "+";
+									cursor: pointer;
+								}	
+							}
+						} 
 	
 						//@include mixins.hover("active") {
 						&.active {
@@ -371,9 +383,10 @@
 			
 			ul {
 				&:nth-child(1) {
-					li {
-						
+					> li > a {
+						color: black;
 					}
+					font-weight: bold;
 				}
 				&:nth-child(2) {
 				}
