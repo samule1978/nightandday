@@ -41,10 +41,12 @@ export class Menu {
 	offset = {
 		x: {
 			start: "0px",
+            middle: "0px",
 			end: "0px",
 		},
 		y: {
 			start: "0px",
+            middle: "0px",
 			end: "0px",
 		},
 	};
@@ -350,12 +352,14 @@ export class Menu {
         //console.log(`isTouch: ${isTouch}`);
 
         this.offset.x.start = `${(this.menu.offsetWidth / 3)}px`;
+        this.offset.x.middle = `${(window.innerWidth / 2) - (this.menu.offsetWidth / 3)}px`;
         this.offset.x.end = `${(this.menu.offsetWidth / 3) * 4}px`;
         this.menu.setAttribute("sg78-logo-menu-x", "left");
         setCssPropertyValue(this.menu, "left", this.offset.x.start);
 
-        this.offset.y.start = `${(this.menu.offsetWidth / 3)}px`;
-        this.offset.y.end = `${(this.menu.offsetWidth / 3) * 5.5}px`;
+        this.offset.y.start = `${(this.menu.offsetHeight / 3)}px`;        
+        this.offset.y.middle = `${(window.innerHeight / 2) - (this.menu.offsetHeight / 3)}px`;
+        this.offset.y.end = `${(this.menu.offsetHeight / 3) * 4}px`;
         this.menu.setAttribute("sg78-logo-menu-y", "top");
         setCssPropertyValue(this.menu, "top", this.offset.y.start);
         
