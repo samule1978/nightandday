@@ -4,13 +4,13 @@
 
 // Z-Indexes
 .progress {
-	z-index: 7;//svar(--op-layer-important);
+	z-index: 100;//svar(--op-layer-important);
 }
 .container__logo {
-	z-index: 5;//calc(svar(--op-layer-important) - 100);
+	z-index: 90;//calc(svar(--op-layer-important) - 100);
 }
 .container__menu--outer {
-	z-index: 3;//calc(svar(--op-layer-important) - 200);
+	z-index: 80;//calc(svar(--op-layer-important) - 200);
 }
 
 .progress {
@@ -266,8 +266,8 @@
 }
 
 	.container__menu--inner {	
-		//background: linear-gradient(45deg, #32a6ff 0%, #3f6fff 49%, #8d54ff 82%);		
-		background: linear-gradient(45deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 40%, rgba(128,128,128,1) 80%);
+		background: linear-gradient(45deg, #32a6ff 0%, #3f6fff 49%, #8d54ff 82%);		
+		//background: linear-gradient(45deg, rgba(204,204,204,1) 0%, rgba(178,178,178,1) 40%, rgba(128,128,128,1) 80%);
 		background-size: 200%;
 		animation: aurora 7s infinite;
 		isolation: isolate;
@@ -363,7 +363,7 @@
 
 					a {
 						text-decoration: none;
-						color: svar(--op-color-grey-8);
+						color: svar(--op-color-grey-7);
 						padding-block-start: 0.25em;
 						padding-block-end: 0.25em;
 						display: block;
@@ -385,13 +385,14 @@
 							flex-direction: row;
 							justify-content: space-between;
 							.marker {
+								display: grid;
+								place-content: center;
 								position: relative;
 								cursor: pointer;
 
 								&::after {		
 									content: "";										
-									display: grid;
-									place-content: center;
+									display: block;
 									width: 1rem;
 									aspect-ratio: 1;
 									
@@ -404,7 +405,7 @@
 						> a .marker {
 							@include mixins.hover() {
 								&::after {
-									background-color: svar(--op-color-grey-9);
+									background-color: svar(--op-color-grey-8);
 								}
 							}	
 						}
@@ -422,7 +423,7 @@
 			}			
 
 			> ul {
-				width: 350px;
+				width: 275px;
 				overflow: hidden;
 				font-weight: bold;
 
@@ -433,10 +434,12 @@
 				}
 
 				> li > a {					
-					color: svar(--op-color-grey-9);
+					color: svar(--op-color-grey-8);
 
-					@include mixins.hover() {
-						color: #9c2b2b;
+					&[href] {
+						@include mixins.hover() {
+							color: #9c2b2b;
+						}
 					}
 				}
 
@@ -445,8 +448,10 @@
 						padding-block-start: 0.5em;
 						padding-block-end: 0.5em;
 
-						@include mixins.hover() {
-							color: #9c2b2b;
+						&[href] {
+							@include mixins.hover() {
+								color: #9c2b2b;
+							}
 						}						
 					}
 
