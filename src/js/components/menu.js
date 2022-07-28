@@ -12,7 +12,9 @@ import { alertToast, makeToast } from "../vendor/toast/toast.js";
 
 export class Menu {
     constructor() {
-        this.menu = qs("[sg78-logo-menu]");  
+        this.menu = qs("[sg78-logo-menu]");
+        this.threshold.value.x = this.menu.offsetWidth * this.threshold.extra;
+        this.threshold.value.y = this.menu.offsetHeight * this.threshold.extra;
         /*this.menuTlLeftToRight = gsap.timeline({ paused:true });
         this.menuTlRightToLeft = gsap.timeline({ paused:true });
         this.menuTlTopToBottom = gsap.timeline({ paused:true });
@@ -36,6 +38,19 @@ export class Menu {
         upRight: 9,
         upLeft: 7,
         downLeft: 1,
+
+        difference: {
+            x: 0,
+            y: 0,
+        }
+    };
+
+    threshold = {
+        value: {
+            x: 0,
+            y: 0,
+        },
+        extra: 1,
     };
 
     moving = this.direction.none;
@@ -103,43 +118,43 @@ export class Menu {
         }
     }
 
-    logoMoving() {
-        const thresholdExtra = 1;
-        let threshold = Math.max(this.menu.offsetWidth, this.menu.offsetHeight) * thresholdExtra;
+    logoMoving() {        
+        //this.threshold.value = Math.max(this.menu.offsetWidth, this.menu.offsetHeight) * this.threshold.extra;
+
+        this.direction.difference.x, this.direction.difference.y = 0;        
         
-        let diffX, diffY = 0;
         let moveX, moveY = this.direction.none;
 
         this.moving = this.direction.none;
 
         if (this.input.x.end < this.input.x.start) {
             moveX = this.direction.left;
-            diffX = this.input.x.start - this.input.x.end;            
+            this.direction.difference.x = this.input.x.start - this.input.x.end;            
         }
         if (this.input.x.end > this.input.x.start) {
             moveX = this.direction.right;
-            diffX = this.input.x.end - this.input.x.start;
+            this.direction.difference.x = this.input.x.end - this.input.x.start;
         }
         if (this.input.y.end < this.input.y.start) {
             moveY = this.direction.up;
-            diffY = this.input.y.start - this.input.y.end;            
+            this.direction.difference.y = this.input.y.start - this.input.y.end;            
         }
         if (this.input.y.end > this.input.y.start) {
             moveY = this.direction.down;
-            diffY = this.input.y.end - this.input.y.start;            
+            this.direction.difference.y = this.input.y.end - this.input.y.start;            
         }
 
-        if (diffX >= diffY) {
-            threshold = this.menu.offsetWidth * thresholdExtra;
+        if (this.direction.difference.x >= this.direction.difference.y) {
+            //this.threshold.value = this.menu.offsetWidth * this.threshold.extra;
 
-            if (diffX > threshold) {
+            if (this.direction.difference.x > this.threshold.value.x) {
                 // Moving on x axis.
                 this.moving = moveX;                
             } 
         } else {
-            threshold = this.menu.offsetHeight * thresholdExtra;
+            //this.threshold.value = this.menu.offsetHeight * this.threshold.extra;
 
-            if (diffY > threshold) {
+            if (this.direction.difference.y > this.threshold.value.y) {
                 // Moving on y axis
                 this.moving = moveY;                
             }
