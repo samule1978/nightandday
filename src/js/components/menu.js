@@ -32,6 +32,10 @@ export class Menu {
         right: 6,
         up: 8,
         left: 4,
+        downRight: 3,
+        upRight: 9,
+        upLeft: 7,
+        downLeft: 1,
     };
 
     moving = this.direction.none;
@@ -159,54 +163,155 @@ export class Menu {
         }
     }
 
-    moveLogoRight() {        
+    moveLogoRight() {
+        let _left, _x, _attr = "";
+
         if (this.menu.getAttribute("sg78-logo-menu-x") == "left") {
-            if (this.hamburgerMenu.linearGradient.animate === "true") {
-                const x = "right", y = this.menu.getAttribute("sg78-logo-menu-y");
-                gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
+            if (this.menu.getAttribute("sg78-logo-menu-y") == "middle") {
+                _left = "100%";
+                _x = `-${this.offset.x.end}`;
+                _attr = "right";    
+            } else {
+                _left = "100%";
+                _x = `-${this.offset.x.middle}`;
+                _attr = "middle";    
             }
-            gsap.to(this.menu, { ease: "bounce.out", scale: "1", left: "100%", x: `-${this.offset.x.end}}`, duration: 1, onComplete: () => {
-                this.moving = this.direction.none;
-                this.srolling(true);
-            }});    
-            //this.menuTlLeftToRight.play();
-            //this.menuTlLeftToRight.restart();
-            this.menu.setAttribute("sg78-logo-menu-x", "right");
+        } else if (this.menu.getAttribute("sg78-logo-menu-x") == "middle") {
+            _left = "100%";
+            _x = `-${this.offset.x.end}`;
+            _attr = "right";
         }
+
+        gsap.to(this.menu, { ease: "bounce.out", left: _left, x: _x, duration: 1, onComplete: () => {
+            this.moving = this.direction.none;
+            this.srolling(true);
+        }});    
+        this.menu.setAttribute("sg78-logo-menu-x", _attr);
     }
-    moveLogoLeft() {        
+    moveLogoLeft() {
+        let _left, _x, _attr = "";
+
         if (this.menu.getAttribute("sg78-logo-menu-x") == "right") {
-            if (this.hamburgerMenu.linearGradient.animate === "true") {
-                const x = "left", y = this.menu.getAttribute("sg78-logo-menu-y");
-                gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
+            if (this.menu.getAttribute("sg78-logo-menu-y") == "middle") {
+                _left = "0%";
+                _x = `${this.offset.x.start}`;
+                _attr = "left";    
+            } else {
+                _left = "100%";
+                _x = `-${this.offset.x.middle}`;
+                _attr = "middle";    
             }
+        } else if (this.menu.getAttribute("sg78-logo-menu-x") == "middle") {
+            _left = "0%";
+            _x = `${this.offset.x.start}`;
+            _attr = "left";
+        }
+
+        gsap.to(this.menu, { ease: "bounce.out", left: _left, x: _x, duration: 1, onComplete: () => {
+            this.moving = this.direction.none;
+            this.srolling(true);
+        }});    
+        this.menu.setAttribute("sg78-logo-menu-x", _attr);
+
+        return;
+        
+        if (this.menu.getAttribute("sg78-logo-menu-x") == "right") {
+            gsap.to(this.menu, { ease: "bounce.out", left: "100%", x: `-${this.offset.x.middle}}`, duration: 1, onComplete: () => {
+                this.moving = this.direction.none;
+                this.srolling(true); 
+            }});            
+            this.menu.setAttribute("sg78-logo-menu-x", "middle");
+        } else if (this.menu.getAttribute("sg78-logo-menu-x") == "middle") {
             gsap.to(this.menu, { ease: "bounce.out", left: "0%", x: `${this.offset.x.start}}`, duration: 1, onComplete: () => {
                 this.moving = this.direction.none;
                 this.srolling(true); 
             }});            
-            //this.menuTlRightToLeft.play();
-            //this.menuTlRightToLeft.restart();
             this.menu.setAttribute("sg78-logo-menu-x", "left");
         }
+
     }
 
-    moveLogoUp() {        
+    moveLogoUp() {
+        let _top, _y, _attr = "";
+
         if (this.menu.getAttribute("sg78-logo-menu-y") == "bottom") {
-            if (this.hamburgerMenu.linearGradient.animate === "true") {
-                const x = this.menu.getAttribute("sg78-logo-menu-x"), y = "top";
-                gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
+            if (this.menu.getAttribute("sg78-logo-menu-x") == "middle") {
+                _top = "0%";
+                _y = `${this.offset.y.start}`;
+                _attr = "top";    
+            } else {
+                _top = "100%";
+                _y = `-${this.offset.y.middle}`;
+                _attr = "middle";    
             }
+        } else if (this.menu.getAttribute("sg78-logo-menu-y") == "middle") {
+            _top = "0%";
+            _y = `${this.offset.y.start}`;
+            _attr = "top";
+        }
+
+        gsap.to(this.menu, { ease: "bounce.out", top: _top, y: _y, duration: 1, onComplete: () => {
+            this.moving = this.direction.none;
+            this.srolling(true);
+        }});    
+        this.menu.setAttribute("sg78-logo-menu-y", _attr);
+
+        return;
+
+        if (this.menu.getAttribute("sg78-logo-menu-y") == "bottom") {
+            gsap.to(this.menu, { ease: "bounce.out", top: "100%", y: `-${this.offset.y.middle}}`, duration: 1, onComplete: () => {
+                this.moving = this.direction.none;
+                this.srolling(true); 
+            }});    
+            this.menu.setAttribute("sg78-logo-menu-y", "middle");
+        } else if (this.menu.getAttribute("sg78-logo-menu-y") == "middle") {
             gsap.to(this.menu, { ease: "bounce.out", top: "0%", y: `${this.offset.y.start}}`, duration: 1, onComplete: () => {
                 this.moving = this.direction.none;
                 this.srolling(true); 
             }});    
-            //this.menuTlBottomToTop.play();
-            //this.menuTlBottomToTop.restart();
             this.menu.setAttribute("sg78-logo-menu-y", "top");
         }
     }
-    moveLogoDown() {        
+    moveLogoDown() {
+        let _top, _y, _attr = "";
+
         if (this.menu.getAttribute("sg78-logo-menu-y") == "top") {
+            if (this.menu.getAttribute("sg78-logo-menu-x") == "middle") {
+                _top = "100%";
+                _y = `-${this.offset.y.end}`;
+                _attr = "bottom";
+            } else {
+                _top = "100%";
+                _y = `-${this.offset.y.middle}`;
+                _attr = "middle";    
+            }
+        } else if (this.menu.getAttribute("sg78-logo-menu-y") == "middle") {
+            _top = "100%";
+            _y = `-${this.offset.y.end}`;
+            _attr = "bottom";
+        }
+
+        gsap.to(this.menu, { ease: "bounce.out", top: _top, y: _y, duration: 1, onComplete: () => {
+            this.moving = this.direction.none;
+            this.srolling(true);
+        }});    
+        this.menu.setAttribute("sg78-logo-menu-y", _attr);
+
+        return;
+        
+        if (this.menu.getAttribute("sg78-logo-menu-y") == "top") {
+            if (this.hamburgerMenu.linearGradient.animate === "true") {
+                const x = this.menu.getAttribute("sg78-logo-menu-x"), y = "bottom";
+                gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
+            }
+            gsap.to(this.menu, { ease: "bounce.out", top: "100%", y: `-${this.offset.y.middle}`, duration: 1, onComplete: () => {
+                this.moving = this.direction.none;
+                this.srolling(true); 
+            }});
+            //this.menuTlTopToBottom.play();
+            //this.menuTlTopToBottom.restart();
+            this.menu.setAttribute("sg78-logo-menu-y", "middle");
+        } else if (this.menu.getAttribute("sg78-logo-menu-y") == "middle") {
             if (this.hamburgerMenu.linearGradient.animate === "true") {
                 const x = this.menu.getAttribute("sg78-logo-menu-x"), y = "bottom";
                 gsap.to(this.hamburgerMenuInner, { background:`${this.hamburgerMenu.linearGradient.base} linear-gradient(${this.getLinearGradientAngle(x, y)}, ${this.hamburgerMenu.linearGradient.colors})`, duration:1 });
@@ -219,6 +324,7 @@ export class Menu {
             //this.menuTlTopToBottom.restart();
             this.menu.setAttribute("sg78-logo-menu-y", "bottom");
         }
+
     }
 
     srolling(srolling) {
@@ -352,13 +458,13 @@ export class Menu {
         //console.log(`isTouch: ${isTouch}`);
 
         this.offset.x.start = `${(this.menu.offsetWidth / 3)}px`;
-        this.offset.x.middle = `${(window.innerWidth / 2) - (this.menu.offsetWidth / 3)}px`;
+        this.offset.x.middle = `${(window.innerWidth / 2) + (this.menu.offsetWidth / 2)}px`;
         this.offset.x.end = `${(this.menu.offsetWidth / 3) * 4}px`;
         this.menu.setAttribute("sg78-logo-menu-x", "left");
         setCssPropertyValue(this.menu, "left", this.offset.x.start);
 
         this.offset.y.start = `${(this.menu.offsetHeight / 3)}px`;        
-        this.offset.y.middle = `${(window.innerHeight / 2) - (this.menu.offsetHeight / 3)}px`;
+        this.offset.y.middle = `${(window.innerHeight / 2) + (this.menu.offsetHeight / 2)}px`;
         this.offset.y.end = `${(this.menu.offsetHeight / 3) * 4}px`;
         this.menu.setAttribute("sg78-logo-menu-y", "top");
         setCssPropertyValue(this.menu, "top", this.offset.y.start);
