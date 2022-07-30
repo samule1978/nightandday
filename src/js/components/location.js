@@ -52,6 +52,16 @@ export class Location {
         //return this.getDistanceFromLatLonInKm(0, 0, lat1, lon1) - this.getDistanceFromLatLonInKm(0, 0, lat2, lon2);
     });
 
+    showPosition(position) {
+        alert(position.coords.latitude);
+        alert(position.coords.longitude);
+
+        this.user.latitude = position.coords.latitude;
+        this.user.longitude = position.coords.longitude;
+
+        qs("[sg78-practice-source]").innerHTML = "Dynamic";
+        qs("[sg78-practice-location]").innerHTML = this.closestCity[0][0];
+    }
 
     init() {
         /*
@@ -61,15 +71,11 @@ export class Location {
         */
 
         qs("[sg78-practice-source]").innerHTML = "Static";
-        qs("[sg78-practice-location]").innerHTML = this.closestCity[0];
+        qs("[sg78-practice-location]").innerHTML = this.closestCity[0][0];
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                this.user.latitude = position.coords.latitude;
-                this.user.longitude = position.coords.longitude;
-    
-                qs("[sg78-practice-source]").innerHTML = "Dynamic";
-                qs("[sg78-practice-location]").innerHTML = this.closestCity[0];
+                navigator.geolocation.watchPosition(this.showPosition);
             });    
         }        
     }
