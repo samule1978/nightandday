@@ -79,5 +79,4 @@ export function scrollStop (callback, refresh = 66) {
 		isScrolling = setTimeout(callback, refresh);
 
 	}, false);
-
 }
