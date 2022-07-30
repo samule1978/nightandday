@@ -59,8 +59,8 @@ export class Location {
         this.user.latitude = position.coords.latitude;
         this.user.longitude = position.coords.longitude;
 
-        qs("[sg78-practice-source]").innerHTML = "Dynamic";
-        qs("[sg78-practice-location]").innerHTML = this.closestCity[0][0];
+        qs("[sg78-practice-source]").textContent = "Dynamic";
+        qs("[sg78-practice-location]").textContent = this.closestCity[0];
     }
 
     init() {
@@ -70,12 +70,12 @@ export class Location {
         https://stackoverflow.com/questions/51819224/how-to-find-nearest-location-using-latitude-and-longitude-from-a-json-data
         */
 
-        qs("[sg78-practice-source]").innerHTML = "Static";
-        qs("[sg78-practice-location]").innerHTML = this.closestCity[0][0];
+        qs("[sg78-practice-source]").textContent = "Static";
+        qs("[sg78-practice-location]").textContent = this.closestCity[0];
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                navigator.geolocation.watchPosition(this.showPosition);
+                navigator.geolocation.watchPosition(this.showPosition(position));
             });    
         }        
     }
