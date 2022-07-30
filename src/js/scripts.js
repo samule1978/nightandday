@@ -33,6 +33,11 @@ if (!isTouchEnabled()) {
 	}
 }
 
+import("./components/location.js").then(({ Location }) => {
+	const _location = new Location();
+	_location.init();
+});
+
 if (is(qs("[sg78-logo-menu]"))) {
 	import("./components/menu.js").then(({ Menu }) => {
 		const _menu = new Menu();
