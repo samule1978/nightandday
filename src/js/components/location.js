@@ -18,6 +18,7 @@ export class Location {
         latitude: 53.80220864935608, longitude: -1.54692648549744, // Leeds City Museum
         //latitude: 51.55662172914348, longitude: -0.09133232644769686, // Uddins
         //latitude: 55.834739391284764, longitude: -4.2110778654626175, // Glasgow Tesco Extra
+        //latitude: 53.44719695999979, longitude: -2.336367598555993, // Dynamic
     };
     
     practices = [
@@ -25,11 +26,11 @@ export class Location {
         ["Leeds", 53.76605323468461, -1.5574778124538127]
     ];
 
-    deg2rad(deg) {
+    deg2rad = (deg) => {
         return deg * (Math.PI / 180);
     }
     
-    getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
         const R = 6371;
         const dLat = this.deg2rad(lat2 - lat1);
         const dLon = this.deg2rad(lon2 - lon1);
@@ -42,16 +43,50 @@ export class Location {
         return d;
     }
 
-    closestCity = this.practices.sort((c1, c2) => {
+    sortFunction = (c1, c2) => {
         const [, lat1, lon1] = c1;
         const [, lat2, lon2] = c2;
         
         return this.getDistanceFromLatLonInKm(this.user.latitude, this.user.longitude, lat1, lon1) - this.getDistanceFromLatLonInKm(this.user.latitude, this.user.longitude, lat2, lon2);
-        
-        // Default        
-        //return this.getDistanceFromLatLonInKm(0, 0, lat1, lon1) - this.getDistanceFromLatLonInKm(0, 0, lat2, lon2);
-    });
+    }
 
+    getClosestPractice = () => {
+        return this.practices.sort(this.sortFunction);
+    }
+
+    /*closestPractice = this.practices.sort((c1, c2) => {
+        const [, lat1, lon1] = c1;
+        const [, lat2, lon2] = c2;
+
+        console.log(`[closestPractice] - ${this.user.latitude}, ${this.user.longitude}`);        
+        
+        return this.getDistanceFromLatLonInKm(this.user.latitude, this.user.longitude, lat1, lon1) - this.getDistanceFromLatLonInKm(this.user.latitude, this.user.longitude, lat2, lon2);
+    })*/
+
+    updatePractice = (position) => {
+        qs("[sg78-practice-source]").textContent = "Checking";
+        qs("[sg78-practice-location]").textContent = "...";
+
+        this.user.latitude = position.coords.latitude;
+        this.user.longitude = position.coords.longitude;
+
+        qs("[sg78-practice-source]").textContent = "Dynamic";
+        qs("[sg78-practice-location]").textContent = this.getClosestPractice()[0][0];
+
+
+        
+    }
+
+
+    options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    }
+
+    error = (err) => {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
 
     init() {
         /*
@@ -61,23 +96,13 @@ export class Location {
         */
 
         qs("[sg78-practice-source]").textContent = "Static";
-        qs("[sg78-practice-location]").textContent = this.closestCity[0];
+        //qs("[sg78-practice-location]").textContent = this.closestPractice[0];
+        qs("[sg78-practice-location]").textContent = this.getClosestPractice()[0][0];
 
         qs("[sg78-practice-location]").addEventListener('pointerup', (e) => {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    alert(position.coords.latitude);
-                    alert(position.coords.longitude);
-            
-                    this.user.latitude = position.coords.latitude;
-                    this.user.longitude = position.coords.longitude;
-            
-                    qs("[sg78-practice-source]").textContent = "Dynamic";
-                    qs("[sg78-practice-location]").textContent = this.closestCity[0];
-                });    
-            }        
-                
+                navigator.geolocation.getCurrentPosition(this.updatePractice, this.error, this.options);
+            };
         });
-
     }
 }
