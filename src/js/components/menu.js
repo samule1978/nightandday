@@ -208,8 +208,8 @@ export class Menu {
     logoMoving() {        
         this.direction.difference.x, this.direction.difference.y = 0;        
         
-        let moveX, moveY = this.direction.none;
-
+        let moveX = this.direction.none;
+        let moveY = this.direction.none;
         this.direction.value = this.direction.none;        
 
         if (this.input.x.end < this.input.x.start) {
